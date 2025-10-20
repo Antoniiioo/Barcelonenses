@@ -1,0 +1,832 @@
+.inicio-escritorio,
+.inicio-escritorio * {
+  box-sizing: border-box;
+}
+.inicio-escritorio {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 737px;
+  position: relative;
+  overflow: hidden;
+}
+.encabezado {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.frame-1 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.image-3 {
+  flex-shrink: 0;
+  width: 58px;
+  height: 54px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 58/54;
+}
+.r-v {
+  color: #000000;
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.vuesax-twotone-user {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  position: relative;
+}
+.vuesax-twotone-user2 {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.vuesax-twotone-shopping-cart {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.vuesax-twotone-shopping-cart2 {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.vuesax-outline-heart {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.vuesax-outline-heart2 {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: visible;
+}
+.menu {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.frame-3 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  height: 57px;
+  position: relative;
+  overflow: hidden;
+}
+.frame-4 {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.ropa {
+  color: #000000;
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-5 {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.calzado {
+  color: #000000;
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-6 {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.accesorios {
+  color: #000000;
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-7 {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.novedades {
+  color: var(--primario, #1e3b8a);
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-8 {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.marcas {
+  color: #000000;
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-84 {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.frame-11 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.vuesax-outline-search-normal {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+.vuesax-outline-search-normal2 {
+  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+.frame-12 {
+  background: #fdfcfc;
+  border-style: solid;
+  border-color: var(--secundario, #8cb1ed);
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 187px;
+  position: relative;
+  overflow: hidden;
+}
+.frame-37 {
+  background: var(--primario, #1e3b8a);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.vuesax-outline-arrow-right {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+.vuesax-outline-arrow-right2 {
+  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.frame-18 {
+  background: var(--secundario, #8cb1ed);
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 253px;
+  position: relative;
+  overflow: hidden;
+}
+.titulo-anuncio {
+  background: var(--primario, #1e3b8a);
+  padding: 0px 30px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.puede-que-te-interese {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: var(--heading-4, 30px);
+  font-weight: 400;
+  position: relative;
+  width: 204px;
+  height: 251px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.producto-1 {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.image-2 {
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 148px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.frame-25 {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+}
+.adidas {
+  color: #000000;
+  text-align: left;
+  font-family: var(--marcas, "PlayfairDisplay-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.camiseta-blanca-adidas {
+  color: #000000;
+  text-align: left;
+  font-family: var(--fuente-texto, "OpenSans-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  width: 128px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._10 {
+  color: #000000;
+  text-align: left;
+  font-family: "OpenSans-Regular", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  width: 22px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.producto-2 {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  padding: 0px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  height: 233px;
+  position: relative;
+  overflow: hidden;
+}
+.image-1 {
+  flex-shrink: 0;
+  width: 153px;
+  height: 153px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.frame-252 {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.keya {
+  color: #000000;
+  text-align: left;
+  font-family: var(--marcas, "PlayfairDisplay-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.camiseta-roja-keya {
+  color: #000000;
+  text-align: left;
+  font-family: var(--fuente-texto, "OpenSans-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  width: 128px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._7 {
+  color: #000000;
+  text-align: left;
+  font-family: "OpenSans-Regular", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  width: 23px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.producto-3 {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  padding: 0px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  height: 233px;
+  position: relative;
+  overflow: hidden;
+}
+.oferta {
+  background: var(--accent, #10b77f);
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.oferta2 {
+  color: #ffffff;
+  text-align: center;
+  font-family: var(--titulos, "Vollkorn-Regular", sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  width: 153px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frame-253 {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 153px;
+  height: 69px;
+  position: relative;
+  overflow: hidden;
+}
+.viceroy {
+  color: #000000;
+  text-align: left;
+  font-family: var(--marcas, "PlayfairDisplay-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.reloj-de-oro-viceroy {
+  color: #000000;
+  text-align: left;
+  font-family: var(--fuente-texto, "OpenSans-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  width: 128px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._70 {
+  color: #ff0000;
+  text-align: left;
+  font-family: var(--fuente-texto, "OpenSans-Regular", sans-serif);
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+  width: 31px;
+  height: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-26 {
+  padding: 30px 10px 30px 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.frame-27 {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.frame-28 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 213px;
+  position: relative;
+  overflow: hidden;
+}
+.captura-de-pantalla-2025-10-15-a-las-9-48-03-1 {
+  flex-shrink: 0;
+  width: 112px;
+  height: 177px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 112/177;
+}
+.ni-os {
+  color: #000000;
+  text-align: center;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frame-29 {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 213px;
+  position: relative;
+  overflow: hidden;
+}
+.hombre {
+  color: #000000;
+  text-align: center;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frame-30 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 213px;
+  position: relative;
+  overflow: hidden;
+}
+.captura-de-pantalla-2025-10-15-a-las-9-55-40-1 {
+  flex-shrink: 0;
+  width: 106px;
+  height: 177px;
+  position: relative;
+  object-fit: cover;
+  aspect-ratio: 106/177;
+}
+.mujer {
+  color: #000000;
+  text-align: center;
+  font-family: "Vollkorn-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.frame-31 {
+  background: var(--secundario, #8cb1ed);
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.frame-32 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.ayuda {
+  color: #000000;
+  text-align: center;
+  font-family: var(--fuente-texto, "OpenSans-Regular", sans-serif);
+  font-size: var(--heading-6, 18px);
+  font-weight: 400;
+  position: relative;
+  width: 75px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line-1 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 37px;
+  position: relative;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.sobre-nosotros {
+  color: #000000;
+  text-align: center;
+  font-family: "OpenSans-Regular", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  position: relative;
+  width: 165px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frame-322 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.copyright-2025 {
+  color: #000000;
+  text-align: right;
+  font-family: var(--fuente-texto, "OpenSans-Regular", sans-serif);
+  font-size: var(--heading-6, 18px);
+  font-weight: 400;
+  position: relative;
+  flex: 1;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

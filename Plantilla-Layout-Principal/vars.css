@@ -1,0 +1,35 @@
+/* Figma Styles of your File */
+:root {
+  /* Colors */
+  /* Fonts */
+  /* Effects */
+}
+/* Figma Color Variables of your File */
+:root,
+[data-coleccion-1-mode="claro"] {
+  /* claro */
+  --primario: #1e3b8a;
+  --secundario: #8cb1ed;
+  --accent: #10b77f;
+  --fondo: #ffffff;
+  --texto-1: #000000;
+  --texto-2: #f1f3ff;
+  --texto-3: #ebebeb;
+  --estrella: #000000;
+  --oferta: #ff0000;
+  --gris: #9f9e9e;
+}
+
+[data-coleccion-1-mode="oscuro"] {
+  /* oscuro */
+  --primario: #7592e1;
+  --secundario: #123773;
+  --accent: #48efb7;
+  --fondo: #000000;
+  --texto-1: #ffffff;
+  --texto-2: #f1f3ff;
+  --texto-3: #ebebeb;
+  --estrella: #f6ff00;
+  --oferta: #ff0000;
+  --gris: #9f9e9e;
+}
