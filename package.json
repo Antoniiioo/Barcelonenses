@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "sass": "sass -w scss:css",
+    "php": "php -S localhost:8080",
+    "dev:mac": "sass -w scss:css & php -S localhost:8080",
+    "dev:win": "start /b sass -w scss:css && php -S localhost:8080"
+  },
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3"
