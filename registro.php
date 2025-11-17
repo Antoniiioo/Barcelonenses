@@ -11,7 +11,7 @@
 
     <main class="row justify-content-center h-100">
         <div class="col-lg-10 col-xl-9">
-            <h1 class="text-center mb-4 mt-4" >Crea tu cuenta</h1>
+            <h1 class="text-center mb-4 mt-4 font-titulos" >Crea tu cuenta</h1>
             <form action="/register" method="post" autocomplete="on" class="">
                 <div class="row mb-3">
                     <label for="nombre" class="col-sm-4 col-form-label text-end">Nombre *</label>

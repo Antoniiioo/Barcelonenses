@@ -12,6 +12,18 @@ html {
     scroll-padding-top: calc(#{$navbar-height} - 1px);
 }
 
+.font-titulos {
+    font-family: $headings-font-family !important;
+}
+
+.font-texto {
+    font-family: $font-family-sans-serif !important;
+}
+
+.font-marcas {
+    font-family: $font-marcas !important;
+}
+
 // Styling for page sections
 .page-section {
     padding: 6rem 0;
