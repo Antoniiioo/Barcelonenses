@@ -20,17 +20,18 @@
 
             <div class="bg-secondary col-9 d-flex flex-nowrap overflow-auto p-4 gap-4 align-items-center">
 
-                <a href="" class="text-decoration-none tarjetasProductos" >
-                    <div class="card h-100"> <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
+                <a href="" class="text-decoration-none tarjetasProductos">
+                    <div class="card h-100">
+                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
-                            <p class="font-marcas ">Adidas</p>
+                            <p class="font-marcas">Adidas</p>
                             <p>Camiseta blanca Adidas</p>
                             <p>10€</p>
                         </div>
                     </div>
                 </a>
 
-                <a href="" class="text-decoration-none tarjetasProductos" >
+                <a href="" class="text-decoration-none tarjetasProductos">
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
@@ -41,7 +42,7 @@
                     </div>
                 </a>
 
-                <a href="" class="text-decoration-none tarjetasProductos" >
+                <a href="" class="text-decoration-none tarjetasProductos">
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
@@ -52,7 +53,7 @@
                     </div>
                 </a>
 
-                <a href="" class="text-decoration-none tarjetasProductos" >
+                <a href="" class="text-decoration-none tarjetasProductos">
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
