@@ -15,19 +15,20 @@
     <main>
         <section class="row container-fluid">
             <div class="bg-primary col-3 text-center align-content-center">
-                <h2 class="h1">Puede que te interese</h2>
+                <h2 class="h1 text-white font-titulos">Puede que te interese:</h2>
             </div>
-            <div class="bg-secondary col-9">
-                <div class="row container-fluid">
-                    <div class="card">
-                        <img src="" alt="Ropa" class="card-img-top">
-                        <div class="card-body">
-                            <p>Marca</p>
-                            <p>Descripcion</p>
-                            <p>Precio</p>
+            <div class="bg-secondary col-9 container-fluid">
+                <div class="row p-4">
+                    <a href="" class="text-decoration-none">
+                        <div class="card col-3">
+                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">Adidas</p>
+                                <p class="font-texto">Camiseta blanca Adidas</p>
+                                <p>10€</p>
+                            </div>
                         </div>
-                    </div>
-                    
+                    </a>
                 </div>
             </div>
         </section>
