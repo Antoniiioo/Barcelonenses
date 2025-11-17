@@ -5,7 +5,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-4 fs-4">
-            <a href=""><span class="bi bi-person"></span></a>
+            <a href="registro.php"><span class="bi bi-person"></span></a>
             <a href=""><span class="bi bi-cart"></span></a>
             <a href=""><span class="bi bi-heart"></span></a>
         </div>
