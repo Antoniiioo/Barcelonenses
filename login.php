@@ -5,11 +5,11 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="container-fluid d-flex flex-column h-100">
+<body class="d-flex flex-column h-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
 
-    <main class="row justify-content-center h-100">
+    <main class="container-fluid row justify-content-center h-100">
         <div class="col-lg-10 col-xl-9">
 
             <h1 class="text-center my-4 my-md-5 font-titulos">Inicio sesion</h1>
@@ -19,14 +19,14 @@
 
                     <div class="mb-3">
                         <label for="username" class="form-label ">Usuario:</label>
-                        <input type="text" class="form-control" id="username" name="username" required
+                        <input type="text" class="form-control border-secondary" id="username" name="username" required
                             autocomplete="username">
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña:</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" required
+                            <input type="password" class="form-control border-secondary" id="password" name="password" required
                                 autocomplete="current-password">
                             <button class="btn btn-primary" type="submit" aria-label="Iniciar sesión"><i
                                     class="fas fa-arrow-right"></i></button>
@@ -34,22 +34,21 @@
                     </div>
 
                     <div class="text-center mt-4 mb-5 d-flex justify-content-center flex-wrap gap-2">
-                        <a href="registro.php" class="text-dark text-decoration-none">No tienes
+                        <a href="registro.php" class="text-dark">No tienes
                             cuenta</a>
                         <span class="text-muted">|</span>
-                        <a href="/forgot-password" class="text-dark text-decoration-none">Has
+                        <a href="/forgot-password" class="text-dark">Has
                             olvidado la contraseña</a>
                     </div>
 
-                    <div class="d-grid gap-3 mt-5 mb-3">
+                    <div class="d-grid gap-3 mt-2 mb-3">
                         <button type="button"
                             class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
-                            <i class="fab fa-google fa-lg me-2"></i> Autentificase con
-                            Google
+                            <i class="fab fa-google fa-lg me-2 text-dark"></i><p class="text-dark my-auto"> Autentificase con Google</p>
                         </button>
                         <button type="button"
                             class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
-                            <i class="fab fa-apple fa-lg me-2"></i> Autentificase con Apple
+                            <i class="fab fa-apple fa-lg me-2 text-dark"></i><p class="text-dark my-auto"> Autentificase con Apple</p>
                         </button>
                     </div>
                 </form>

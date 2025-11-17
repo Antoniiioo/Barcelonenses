@@ -5,11 +5,11 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="container-fluid d-flex flex-column h-100">
+<body class="d-flex flex-column h-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
 
-    <main class="row justify-content-center h-100">
+    <main class="container-fluid row justify-content-center h-100">
         <div class="col-lg-10 col-xl-9">
             <h1 class="text-center mb-4 mt-4 font-titulos">Crea tu cuenta</h1>
 
