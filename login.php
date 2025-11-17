@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php include "includes/head-tag-contents.php"; ?>
+</head>
+
+<body class="container-fluid d-flex flex-column h-100">
+    <?php include "includes/design-top.php"; ?>
+    <?php include "includes/navigation.php"; ?>
+
+    <main class="row justify-content-center h-100">
+        <div class="col-lg-10 col-xl-9">
+
+            <h1 class="text-center my-4 my-md-5 font-titulos">Inicio sesion</h1>
+
+            <div class="col-md-8 col-lg-6 mx-auto">
+                <form action="/login" method="post">
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label ">Usuario:</label>
+                        <input type="text" class="form-control" id="username" name="username" required
+                            autocomplete="username">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña:</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" required
+                                autocomplete="current-password">
+                            <button class="btn btn-primary" type="submit" aria-label="Iniciar sesión"><i
+                                    class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4 mb-5 d-flex justify-content-center flex-wrap gap-2">
+                        <a href="registro.php" class="text-dark text-decoration-none">No tienes
+                            cuenta</a>
+                        <span class="text-muted">|</span>
+                        <a href="/forgot-password" class="text-dark text-decoration-none">Has
+                            olvidado la contraseña</a>
+                    </div>
+
+                    <div class="d-grid gap-3 mt-5 mb-3">
+                        <button type="button"
+                            class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
+                            <i class="fab fa-google fa-lg me-2"></i> Autentificase con
+                            Google
+                        </button>
+                        <button type="button"
+                            class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
+                            <i class="fab fa-apple fa-lg me-2"></i> Autentificase con Apple
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <?php include "includes/footer.php"; ?>
+</body>
+
+</html>

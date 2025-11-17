@@ -11,67 +11,72 @@
 
     <main class="row justify-content-center h-100">
         <div class="col-lg-10 col-xl-9">
-            <h1 class="text-center mb-4 mt-4 font-titulos" >Crea tu cuenta</h1>
-            <form action="/register" method="post" autocomplete="on" class="">
-                <div class="row mb-3">
-                    <label for="nombre" class="col-sm-4 col-form-label text-end">Nombre *</label>
-                    <div class="col-sm-5 ">
-                        <input type="text" class="form-control border-secondary" id="nombre" name="nombre" required
-                            autocomplete="given-name">
-                    </div>
-                </div>
+            <h1 class="text-center mb-4 mt-4 font-titulos">Crea tu cuenta</h1>
 
-                <div class="row mb-3">
-                    <label for="apellidos" class="col-sm-4 text-end">Apellidos *</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control border-secondary" id="apellidos" name="apellidos" required
-                            autocomplete="family-name">
-                    </div>
-                </div>
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <form action="/register" method="post" autocomplete="on">
 
-                <div class="row mb-3">
-                    <label for="email" class="col-sm-4 col-form-label text-end">Dirección e-mail *</label>
-                    <div class="col-sm-5">
-                        <input type="email" class="form-control border-secondary" id="email" name="email" required autocomplete="email">
+                    <div class="row mb-3 justify-content-center">
+                        <label for="nombre" class="col-sm-4 col-form-label text-sm-start">Nombre *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control border-secondary" id="nombre" name="nombre" required
+                                autocomplete="given-name">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row mb-3">
-                    <label for="telefono" class="col-sm-4 col-form-label text-end">Teléfono móvil *</label>
-                    <div class="col-sm-5">
-                        <input type="tel" class="form-control border-secondary" id="telefono" name="telefono" required
-                            autocomplete="tel">
+                    <div class="row mb-3 justify-content-center">
+                        <label for="apellidos" class="col-sm-4 col-form-label text-sm-start">Apellidos *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control border-secondary" id="apellidos" name="apellidos"
+                                required autocomplete="family-name">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row mb-3">
-                    <label for="contrasena" class="col-sm-4 col-form-label text-end">Contraseña *</label>
-                    <div class="col-sm-5">
-                        <input type="password" class="form-control border-secondary" id="contrasena" name="contrasena" required
-                            autocomplete="new-password">
+                    <div class="row mb-3 justify-content-center">
+                        <label for="email" class="col-sm-4 col-form-label text-sm-start">Dirección e-mail *</label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control border-secondary" id="email" name="email" required
+                                autocomplete="email">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row mb-3">
-                    <label for="confirmar-contrasena" class="col-sm-4 col-form-label text-end">Confirmar contraseña
-                        *</label>
-                    <div class="col-sm-5 mb-3">
-                        <input type="password" class="form-control border-secondary" id="confirmar-contrasena"
-                            name="confirmar_contrasena" required autocomplete="new-password">
+                    <div class="row mb-3 justify-content-center">
+                        <label for="telefono" class="col-sm-4 col-form-label text-sm-start">Teléfono móvil *</label>
+                        <div class="col-sm-7">
+                            <input type="tel" class="form-control border-secondary" id="telefono" name="telefono"
+                                required autocomplete="tel">
+                        </div>
                     </div>
-                </div>
 
-                <div class="row mb-3 mt-4">
-                    <div class="col-sm-6 offset-sm-4">
-                        <div class="d-flex flex-wrap gap-2 ms-5">
-                            <a href="/login" class="btn btn-info">YA TENGO CUENTA</a>
+                    <div class="row mb-3 justify-content-center">
+                        <label for="contrasena" class="col-sm-4 col-form-label text-sm-start">Contraseña *</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control border-secondary" id="contrasena"
+                                name="contrasena" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 justify-content-center">
+                        <label for="confirmar-contrasena" class="col-sm-4 col-form-label text-sm-start">Confirmar
+                            contraseña *</label>
+                        <div class="col-sm-7 mb-3">
+                            <input type="password" class="form-control border-secondary" id="confirmar-contrasena"
+                                name="confirmar_contrasena" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 mt-4">
+                        <div class="col-12 d-flex justify-content-center flex-wrap gap-2">
+                            <a href="login.php" class="btn btn-info">YA TENGO CUENTA</a>
                             <button type="submit" class="btn btn-primary">REGISTRAR</button>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+
         </div>
     </main>
+
     <?php include "includes/footer.php"; ?>
 </body>
 
