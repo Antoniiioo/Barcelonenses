@@ -1,3 +1,4 @@
+<?php include("includes/a_config.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,33 +14,20 @@
 
     <main>
         <section class="row container-fluid">
-            <div>
-                <h2>Puede que te interese</h2>
+            <div class="bg-primary col-3 text-center align-content-center">
+                <h2 class="h1">Puede que te interese</h2>
             </div>
-            <div>
-                <div>
-                    <img src="" alt="Ropa">
-                    <div>
-                        <p>Marca</p>
-                        <p>Descripcion</p>
-                        <p>Precio</p>
+            <div class="bg-secondary col-9">
+                <div class="row container-fluid">
+                    <div class="card">
+                        <img src="" alt="Ropa" class="card-img-top">
+                        <div class="card-body">
+                            <p>Marca</p>
+                            <p>Descripcion</p>
+                            <p>Precio</p>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <img src="" alt="Ropa">
-                    <div>
-                        <p>Marca</p>
-                        <p>Descripcion</p>
-                        <p>Precio</p>
-                    </div>
-                </div>
-                <div>
-                    <img src="" alt="Ropa">
-                    <div>
-                        <p>Marca</p>
-                        <p>Descripcion</p>
-                        <p>Precio</p>
-                    </div>
+                    
                 </div>
             </div>
         </section>
