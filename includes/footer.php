@@ -1,4 +1,4 @@
-<footer class="d-flex justify-content-between align-items-center mb-4 px-4">
+<footer class="d-flex justify-content-between align-items-center py-3 px-4 bg-secondary">
         <div>
             <p class="mb-0">
                 <a href="" class="text-dark text-decoration-none">Ayuda</a>
