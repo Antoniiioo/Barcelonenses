@@ -2,22 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
 <body>
-
-    <head>
-        <?php include "includes/head-tag-contents.php"; ?>
-    </head>
-
+    <!--Encabezado-->
     <?php include "includes/design-top.php"; ?>
+    <!--Menu-->
     <?php include "includes/navigation.php"; ?>
 
     <main>
-        <section>
+        <section class="row container-fluid">
             <div>
                 <h2>Puede que te interese</h2>
             </div>
@@ -69,7 +64,7 @@
             </div>
         </section>
     </main>
-    
+    <!--Footer-->
     <?php include "includes/footer.php"; ?>
 </body>
 
