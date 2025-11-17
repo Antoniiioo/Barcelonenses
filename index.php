@@ -23,7 +23,7 @@
                 <a href="" class="text-decoration-none tarjetasProductos" >
                     <div class="card h-100"> <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
-                            <p class="font-marcas font">Adidas</p>
+                            <p class="font-marcas ">Adidas</p>
                             <p>Camiseta blanca Adidas</p>
                             <p>10€</p>
                         </div>
@@ -34,7 +34,7 @@
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
-                            <p class="font-marcas font">Adidas</p>
+                            <p class="font-marcas fs-6">Adidas</p>
                             <p>Camiseta blanca Adidas</p>
                             <p>10€</p>
                         </div>
@@ -45,7 +45,7 @@
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
-                            <p class="font-marcas font">Adidas</p>
+                            <p class="font-marcas ">Adidas</p>
                             <p>Camiseta blanca Adidas</p>
                             <p>10€</p>
                         </div>
@@ -56,7 +56,7 @@
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
-                            <p class="font-marcas font">Adidas</p>
+                            <p class="font-marcas ">Adidas</p>
                             <p>Camiseta blanca Adidas</p>
                             <p>10€</p>
                         </div>
