@@ -19,7 +19,8 @@
             </ul>
 
             <form class="d-flex">
-                <div class="input-group">
+                <div class="input-group align-items-center">
+                    <span class="bi bi-search me-2 fs-4"></span>
                     <input type="text" class="form-control border-secondary" placeholder="Buscar...">
                     <button class="btn btn-primary" type="submit">
                         <span class="bi bi-arrow-right"></span>

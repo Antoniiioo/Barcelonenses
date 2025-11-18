@@ -6,13 +6,13 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!--Encabezado-->
     <?php include "includes/design-top.php"; ?>
     <!--Menu-->
     <?php include "includes/navigation.php"; ?>
 
-    <main class="container-fluid">
+    <main class="container-fluid flex-grow-1">
         <section class="row">
             <div class="bg-primary col-3 text-center align-content-center">
                 <h2 class="h1 text-white font-titulos">Puede que te interese:</h2>
@@ -35,7 +35,7 @@
                     <div class="card h-100">
                         <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                         <div class="card-body border-top">
-                            <p class="font-marcas fs-6">Adidas</p>
+                            <p class="font-marcas">Adidas</p>
                             <p>Camiseta blanca Adidas</p>
                             <p>10€</p>
                         </div>

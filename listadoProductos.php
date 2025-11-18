@@ -6,30 +6,50 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="h-100">
+<body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
-    <main>
+    <main class="flex-grow-1 container">
         <form action="" class="row mx-5 my-4">
             <div class="col-3">
-                <select class="form-select">
-                    <option selected>Marca</option>
-                </select>
+                <div class="custom-select-wrapper">
+                    <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
+                        <option selected disabled>Marca</option>
+                        <option>Adidas</option>
+                        <option>Nike</option>
+                        <option>New Balance</option>
+                    </select>
+                </div>
             </div>
             <div class="col-3">
-                <select class="form-select">
-                    <option selected>Marca</option>
-                </select>
+                <div class="custom-select-wrapper">
+                    <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
+                        <option selected disabled>Color</option>
+                        <option>Rojo</option>
+                        <option>Azul</option>
+                        <option>Amarillo</option>
+                    </select>
+                </div>
             </div>
             <div class="col-3">
-                <select class="form-select">
-                    <option selected>Marca</option>
-                </select>
+                <div class="custom-select-wrapper">
+                    <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
+                        <option selected disabled>Tipo</option>
+                        <option>Pantalon</option>
+                        <option>Camiseta</option>
+                        <option>Rejoj</option>
+                    </select>
+                </div>
             </div>
             <div class="col-3">
-                <select class="form-select">
-                    <option selected>Marca</option>
-                </select>
+                <div class="custom-select-wrapper">
+                    <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
+                        <option selected disabled>Ordenar</option>
+                        <option>Precio menor a mayor</option>
+                        <option>Precio mayor a menor</option>
+                        <option>Mas relevantes</option>
+                    </select>
+                </div>
             </div>
         </form>
         <section class="row mx-5 my-4">
