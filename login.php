@@ -13,7 +13,7 @@
     <main class="container-fluid row justify-content-center h-100">
         <div class="col-lg-10 col-xl-9">
 
-            <h1 class="text-center my-4 my-md-5 font-titulos">Inicio sesion</h1>
+            <h1 class="text-center mt-5 mb-3 font-titulos">Inicio sesion</h1>
 
             <div class="col-md-8 col-lg-6 mx-auto">
                 <form action="/login" method="post">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
 
-                    <div class="text-center mt-4 mb-5 d-flex justify-content-center flex-wrap gap-2">
+                    <div class="text-center mt-4 mb-4 d-flex justify-content-center flex-wrap gap-2">
                         <a href="registro.php" class="text-dark">No tienes
                             cuenta</a>
                         <span class="text-muted">|</span>
@@ -43,12 +43,10 @@
                     </div>
 
                     <div class="d-grid gap-3 mt-2">
-                        <button type="button"
-                            class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
                             <i class="fab fa-google fa-lg me-2 text-dark"></i><p class="text-dark my-auto"> Autentificase con Google</p>
                         </button>
-                        <button type="button"
-                            class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
+                        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
                             <i class="fab fa-apple fa-lg me-2 text-dark"></i><p class="text-dark my-auto"> Autentificase con Apple</p>
                         </button>
                     </div>
