@@ -3,9 +3,9 @@
             <p class="mb-0">
                 <a href="ayuda.php" class="text-dark text-decoration-none">Ayuda</a>
                 |
-                <a href="" class="text-dark text-decoration-none">Sobre nosotros</a>
+                <a href="quienessomos.php" class="text-dark text-decoration-none">Sobre nosotros</a>
                 |
-                <a href="" class="text-dark text-decoration-none">Políticas de privacidad</a>
+                <a href="privacidad.php" class="text-dark text-decoration-none">Políticas de privacidad</a>
             </p>
         </div>
         <div>
