@@ -42,7 +42,7 @@
                             olvidado la contraseña</a>
                     </div>
 
-                    <div class="d-grid gap-3 mt-2 mb-3">
+                    <div class="d-grid gap-3 mt-2">
                         <button type="button"
                             class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center">
                             <i class="fab fa-google fa-lg me-2 text-dark"></i><p class="text-dark my-auto"> Autentificase con Google</p>
