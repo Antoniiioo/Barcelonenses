@@ -10,8 +10,7 @@
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
     <main class="flex-grow-1 row container-fluid">
-        <form action="" class="col-3 d-flex flex-column gap-5 mt-3 sticky-top align-self-start"
-            style="top: 20px; z-index: 1;">
+        <form action="" class="col-3 d-flex flex-column gap-5 pt-3 sticky-top align-self-start">
             <div class="input-group">
                 <span class="input-group-text bg-white border-end-0 border-secondary text-body">
                     <i class="bi bi-search"></i>
@@ -38,262 +37,35 @@
                 </select>
             </div>
         </form>
-        <div class="col-2"></div>
-        <section class="col-7">
+        <div class="col-1"></div>
+        <section class="col-8">
             <div class="row">
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
+                <?php for ($i = 0; $i < 10; $i++) { ?>
+                    <div class="col-3">
+                        <div class="card tarjetasProductos">
+                            <a href="" class="text-decoration-none text-dark">
+                                <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
+                                <div class="card-body border-top">
+                                    <p class="font-marcas">Adidas</p>
+                                    <p>Camiseta blanca Adidas</p>
+                                    <p>10€</p>
+                                </div>
+                            </a>
+                            <div class="card-footer bg-white p-0 overflow-hidden">
+                                <form action="" method="post" class="row g-0">
+                                    <button type="submit"
+                                        class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
+                                        <span class="bi bi-dash"></span> 
+                                    </button>
+                                    <button type="submit"
+                                        class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
+                                        <span class="bi bi-cart"></span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
-                        <a href="" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <div class="row g-0">
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-danger text-white border-end py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-dash"></span> </a>
-                                <a href=""
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </section>
     </main>

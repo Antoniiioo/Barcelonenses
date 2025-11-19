@@ -16,7 +16,7 @@
 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="encabezadoUno">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#colapsoUno" aria-expanded="false" aria-controls="colapsoUno">
                             Como realizar un pedido
                         </button>

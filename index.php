@@ -18,51 +18,20 @@
                 <h2 class="h1 text-white font-titulos">Puede que te interese:</h2>
             </div>
 
-            <div class="bg-secondary col-9 d-flex flex-nowrap overflow-auto p-4 gap-4 align-items-center">
+            <div class="bg-secondary col-9 d-flex flex-nowrap overflow-auto p-4 gap-4 align-items-start">
 
-                <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos">
-                    <div class="card h-100">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid"> 
-                        <div class="card-body border-top">
-                            <p class="font-marcas">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
+                <?php for ($i = 0; $i < 10; $i++) { ?>
+                    <a href="vistaprecia.php" class="text-decoration-none tarjetasProductos">
+                        <div class="card h-100">
+                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">Adidas</p>
+                                <p>Camiseta blanca Adidas</p>
+                                <p>10€</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-
-                <a href="" class="text-decoration-none tarjetasProductos">
-                    <div class="card h-100">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
-                        <div class="card-body border-top">
-                            <p class="font-marcas">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="" class="text-decoration-none tarjetasProductos">
-                    <div class="card h-100">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
-                        <div class="card-body border-top">
-                            <p class="font-marcas ">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="" class="text-decoration-none tarjetasProductos">
-                    <div class="card h-100">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
-                        <div class="card-body border-top">
-                            <p class="font-marcas ">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                    <?php } ?>
 
             </div>
         </section>

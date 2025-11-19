@@ -7,10 +7,6 @@ $font-family-principal: "Open Sans";
 $font-family-marcas: "Playfair Display";
 
 
-$font-family-sans-serif: $font-family-principal;
-$headings-font-family: $font-family-titulos;
-$font-marcas: $font-family-marcas;
-
 $font-size-s: 10px;
 $font-size-m: 14px;
 $font-size-l: 20px;
@@ -21,3 +17,10 @@ $font-size-h3: 42px;
 $font-size-h4: 30px;
 $font-size-h5: 24px;
 $font-size-h6: 18px;
+
+$h1-font-size: $font-size-h1;
+$h2-font-size: $font-size-h2;
+$h3-font-size: $font-size-h3;
+$h4-font-size: $font-size-h4;
+$h5-font-size: $font-size-h5;
+$h6-font-size: $font-size-h6;
