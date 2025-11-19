@@ -5,17 +5,14 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="container-fluid d-flex flex-column h-100">
+<body class="d-flex flex-column h-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
-
-    <main class="my-5">
-
+    <main class="container-fluid my-5">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <div class="text-center mb-0">
-                    <img src="assets/img/quienes-somos.jpg" alt="Equipo R&V" class="img-fluid"
-                        style="max-height: 400px; object-fit: cover; width: 100%;">
+            <div class="col-md-8 col-lg-6 d-flex justify-content-center">
+                <div class="text-center mb-4 w-50">
+                    <img src="assets/img/image.png" alt="Equipo R&V" class="img-fluid">
                 </div>
             </div>
         </div>
