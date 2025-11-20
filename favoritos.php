@@ -41,13 +41,13 @@
             <div class="row">
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                     <div class="col-4">
-                        <div class="card tarjetasProductos">
-                            <a href="" class="text-decoration-none text-dark">
+                        <div class="card tarjetasProductos font-small">
+                            <a href="vistaprevia.php" class="text-decoration-none text-dark">
                                 <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
                                 <div class="card-body border-top">
                                     <p class="font-marcas">Adidas</p>
                                     <p>Camiseta blanca Adidas</p>
-                                    <p>10€</p>
+                                    <p class="font-medium">10€</p>
                                 </div>
                             </a>
                             <div class="card-footer bg-white p-0 overflow-hidden">

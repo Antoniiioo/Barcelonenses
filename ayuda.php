@@ -1,3 +1,4 @@
+<?php include("includes/a_config.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,18 +10,18 @@
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
 
-    <main class="container-fluid row justify-content-center my-5 h-100">
-        <div class="col-md-8 col-lg-6">
-            <h1 class="text-center mb-5 font-titulos">Ayudas</h1>
+    <main class="container-fluid row justify-content-center my-5 h-100 font-small">
+        <div class="col-8">
+            <h2 class="text-center mb-5 font-titulos fs-1">Ayudas</h2>
             <div class="accordion" id="acordeonAyuda">
 
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="encabezadoUno">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <h3 class="accordion-header" id="encabezadoUno">
+                        <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse"
                             data-bs-target="#colapsoUno" aria-expanded="false" aria-controls="colapsoUno">
                             Como realizar un pedido
                         </button>
-                    </h2>
+                    </h3>
                     <div id="colapsoUno" class="accordion-collapse collapse show" aria-labelledby="encabezadoUno"
                         data-bs-parent="#acordeonAyuda">
                         <div class="accordion-body">
@@ -33,12 +34,12 @@
                 </div>
 
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="encabezadoDos">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <h3 class="accordion-header" id="encabezadoDos">
+                        <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse"
                             data-bs-target="#colapsoDos" aria-expanded="false" aria-controls="colapsoDos">
                             Costes de envio
                         </button>
-                    </h2>
+                    </h3>
                     <div id="colapsoDos" class="accordion-collapse collapse" aria-labelledby="encabezadoDos"
                         data-bs-parent="#acordeonAyuda">
                         <div class="accordion-body">
@@ -50,12 +51,12 @@
                 </div>
 
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="encabezadoTres">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <h3 class="accordion-header" id="encabezadoTres">
+                        <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse"
                             data-bs-target="#colapsoTres" aria-expanded="false" aria-controls="colapsoTres">
                             Como solicitar una devolucion
                         </button>
-                    </h2>
+                    </h3>
                     <div id="colapsoTres" class="accordion-collapse collapse" aria-labelledby="encabezadoTres"
                         data-bs-parent="#acordeonAyuda">
                         <div class="accordion-body">
@@ -68,12 +69,12 @@
                 </div>
 
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="encabezadoCuatro">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <h3 class="accordion-header" id="encabezadoCuatro">
+                        <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse"
                             data-bs-target="#colapsoCuatro" aria-expanded="false" aria-controls="colapsoCuatro">
                             otro
                         </button>
-                    </h2>
+                    </h3>
                     <div id="colapsoCuatro" class="accordion-collapse collapse" aria-labelledby="encabezadoCuatro"
                         data-bs-parent="#acordeonAyuda">
                         <div class="accordion-body">

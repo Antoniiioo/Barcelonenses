@@ -1,3 +1,4 @@
+<?php include("includes/a_config.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,12 +20,12 @@
 
         <div class="row">
             <div class="col-12 bg-primary text-white text-center py-2">
-                <h1 class="m-0 font-titulos fs-2">Quienes somos</h1>
+                <h2 class="m-0 font-titulos fs-2">Quienes somos</h2>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
+            <div class="col-10 col-md-8 font-medium">
                 <div class="p-4 text-center">
                     <p class="mb-0">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been

@@ -1,3 +1,4 @@
+    <?php include("includes/a_config.php"); ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -9,9 +10,9 @@
         <?php include "includes/design-top.php"; ?>
         <?php include "includes/navigation.php"; ?>
 
-        <main class="container-fluid row justify-content-center my-5">
-            <div class="col-md-8 col-lg-6">
-                <h1 class="text-center mb-4 mt-4 font-titulos">Políticas de privacidad</h1>
+        <main class="container-fluid row justify-content-center my-5 font-medium">
+            <div class="col-md-8 col-10">
+                <h2 class="text-center mb-4 mt-4 font-titulos fs-1">Políticas de privacidad</h2>
 
                 <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipiscing elit penatibus facilisis,
                     aptent per potenti pretium curabitur congue nunc quisque, quam laoreet mi fringilla praesent vitae

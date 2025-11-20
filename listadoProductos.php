@@ -9,7 +9,7 @@
 <body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
-    <main class="flex-grow-1 container">
+    <main class="flex-grow-1 container-fuid">
         <form action="" class="row mx-5 my-4">
             <div class="col-6 my-2 my-md-0 col-md-3">
                 <div class="custom-select-wrapper">
@@ -54,7 +54,7 @@
         </form>
         <section class="row mx-5 my-4">
             <?php for ($i = 0; $i < 10; $i++) { ?>
-                <div class="col-6 col-md-4">
+                <div class="col-4 col-md-3">
                     <div class="card tarjetasProductos font-small">
                         <a href="" class="text-decoration-none text-dark">
                             <img src="assets/img/camisetaAdidas.webp" class="card-img-top">

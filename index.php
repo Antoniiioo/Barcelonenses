@@ -21,7 +21,7 @@
             <div class="bg-secondary col-8 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
 
                 <?php for ($i = 0; $i < 10; $i++) { ?>
-                    <a href="vistaprecia.php" class="text-decoration-none tarjetasProductos font-small">
+                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
                         <div class="card h-100">
                             <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                             <div class="card-body border-top">
