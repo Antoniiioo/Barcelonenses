@@ -16,7 +16,7 @@
                 <div class="col-md-7 mb-4 mb-md-0">
                     <div class="row">
 
-                        <div class="col-3 col-lg-3 d-flex flex-column gap-2 justify-content-center">
+                        <div class="col-3 col-md-3 d-flex flex-column gap-2 justify-content-center">
                             <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
                                 <img src="/assets/img/camisetaAdidas.webp" alt="Vista Lat 1" class="object-fit-cover">
                             </div>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="col-9 col-lg-9">
+                        <div class="col-9 col-md-9">
 
                             <div class="ratio ratio-4x3 text-center mb-3 border border-secondary-subtle">
                                 <img src="/assets/img/camisetaAdidas.webp" alt="Imagen Principal"

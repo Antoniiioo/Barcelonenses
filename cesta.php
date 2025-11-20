@@ -12,10 +12,8 @@
     <main class="py-5">
         <div class="container">
             <div class="row">
-
-                <div class="col-lg-3 mb-5 mb-lg-0">
+                <div class="col-md-3 mb-5 mb-md-0">
                     <h4 class="fw-bold mb-4 fs-5">Tu cesta (1 artículo)</h4>
-
                     <div class="mb-3">
                         <div class="text-center mb-3">
                             <img src="/assets/img/camisetaAdidas.webp" alt="camiseta adidas" class="img-fluid">
@@ -53,41 +51,41 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 mb-5 mb-lg-0 px-lg-4">
+                <div class="col-md-5 mb-5 mb-md-0 px-md-4">
 
                     <div class="border border-dark p-2 text-center mb-4">
                         <span class="fw-bold small">Dirección de envío</span>
                     </div>
 
                     <form>
-                        <div class="mb-3 border border-dark p-1">
-                            <label class="small fw-bold ps-2">Nombre:</label>
-                            <input type="text" class="form-control border-0 p-1 ps-2 shadow-none" required>
+                        <div class="mb-3 border border-dark p-2 d-flex align-items-center">
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Nombre:</label>
+                            <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
-                        <div class="mb-3 border border-dark p-1">
-                            <label class="small fw-bold ps-2">Apellidos:</label>
-                            <input type="text" class="form-control border-0 p-1 ps-2 shadow-none" required>
+                        <div class="mb-3 border border-dark p-2 d-flex align-items-center">
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Apellidos:</label>
+                            <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
-                        <div class="mb-3 border border-dark p-1">
-                            <label class="small fw-bold ps-2">Codigo postal:</label>
-                            <input type="text" class="form-control border-0 p-1 ps-2 shadow-none" required>
+                        <div class="mb-3 border border-dark p-2 d-flex align-items-center">
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Codigo postal:</label>
+                            <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
-                        <div class="mb-3 border border-dark p-1">
-                            <label class="small fw-bold ps-2">Dirección:</label>
-                            <input type="text" class="form-control border-0 p-1 ps-2 shadow-none" required>
+                        <div class="mb-3 border border-dark p-2 d-flex align-items-center">
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Dirección:</label>
+                            <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
-                        <div class="mb-3 border border-dark p-1">
-                            <label class="small fw-bold ps-2">Mas información:</label>
-                            <input type="text" class="form-control border-0 p-1 ps-2 shadow-none">
+                        <div class="mb-3 border border-dark p-2 d-flex align-items-center">
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Mas información:</label>
+                            <input type="text" class="form-control border-0 shadow-none bg-transparent">
                         </div>
 
-                        <div class="mb-4 border border-dark p-1">
-                            <label class="small fw-bold ps-2">Población</label>
-                            <input type="text" class="form-control border-0 p-1 ps-2 shadow-none" required>
+                        <div class="mb-4 border border-dark p-2 d-flex align-items-center">
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Población:</label>
+                            <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
                         <div class="text-center">
@@ -98,15 +96,14 @@
                     </form>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-md-4">
 
                     <div class="d-grid gap-2 mb-4">
                         <button class="btn btn-outline-secondary border-primary-subtle text-dark py-2"
                             type="button">Contrarrembolso</button>
                         <button class="btn btn-outline-secondary border-primary-subtle text-dark py-2"
                             type="button">Tarjeta de crédito</button>
-                        <button class="btn text-white py-2" 
-                            type="button">PayPal</button>
+                        <button class="btn text-white py-2" type="button">PayPal</button>
                     </div>
 
                     <div class="mb-2">
@@ -133,9 +130,7 @@
                             Confirmar pedido
                         </button>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </main>

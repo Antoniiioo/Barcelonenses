@@ -11,11 +11,11 @@
     <?php include "includes/navigation.php"; ?>
 
     <main class="container-fluid row justify-content-center flex-grow-1">
-        <div class="col-lg-10 col-xl-9">
+        <div class="col-md-10">
 
             <h1 class="text-center mt-5 mb-3 font-titulos">Inicio sesion</h1>
 
-            <div class="col-md-8 col-lg-6 mx-auto">
+            <div class="col-md-8 mx-auto">
                 <form action="/login" method="post">
 
                     <div class="mb-3">
