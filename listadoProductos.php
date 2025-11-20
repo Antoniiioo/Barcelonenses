@@ -11,7 +11,7 @@
     <?php include "includes/navigation.php"; ?>
     <main class="flex-grow-1 container">
         <form action="" class="row mx-5 my-4">
-            <div class="col-3">
+            <div class="col-6 my-2 my-md-0 col-md-3">
                 <div class="custom-select-wrapper">
                     <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
                         <option selected disabled>Marca</option>
@@ -21,7 +21,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-6 my-2 my-md-0 col-md-3">
                 <div class="custom-select-wrapper">
                     <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
                         <option selected disabled>Color</option>
@@ -31,7 +31,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-6 my-2 my-md-0 col-md-3">
                 <div class="custom-select-wrapper">
                     <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
                         <option selected disabled>Tipo</option>
@@ -41,7 +41,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-6 my-2 my-md-0 col-md-3">
                 <div class="custom-select-wrapper">
                     <select class="form-select overflow-hidden" aria-label="Selecciona una marca">
                         <option selected disabled>Ordenar</option>
@@ -54,14 +54,14 @@
         </form>
         <section class="row mx-5 my-4">
             <?php for ($i = 0; $i < 10; $i++) { ?>
-                <div class="col-3">
-                    <div class="card tarjetasProductos">
+                <div class="col-6 col-md-4">
+                    <div class="card tarjetasProductos font-small">
                         <a href="" class="text-decoration-none text-dark">
                             <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
                             <div class="card-body border-top">
-                                <p class="">Adidas</p>
+                                <p class="font-marcas">Adidas</p>
                                 <p>Camiseta blanca Adidas</p>
-                                <p>10€</p>
+                                <p class="font-medium">10€</p>
                             </div>
                         </a>
                         <div class="card-footer bg-white p-0 overflow-hidden">
@@ -79,98 +79,6 @@
                     </div>
                 </div>
             <?php } ?>
-            <div class="col-3">
-                <div class="card tarjetasProductos">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                        <div class="card-body border-top">
-                            <p class="font-marcas">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </a>
-                    <div class="card-footer bg-white p-0 overflow-hidden">
-                        <div class="row g-0">
-                            <a href=""
-                                class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                <span class="bi bi-heart"></span> </a>
-                            <a href=""
-                                class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                <span class="bi bi-cart"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card tarjetasProductos">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                        <div class="card-body border-top">
-                            <p class="font-marcas">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </a>
-                    <div class="card-footer bg-white p-0 overflow-hidden">
-                        <div class="row g-0">
-                            <a href=""
-                                class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                <span class="bi bi-heart"></span> </a>
-                            <a href=""
-                                class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                <span class="bi bi-cart"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card tarjetasProductos">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                        <div class="card-body border-top">
-                            <p class="font-marcas">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </a>
-                    <div class="card-footer bg-white p-0 overflow-hidden">
-                        <div class="row g-0">
-                            <a href=""
-                                class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                <span class="bi bi-heart"></span> </a>
-                            <a href=""
-                                class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                <span class="bi bi-cart"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card tarjetasProductos">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                        <div class="card-body border-top">
-                            <p class="font-marcas">Adidas</p>
-                            <p>Camiseta blanca Adidas</p>
-                            <p>10€</p>
-                        </div>
-                    </a>
-                    <div class="card-footer bg-white p-0 overflow-hidden">
-                        <div class="row g-0">
-                            <a href=""
-                                class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                <span class="bi bi-heart"></span> </a>
-                            <a href=""
-                                class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                <span class="bi bi-cart"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
     <?php include "includes/footer.php"; ?>

@@ -1,5 +1,11 @@
-<nav class="navbar navbar-expand-lg bg-white py-3 border-bottom">
-        <div class="container-fluid">
+<nav class="navbar navbar-expand-md bg-white py-3 border-bottom font-medium">
+    <div class="container-fluid">
+        <button class="navbar-toggler p-0 border-0 fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi bi-list"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="listadoProductos.php">Ropa</a>
@@ -17,15 +23,16 @@
                     <a class="nav-link" href="listadoProductos.php">Marcas</a>
                 </li>
             </ul>
-
-            <form class="d-flex">
-                <div class="input-group align-items-center">
-                    <span class="bi bi-search me-2 fs-4"></span>
-                    <input type="text" class="form-control border-secondary" placeholder="Buscar...">
-                    <button class="btn btn-primary" type="submit">
-                        <span class="bi bi-arrow-right"></span>
-                    </button>
-                </div>
-            </form>
         </div>
-    </nav>
+
+        <form class="d-flex ms-auto">
+            <div class="input-group align-items-center">
+                <span class="bi bi-search me-2 fs-5"></span>
+                <input type="text" class="form-control border-secondary" placeholder="Buscar...">
+                <button class="btn btn-primary" type="submit">
+                    <span class="bi bi-arrow-right"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</nav>

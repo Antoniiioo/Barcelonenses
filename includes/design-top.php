@@ -2,11 +2,11 @@
     <a href="index.php" class="text-decoration-none text-dark">
         <div class="d-flex align-items-center gap-2">
             <img src="assets/img/Logo.png" alt="Logo" width="60" height="60">
-            <h1 class="fs-3 m-0">R&V</h1>
+            <h1 class="m-0 font-titulos fs-4">R&V</h1>
         </div>
     </a>
 
-    <div class="d-flex align-items-center gap-4 fs-4">
+    <div class="d-flex align-items-center gap-4 fs-5">
         <a href="registro.php"><span class="bi bi-person"></span></a>
         <a href=""><span class="bi bi-cart"></span></a>
         <a href="favoritos.php"><span class="bi bi-heart"></span></a>

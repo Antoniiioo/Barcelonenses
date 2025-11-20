@@ -10,7 +10,7 @@
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
     <main class="flex-grow-1 row container-fluid">
-        <form action="" class="col-3 d-flex flex-column gap-5 pt-3 sticky-top align-self-start">
+        <form action="" class="col-12 col-md-3 d-flex flex-column gap-5 pt-3 sticky-md-top align-self-start">
             <div class="input-group">
                 <span class="input-group-text bg-white border-end-0 border-secondary text-body">
                     <i class="bi bi-search"></i>
@@ -37,11 +37,10 @@
                 </select>
             </div>
         </form>
-        <div class="col-1"></div>
-        <section class="col-8">
+        <section class="mx-md-4 col-12 col-md-8">
             <div class="row">
                 <?php for ($i = 0; $i < 10; $i++) { ?>
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="card tarjetasProductos">
                             <a href="" class="text-decoration-none text-dark">
                                 <img src="assets/img/camisetaAdidas.webp" class="card-img-top">

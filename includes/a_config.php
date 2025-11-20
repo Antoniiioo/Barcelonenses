@@ -16,13 +16,25 @@ switch ($_SERVER["SCRIPT_NAME"]) {
 		$CURRENT_PAGE = "Ropa";
 		$PAGE_TITLE = "Ropa";
 		break;
-	case "/about.php":
-		$CURRENT_PAGE = "About";
-		$PAGE_TITLE = "About Us";
+	case "/vistaprevia.php":
+		$CURRENT_PAGE = "Vista";
+		$PAGE_TITLE = "Vista Previa";
 		break;
-	case "/contact.php":
-		$CURRENT_PAGE = "Contact";
-		$PAGE_TITLE = "Contact Us";
+	case "/privacidad.php":
+		$CURRENT_PAGE = "Privacidad";
+		$PAGE_TITLE = "Privacidad";
+		break;
+	case "/quienessomos.php":
+		$CURRENT_PAGE = "QuienesSomos";
+		$PAGE_TITLE = "Quienes Somos";
+		break;
+	case "/favoritos.php":
+		$CURRENT_PAGE = "Favoritos";
+		$PAGE_TITLE = "Favoritos";
+		break;
+	case "/ayuda.php":
+		$CURRENT_PAGE = "Ayuda";
+		$PAGE_TITLE = "Ayuda";
 		break;
 	default:
 		$CURRENT_PAGE = "Index";
