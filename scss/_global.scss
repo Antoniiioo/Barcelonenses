@@ -7,10 +7,6 @@
 // 
 // https://caniuse.com/?search=scroll-padding
 
-html {
-    height: 100%;
-    scroll-padding-top: calc(#{$navbar-height} - 1px);
-}
 
 body {
     font-family: $font-family-sans-serif;

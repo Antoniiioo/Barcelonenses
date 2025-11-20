@@ -13,7 +13,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 d-flex justify-content-center">
                 <div class="text-center mb-4 w-50">
-                    <img src="assets/img/image.png" alt="Equipo R&V" class="img-fluid">
+                    <img src="assets/img/quienesSomos.png" alt="Equipo R&V" class="img-fluid">
                 </div>
             </div>
         </div>
