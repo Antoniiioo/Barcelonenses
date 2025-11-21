@@ -6,7 +6,7 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
     <main class="container-fluid my-5">

@@ -6,11 +6,11 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
 
-    <main class="container-fluid row justify-content-center my-5 h-100 font-small">
+    <main class="container-fluid row justify-content-center my-5 font-small">
         <div class="col-8">
             <h2 class="text-center mb-5 font-titulos fs-1">Ayudas</h2>
             <div class="accordion" id="acordeonAyuda">
