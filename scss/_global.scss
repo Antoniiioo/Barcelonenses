@@ -12,6 +12,12 @@ body {
     font-family: $font-family-sans-serif;
 }
 
+.logo {
+    max-width: 60px;
+    max-height: 60px;
+    width: 60vw;
+}
+
 .categorias {
     max-width: 800px;
     img {

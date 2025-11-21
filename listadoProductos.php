@@ -56,7 +56,7 @@
             <?php for ($i = 0; $i < 10; $i++) { ?>
                 <div class="col-4 col-md-3">
                     <div class="card tarjetasProductos font-small">
-                        <a href="" class="text-decoration-none text-dark">
+                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
                             <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
                             <div class="card-body border-top">
                                 <p class="font-marcas">Adidas</p>
