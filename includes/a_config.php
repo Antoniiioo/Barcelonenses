@@ -36,6 +36,10 @@ switch ($_SERVER["SCRIPT_NAME"]) {
 		$CURRENT_PAGE = "Ayuda";
 		$PAGE_TITLE = "Ayuda";
 		break;
+	case "/cesta.php":
+		$CURRENT_PAGE = "Cesta";
+		$PAGE_TITLE = "Cesta";
+		break;
 	default:
 		$CURRENT_PAGE = "Index";
 		$PAGE_TITLE = "Welcome to my homepage!";
