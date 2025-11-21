@@ -14,11 +14,11 @@
 
     <main class="container-fluid flex-grow-1">
         <section class="row">
-            <div class="bg-primary col-4 col-md-3 text-center align-content-center">
-                <h2 class="fs-md-3 text-white font-titulos">Puede que te interese:</h2>
+            <div class="bg-primary col-12 col-md-3 p-4 text-center align-content-center">
+                <h2 class="fs-2 text-white font-titulos">Puede que te interese:</h2>
             </div>
 
-            <div class="bg-secondary col-8 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
+            <div class="bg-secondary col-12 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
 
                 <?php for ($i = 0; $i < 10; $i++) { ?>
                     <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
