@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 mb-5 mb-md-0">
-                    <h4 class="fw-bold mb-4 fs-5">Tu cesta (1 artículo)</h4>
+                    <!--Fase 2:¿H4 sin h2 ni h3?--><h4 class="fw-bold mb-4 fs-5">Tu cesta (1 artículo)</h4>
                     <div class="mb-3">
                         <div class="text-center mb-3">
                             <img src="/assets/img/camisetaAdidas.webp" alt="camiseta adidas" class="img-fluid">
@@ -28,7 +28,7 @@
 
                         <div class="small text-muted mb-3">
                             Precio original: <span class="text-decoration-line-through">20,00 €</span> <span
-                                class="text-danger">-50%</span><br>
+                                class="text-danger">-50%</span><br><!--Fase 2:¿<br>?-->
                             Color: blanco<br>
                             Talla: m
                         </div>

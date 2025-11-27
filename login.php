@@ -9,7 +9,7 @@
 <body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
-
+<!--Fase 2:no poner container-fluid y row en en mismo elemento-->
     <main class="container-fluid row justify-content-center flex-grow-1">
         <div class="col-md-10">
 

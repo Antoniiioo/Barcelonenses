@@ -9,7 +9,7 @@
 <body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
-
+    <!--Fase 2:¿no se debe poner la clase container-fluid y row en el mismo div?-->
     <main class="container-fluid row justify-content-center flex-grow-1">
         <div class="col-lg-10 col-xl-9">
             <h1 class="text-center mb-4 mt-4 font-titulos">Crea tu cuenta</h1>
