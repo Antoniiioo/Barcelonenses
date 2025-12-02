@@ -2,7 +2,7 @@
   "scripts": {
     "sass": "sass -w scss:css",
     "php": "php -S localhost:8080",
-    "dev:mac": "sass -w scss:css & php -S localhost:8080",
+    "dev:mac": "sass -w scss:css & php -S 0.0.0.0:8080",
     "dev:win": "start /b sass -w scss:css && php -S localhost:8080"
   },
   "dependencies": {

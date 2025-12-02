@@ -11,7 +11,7 @@
     <?php include "includes/navigation.php"; ?>
     <main class="container-fluid my-5">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6 d-flex justify-content-center">
+            <div class="col-md-8 d-flex justify-content-center">
                 <div class="text-center mb-4 w-50">
                     <img src="assets/img/quienesSomos.png" alt="Equipo R&V" class="img-fluid">
                 </div>

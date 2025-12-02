@@ -40,7 +40,7 @@
         <section class="mx-md-4 col-12 col-md-8">
             <div class="row">
                 <?php for ($i = 0; $i < 10; $i++) { ?>
-                    <div class="col-4">
+                    <div class="col-6 col-md-4">
                         <div class="card tarjetasProductos font-small">
                             <a href="vistaprevia.php" class="text-decoration-none text-dark">
                                 <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
