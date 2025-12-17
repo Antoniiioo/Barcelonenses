@@ -13,12 +13,13 @@
     <?php include "includes/navigation.php"; ?>
 
     <main class="container-fluid p-0">
-        <section class="row">
-            <div class="bg-primary col-12 col-md-3 p-4 text-center align-content-center">
-                <h2 class="fs-2 text-white font-titulos">Puede que te interese:</h2>
-            </div>
+        <section class="container-fluid p-0 m-0">
+            <div class="row p-0 m-0">
+                <div class="bg-primary col-12 col-md-3 p-4 text-center align-content-center">
+                    <h2 class="fs-2 text-white font-titulos">Puede que te interese:</h2>
+                </div>
 
-            <div class="bg-secondary col-12 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
+                <div class="bg-secondary col-12 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
 
                     <a href="../vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
                         <div class="card h-100">
@@ -63,8 +64,9 @@
                             </div>
                         </div>
                     </a>
-                    
 
+
+                </div>
             </div>
         </section>
 
