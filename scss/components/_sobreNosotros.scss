@@ -1,0 +1,24 @@
+.botonJuego {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background-image: linear-gradient(to right bottom, $primary, $secondary);
+    width: 75%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.botonJuego img {
+    width: 75px;
+    border-radius: 10px;
+}
+
+.botonJuego p {
+    font-size: 1.2rem;
+    color: rgb(235, 235, 235);
+    text-align: center;
+    margin: 0;
+}
