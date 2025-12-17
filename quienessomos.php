@@ -37,13 +37,13 @@
                         Lorem Ipsum.
                     </p>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3">
                     <a href="./JuegoAntonio/index.php" class="botonJuego">
                         <img src="../assets/img/arkanoid.png">
                         <p>Juego de Antonio</p>
                     </a>
                     <a href="./JuegoRuben/juego.html" class="botonJuego">
-                        <img src="../assets/img/santaFloopy.png">
+                        <img src="../assets/img/flapy.png">
                         <p>Juego de Ruben</p>
                     </a>
                 </div>
