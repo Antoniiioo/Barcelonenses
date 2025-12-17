@@ -16,7 +16,11 @@ $bootstrap-icons-font-src: url("../node_modules/bootstrap-icons/font/fonts/boots
 
 // Components
 @import "./components/forms.scss";
-@import "./components/_tarjetasProductos.scss";
+@import "./components/tarjetasProductos.scss";
+@import "./components/video.scss";
+@import "./components/juegoAntonio.scss";
+@import "./components/sobreNosotros.scss";
+
 
 // Sections
 @import "./sections/typography";

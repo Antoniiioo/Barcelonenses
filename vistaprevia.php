@@ -6,11 +6,11 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
 
-    <main class="py-4">
+    <main class="py-4 container-fluid">
         <div class="container">
             <div class="row">
 
@@ -19,39 +19,39 @@
 
                         <div class="col-3 col-md-3 d-flex flex-column gap-2 justify-content-center">
                             <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
-                                <img src="/assets/img/camisetaAdidas.webp" alt="Vista Lat 1" class="object-fit-cover">
+                                <img src="../assets/img/camisetaAdidas.webp" alt="Vista Lat 1" class="object-fit-cover">
                             </div>
                             <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
-                                <img src="/assets/img/camisetaAdidas.webp" alt="Vista Lat 2" class="object-fit-cover">
+                                <img src="../assets/img/camisetaAdidas.webp" alt="Vista Lat 2" class="object-fit-cover">
                             </div>
                             <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
-                                <img src="/assets/img/camisetaAdidas.webp" alt="Vista Lat 3" class="object-fit-cover">
+                                <img src="../assets/img/camisetaAdidas.webp" alt="Vista Lat 3" class="object-fit-cover">
                             </div>
                         </div>
 
                         <div class="col-9 col-md-9">
 
                             <div class="ratio ratio-4x3 text-center mb-3 border border-secondary-subtle">
-                                <img src="/assets/img/camisetaAdidas.webp" alt="Imagen Principal"
+                                <img src="../assets/img/camisetaAdidas.webp" alt="Imagen Principal"
                                     class="object-fit-contain p-3">
                             </div>
 
                             <div class="row justify-content-center g-2">
                                 <div class="col-4">
                                     <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
-                                        <img src="/assets/img/camisetaAdidas.webp" alt="Vista Inf 1"
+                                        <img src="../assets/img/camisetaAdidas.webp" alt="Vista Inf 1"
                                             class="object-fit-cover">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
-                                        <img src="/assets/img/camisetaAdidas.webp" alt="Vista Inf 2"
+                                        <img src="../assets/img/camisetaAdidas.webp" alt="Vista Inf 2"
                                             class="object-fit-cover">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="ratio ratio-1x1 border border-secondary-subtle cursor-pointer">
-                                        <img src="/assets/img/camisetaAdidas.webp" alt="Vista Inf 3"
+                                        <img src="../assets/img/camisetaAdidas.webp" alt="Vista Inf 3"
                                             class="object-fit-cover">
                                     </div>
                                 </div>

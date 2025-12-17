@@ -15,7 +15,7 @@
             <h1 class="text-center mb-4 mt-4 font-titulos">Crea tu cuenta</h1>
 
             <div class="col-md-10 col-lg-8 mx-auto">
-                <form action="/register" method="post" autocomplete="on">
+                <form action="/registrar" method="post" autocomplete="on">
 
                     <div class="row mb-3 justify-content-center">
                         <label for="nombre" class="col-sm-4 col-form-label text-sm-start">Nombre *</label>

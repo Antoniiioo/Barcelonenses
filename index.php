@@ -1,4 +1,4 @@
-<?php include("includes/a_config.php"); ?>
+<?php include "includes/a_config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +6,13 @@
     <?php include "includes/head-tag-contents.php"; ?>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="min-vh-100">
     <!--Encabezado-->
     <?php include "includes/design-top.php"; ?>
     <!--Menu-->
     <?php include "includes/navigation.php"; ?>
 
-    <main class="container-fluid flex-grow-1">
+    <main class="container-fluid p-0">
         <section class="row">
             <div class="bg-primary col-12 col-md-3 p-4 text-center align-content-center">
                 <h2 class="fs-2 text-white font-titulos">Puede que te interese:</h2>
@@ -20,9 +20,9 @@
 
             <div class="bg-secondary col-12 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
 
-                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
+                    <a href="../vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
                         <div class="card h-100">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
+                            <img src="../assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
                             <div class="card-body border-top">
                                 <p class="font-marcas">Adidas</p>
                                 <p>Camiseta blanca Adidas</p>
@@ -67,21 +67,32 @@
 
             </div>
         </section>
+
+        <section class="video-contenedor">
+            <video autoplay muted loop>
+                <source src="./assets/video/anuncio.mp4" type="video/mp4">
+            </video>
+
+            <div class="overlay">
+                <h2 class="video-titulo">Aprovecha nuestras maravillosas ofertas</h2>
+            </div>
+        </section>
+
         <section class="container mt-4 mx-auto categorias">
 
             <div class="row g-0 border border-dark my-5">
-                <a href="listadoProductos.php"
+                <a href="../listadoProductos.php"
                     class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
-                    <img src="assets/img/fotoNinho.png" alt="Niño" class="w-50 object-fit-cover">
+                    <img src="../assets/img/fotoNinho.png" alt="Niño" class="w-50 object-fit-cover">
                     <p class="w-50 m-0 text-center text-uppercase fs-6 fw-bold">Niños</p>
                 </a>
-                <a href="listadoProductos.php"
+                <a href="../listadoProductos.php"
                     class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
-                    <img src="assets/img/fotoHombre.png" alt="Hombre" class="w-50 object-fit-cover">
+                    <img src="../assets/img/fotoHombre.png" alt="Hombre" class="w-50 object-fit-cover">
                     <p class="w-50 m-0 text-center text-uppercase fs-6 fw-bold">Hombre</p>
                 </a>
-                <a href="listadoProductos.php" class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
-                    <img src="assets/img/fotoMujer.png" alt="Mujer" class="w-50 object-fit-cover">
+                <a href="../listadoProductos.php" class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
+                    <img src="../assets/img/fotoMujer.png" alt="Mujer" class="w-50 object-fit-cover">
                     <p class="w-50 m-0 text-center text-uppercase fs-6 fw-bold">Mujer</p>
                 </a>
             </div>

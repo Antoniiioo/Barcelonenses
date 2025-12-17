@@ -3,15 +3,15 @@
         <p class="mb-0">
         <div class="d-flex flex-column flex-md-row gap-2">
             <div>
-                <a href="ayuda.php" class="text-dark text-decoration-none">Ayuda</a>
+                <a href="../ayuda.php" class="text-dark text-decoration-none">Ayuda</a>
             </div>
             <span class="d-none d-md-inline">|</span>
             <div>
-                <a href="quienessomos.php" class="text-dark text-decoration-none">Sobre nosotros</a>
+                <a href="../quienessomos.php" class="text-dark text-decoration-none">Sobre nosotros</a>
             </div>
             <span class="d-none d-md-inline">|</span>
             <div>
-                <a href="privacidad.php" class="text-dark text-decoration-none">Políticas de privacidad</a>
+                <a href="../privacidad.php" class="text-dark text-decoration-none">Políticas de privacidad</a>
             </div>
         </div>
         </p>

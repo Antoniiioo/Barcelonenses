@@ -37,6 +37,12 @@
                         Lorem Ipsum.
                     </p>
                 </div>
+                <div class="d-flex justify-content-center">
+                    <a href="./JuegoAntonio/index.php" class="botonJuego">
+                        <img src="../assets/img/arkanoid.png">
+                        <p>Juego de Antonio</p>
+                    </a>
+                </div>
             </div>
         </div>
 

@@ -1,10 +1,11 @@
 .tarjetasProductos {
-    min-width: 150px;
-    max-width: 250px;
+    min-width: 250px;
     margin-block: 30px;
 }
 
-.tarjetasProductos img {
-    height: 285px;
-    object-fit: cover;
+@media(max-width: 700px) {
+    .tarjetasProductos {
+        min-width: 150px;
+        margin-block: 30px;
+    }
 }
