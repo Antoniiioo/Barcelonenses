@@ -53,7 +53,7 @@
             </div>
         </form>
         <section class="row mx-5 my-4">
-            <?php for ($i = 0; $i < 10; $i++) { ?>
+
                 <div class="col-6 col-md-3">
                     <div class="card tarjetasProductos font-small">
                         <a href="vistaprevia.php" class="text-decoration-none text-dark">
@@ -78,7 +78,82 @@
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+
+                <div class="col-6 col-md-3">
+                    <div class="card tarjetasProductos font-small">
+                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
+                            <img src="assets/img/pantalonNike.jpg" class="card-img-top">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">Nike</p>
+                                <p>Pantalon Nike beige</p>
+                                <p class="font-medium">39€</p>
+                            </div>
+                        </a>
+                        <div class="card-footer bg-white p-0 overflow-hidden">
+                            <form action="" method="post" class="row g-0">
+                                <button type="submit"
+                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
+                                    <span class="bi bi-heart"></span> 
+                                </button>
+                                <button type="submit"
+                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
+                                    <span class="bi bi-cart"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card tarjetasProductos font-small">
+                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
+                            <img src="assets/img/chaquetonNorth.jpg" class="card-img-top">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">The North Face</p>
+                                <p>Chaquetón North Face</p>
+                                <p class="font-medium">219€</p>
+                            </div>
+                        </a>
+                        <div class="card-footer bg-white p-0 overflow-hidden">
+                            <form action="" method="post" class="row g-0">
+                                <button type="submit"
+                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
+                                    <span class="bi bi-heart"></span> 
+                                </button>
+                                <button type="submit"
+                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
+                                    <span class="bi bi-cart"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="card tarjetasProductos font-small">
+                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
+                            <img src="assets/img/scuffer.webp" class="card-img-top">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">Scuffer</p>
+                                <p>Sudadera Scuffer rosa</p>
+                                <p class="font-medium">79€</p>
+                            </div>
+                        </a>
+                        <div class="card-footer bg-white p-0 overflow-hidden">
+                            <form action="" method="post" class="row g-0">
+                                <button type="submit"
+                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
+                                    <span class="bi bi-heart"></span> 
+                                </button>
+                                <button type="submit"
+                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
+                                    <span class="bi bi-cart"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
         </section>
     </main>
     <?php include "includes/footer.php"; ?>
