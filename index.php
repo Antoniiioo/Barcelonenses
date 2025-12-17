@@ -20,7 +20,6 @@
 
             <div class="bg-secondary col-12 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
 
-                <?php for ($i = 0; $i < 10; $i++) { ?>
                     <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
                         <div class="card h-100">
                             <img src="assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
@@ -31,7 +30,40 @@
                             </div>
                         </div>
                     </a>
-                    <?php } ?>
+
+                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
+                        <div class="card h-100">
+                            <img src="assets/img/pantalonNike.jpg" class="card-img-top img-fluid">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">Nike</p>
+                                <p>Pantalon blanca Nike</p>
+                                <p class="font-medium">39€</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
+                        <div class="card h-100">
+                            <img src="assets/img/chaquetonNorth.jpg" class="card-img-top img-fluid">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">The North Face</p>
+                                <p>Chaquetón North Face</p>
+                                <p class="font-medium">219€</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
+                        <div class="card h-100">
+                            <img src="assets/img/unnamed.jpg" class="card-img-top img-fluid">
+                            <div class="card-body border-top">
+                                <p class="font-marcas">Scuffer</p>
+                                <p>Sudadera Scuffer rosa</p>
+                                <p class="font-medium">79€</p>
+                            </div>
+                        </div>
+                    </a>
+                    
 
             </div>
         </section>
