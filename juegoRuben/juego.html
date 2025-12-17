@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa Flappy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-sky: #e3f2fd;
+            --gift-red: #ff5252;
+            --text-color: #1565c0;
+            --gold: #fbc02d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-sky);
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-color);
+            overflow: hidden;
+            user-select: none;
+        }
+
+        #main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Panel lateral */
+        .sidebar {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 160px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .key-btn {
+            display: inline-block;
+            background: #eee;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 5px;
+            box-shadow: 0 2px 0 #bbb;
+        }
+
+        /* Contenedor del juego */
+        #game-wrapper {
+            position: relative;
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        canvas {
+            display: block;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, #90caf9, #e3f2fd);
+            cursor: pointer;
+        }
+
+        /* Pantallas */
+        .overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            z-index: 20;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .btn {
+            margin-top: 15px;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+            background: var(--gift-red);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #d32f2f;
+            transition: transform 0.1s;
+        }
+
+        .btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #d32f2f;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* Panel de Puntuación (Scoreboard) */
+        .scoreboard {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            text-align: right;
+            z-index: 10;
+        }
+
+        .score-current {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gift-red);
+            text-shadow: 2px 2px 0px white;
+            line-height: 1;
+        }
+
+        .score-best {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            background-color: var(--gold);
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 5px;
+            display: inline-block;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main-container">
+        <div class="sidebar">
+            <h3 style="margin: 0 0 15px 0; color: var(--gift-red);">Controles</h3>
+            <p style="margin: 5px 0;">Presiona</p>
+            <div class="key-btn">ESPACIO</div>
+            <p style="margin: 10px 0;">o haz</p>
+            <div class="key-btn">CLICK</div>
+            <p style="margin: 15px 0 0 0;">para saltar</p>
+        </div>
+
+        <div id="game-wrapper">
+            <div class="scoreboard">
+                <div class="score-current" id="scoreDisplay">0</div>
+                <div class="score-best">RÉCORD: <span id="highScoreDisplay">0</span></div>
+            </div>
+
+            <canvas id="gameCanvas" width="700" height="500"></canvas>
+
+            <div id="startScreen" class="overlay">
+                <h1 style="margin: 0; color: var(--gift-red); font-size: 3rem;">Santa Flappy</h1>
+                <p>Ayuda a Santa a entregar los regalos</p>
+                <button class="btn" onclick="startGame()">Jugar</button>
+            </div>
+
+            <div id="gameOverScreen" class="overlay hidden">
+                <h2 style="font-size: 2.5rem; margin: 0; color: #555;">¡Chocaste!</h2>
+                <div style="font-size: 1.5rem; margin: 10px 0;">
+                    Puntos: <span id="finalScore" style="font-weight:bold; color: var(--gift-red);">0</span>
+                </div>
+                <div style="font-size: 1.2rem; color: var(--gold); font-weight: bold;">
+                    Mejor: <span id="finalHighScore">0</span>
+                </div>
+                <button class="btn" onclick="startGame()">Reintentar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Elementos del DOM
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const highScoreDisplay = document.getElementById('highScoreDisplay');
+        const finalScoreDisplay = document.getElementById('finalScore');
+        const finalHighScoreDisplay = document.getElementById('finalHighScore');
+        const startScreen = document.getElementById('startScreen');
+        const gameOverScreen = document.getElementById('gameOverScreen');
+
+        // Variables del Juego
+        let gameRunning = false;
+        let animationId;
+        let score = 0;
+        let frameCount = 0;
+
+        // --- GESTIÓN DE PUNTUACIÓN MÁXIMA ---
+        // Recuperar récord guardado o empezar en 0
+        let highScore = localStorage.getItem('santaHighScore') || 0;
+        highScoreDisplay.innerText = highScore;
+
+        // FÍSICA (Suave)
+        const GRAVITY = 0.15;
+        const JUMP_STRENGTH = -4.5;
+
+        const sleigh = {
+            x: 80,
+            y: 250,
+            velocity: 0,
+            rotation: 0
+        };
+
+        let obstacles = [];
+        let snow = [];
+
+        function initSnow() {
+            snow = [];
+            for (let i = 0; i < 50; i++) {
+                snow.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    speed: Math.random() * 3 + 1
+                });
+            }
+        }
+
+        function startGame() {
+            sleigh.y = 250;
+            sleigh.velocity = 0;
+            sleigh.rotation = 0;
+            score = 0;
+            obstacles = [];
+            frameCount = 0;
+            gameRunning = true;
+
+            scoreDisplay.innerText = 0;
+            highScoreDisplay.innerText = highScore; // Asegurar que muestra el actual
+
+            startScreen.classList.add('hidden');
+            gameOverScreen.classList.add('hidden');
+
+            initSnow();
+            if (animationId) cancelAnimationFrame(animationId);
+            gameLoop();
+        }
+
+        function gameOver() {
+            gameRunning = false;
+
+            // Comprobar y Guardar Récord
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('santaHighScore', highScore);
+                highScoreDisplay.innerText = highScore;
+            }
+
+            gameOverScreen.classList.remove('hidden');
+            finalScoreDisplay.innerText = score;
+            finalHighScoreDisplay.innerText = highScore;
+        }
+
+        function jump() {
+            if (!gameRunning) return;
+            sleigh.velocity = JUMP_STRENGTH;
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                e.preventDefault();
+                if (gameRunning) jump();
+                else if (!startScreen.classList.contains('hidden')) startGame();
+                else if (!gameOverScreen.classList.contains('hidden')) startGame();
+            }
+        });
+
+        canvas.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            if (gameRunning) jump();
+        });
+
+        function spawnObstacle() {
+            const gap = 170;
+            const minH = 50;
+            const maxPos = canvas.height - gap - minH;
+            const gapPos = Math.random() * (maxPos - minH) + minH;
+
+            obstacles.push({
+                x: canvas.width,
+                width: 50,
+                gapTop: gapPos,
+                gapBottom: gapPos + gap,
+                color: Math.random() > 0.5 ? '#ff5252' : '#4caf50',
+                passed: false
+            });
+        }
+
+        function update() {
+            // Nieve
+            snow.forEach(s => {
+                s.y += s.speed;
+                if (s.y > canvas.height) s.y = -5;
+            });
+
+            // Generar obstáculos
+            if (frameCount % 100 === 0) spawnObstacle();
+
+            // Mover obstáculos
+            obstacles.forEach(obs => {
+                obs.x -= 3;
+
+                // Colisiones
+                const hitX = sleigh.x;
+                const hitY = sleigh.y;
+                const margin = 15;
+
+                if (hitX + margin > obs.x && hitX - margin < obs.x + obs.width) {
+                    if (hitY - margin < obs.gapTop || hitY + margin > obs.gapBottom) {
+                        gameOver();
+                    }
+                }
+
+                // --- SISTEMA DE PUNTOS ---
+                if (!obs.passed && obs.x + obs.width < sleigh.x - margin) {
+                    score++;
+                    scoreDisplay.innerText = score;
+                    obs.passed = true;
+                }
+            });
+
+            obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+
+            // Física del Trineo
+            sleigh.velocity += GRAVITY;
+            sleigh.y += sleigh.velocity;
+
+            // Rotación
+            sleigh.rotation = Math.min(Math.PI / 5, Math.max(-Math.PI / 5, (sleigh.velocity * 0.1)));
+
+            // Suelo y techo
+            if (sleigh.y >= canvas.height - 20 || sleigh.y <= 20) {
+                gameOver();
+            }
+
+            frameCount++;
+        }
+
+        function drawGiftBox(x, y, w, h, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, w, h);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.fillRect(x + w / 2 - 5, y, 10, h);
+            ctx.strokeStyle = 'rgba(0,0,0,0.05)';
+            ctx.lineWidth = 2;
+            for (let i = y; i < y + h; i += 40) {
+                ctx.beginPath(); ctx.moveTo(x, i); ctx.lineTo(x + w, i); ctx.stroke();
+            }
+        }
+
+        function drawSleigh(x, y, rot) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rot);
+
+            // Patín
+            ctx.fillStyle = '#8d6e63';
+            ctx.fillRect(-20, 12, 50, 5);
+            // Cuerpo
+            ctx.fillStyle = '#d32f2f';
+            ctx.beginPath();
+            ctx.moveTo(-25, 12);
+            ctx.lineTo(25, 12);
+            ctx.lineTo(35, -5);
+            ctx.lineTo(-20, -5);
+            ctx.fill();
+            // Saco
+            ctx.fillStyle = '#fbc02d';
+            ctx.beginPath();
+            ctx.arc(-10, -5, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            snow.forEach(s => {
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2); ctx.fill();
+            });
+            obstacles.forEach(obs => {
+                drawGiftBox(obs.x, 0, obs.width, obs.gapTop, obs.color);
+                drawGiftBox(obs.x, obs.gapBottom, obs.width, canvas.height - obs.gapBottom, obs.color);
+            });
+            drawSleigh(sleigh.x, sleigh.y, sleigh.rotation);
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        initSnow();
+        draw(); 
+    </script>
+</body>
+
+</html>

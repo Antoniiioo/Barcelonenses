@@ -42,6 +42,10 @@
                         <img src="../assets/img/arkanoid.png">
                         <p>Juego de Antonio</p>
                     </a>
+                    <a href="./JuegoRuben/juego.html" class="botonJuego">
+                        <img src="../assets/img/santaFloopy.png">
+                        <p>Juego de Ruben</p>
+                    </a>
                 </div>
             </div>
         </div>
