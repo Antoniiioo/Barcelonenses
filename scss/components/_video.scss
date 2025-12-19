@@ -8,7 +8,7 @@
 }
 
 .video-contenedor video {
-    max-width: 65%;
+    width: 950px;
     height: auto;
 }
 
@@ -44,8 +44,47 @@
     }
 }
 
+.video-controls {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2rem;        /* aumentado de 1rem a 2rem (o el valor que prefieras) */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,0,0,0.45);
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.video-controls button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+}
+
+.progress-container {
+    width: 300px;
+    height: 6px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: $secondary;
+    transition: width 0.1s linear;
+}
+
 @media (max-width: 700px) {
-    @media (max-width: 700px) {
 
     .video-contenedor {
         flex-direction: column;
@@ -54,11 +93,11 @@
     }
 
     .video-contenedor video {
-        max-width: 90%;
+        max-width: 700px;
     }
 
     .overlay {
-        position: static;          /* 🔴 QUITA absolute */
+        position: static;
         max-width: 90%;
         padding: 1rem 0 0;
         justify-content: center;
@@ -69,5 +108,12 @@
     .overlay h2 {
         max-width: 100%;
     }
-}
+
+    .video-controls {
+        bottom: 4.2rem;
+    }
+
+    .progress-container {
+        width: 160px;
+    }
 }

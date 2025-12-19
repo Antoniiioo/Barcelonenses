@@ -71,13 +71,24 @@
         </section>
 
         <section class="video-contenedor">
-            <video autoplay muted loop>
+            <video id="heroVideo" autoplay muted loop playsinline>
                 <source src="./assets/video/anuncio.mp4" type="video/mp4">
             </video>
 
             <div class="overlay">
                 <h2 class="video-titulo">Aprovecha nuestras maravillosas ofertas</h2>
             </div>
+
+            <div class="video-controls" id="videoControls" aria-label="Controles del vídeo">
+                <button type="button" id="btnPlay" aria-label="Reproducir">▶︎</button>
+                <button type="button" id="btnMute" aria-label="Silenciar">🔊</button>
+                <div class="progress-container" id="progressContainer" aria-hidden="false">
+                    <div class="progress" id="videoProgress"></div>
+                </div>
+                <button type="button" id="btnFullscreen" aria-label="Pantalla completa">⤢</button>
+            </div>
+
+            <script src="./js/video_contros.js" defer></script>
         </section>
 
         <section class="container mt-4 mx-auto categorias">
@@ -85,16 +96,16 @@
             <div class="row g-0 border border-dark my-5">
                 <a href="../listadoProductos.php"
                     class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
-                    <img src="../assets/img/fotoNinho.png" alt="Niño" class="w-50 object-fit-cover">
+                    <img src="../assets/img/fotoNinho.png" alt="Niño">
                     <p class="w-50 m-0 text-center text-uppercase fs-6 fw-bold">Niños</p>
                 </a>
                 <a href="../listadoProductos.php"
                     class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
-                    <img src="../assets/img/fotoHombre.png" alt="Hombre" class="w-50 object-fit-cover">
+                    <img src="../assets/img/fotoHombre.png" alt="Hombre">
                     <p class="w-50 m-0 text-center text-uppercase fs-6 fw-bold">Hombre</p>
                 </a>
                 <a href="../listadoProductos.php" class="col-12 col-md-4 d-flex align-items-center text-decoration-none text-black border border-dark">
-                    <img src="../assets/img/fotoMujer.png" alt="Mujer" class="w-50 object-fit-cover">
+                    <img src="../assets/img/fotoMujer.png" alt="Mujer">
                     <p class="w-50 m-0 text-center text-uppercase fs-6 fw-bold">Mujer</p>
                 </a>
             </div>
