@@ -60,12 +60,12 @@
 
                     <form>
                         <div class="mb-3 border border-dark p-2 d-flex align-items-center">
-                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Nombre:</label>
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Calle:</label>
                             <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
                         <div class="mb-3 border border-dark p-2 d-flex align-items-center">
-                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Apellidos:</label>
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Numero calle:</label>
                             <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
@@ -75,17 +75,17 @@
                         </div>
 
                         <div class="mb-3 border border-dark p-2 d-flex align-items-center">
-                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Dirección:</label>
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Localidad:</label>
                             <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
                         <div class="mb-3 border border-dark p-2 d-flex align-items-center">
-                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Mas información:</label>
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Provincia:</label>
                             <input type="text" class="form-control border-0 shadow-none bg-transparent">
                         </div>
 
                         <div class="mb-4 border border-dark p-2 d-flex align-items-center">
-                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Población:</label>
+                            <label class="small fw-bold ps-2 mb-0 text-nowrap">Pais:</label>
                             <input type="text" class="form-control border-0 shadow-none bg-transparent" required>
                         </div>
 
