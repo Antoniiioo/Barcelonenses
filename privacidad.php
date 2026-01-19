@@ -137,6 +137,10 @@
                                 <strong>Fuente:</strong> <a href="https://www.futbolemotion.com/es/comprar/camiseta/adidas/campeon-23-nino-white-black?gad_source=1&gad_campaignid=17347658387&gbraid=0AAAAADcTxRNjUecbrKaFpsfRaJh-OwSCu&gclid=Cj0KCQiAxonKBhC1ARIsAIHq_lvAe4hPATgfXsYDm-WoeF1YGLEAcCLxewnTp0E0SYULLSdZncNkxrMaAo4hEALw_wcB">
                                     Futbol Emotion</a>
                             </li>
+                            <li>
+                                Imagenes de las categorias — <strong>Autor:</strong>  — Copilot
+                                <strong>Fuente:</strong> Copilot (Generador de imágenes IA)
+                            </li>
                         </ul>
                     </article>
 
