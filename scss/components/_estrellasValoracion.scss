@@ -1,0 +1,12 @@
+
+    .star-item {
+        cursor: pointer;
+        color: #ffc107; /* Color dorado de Bootstrap */
+        transition: transform 0.2s;
+    }
+    .star-item:hover {
+        transform: scale(1.2);
+    }
+    .star-item.fas {
+        font-weight: 900; /* Estrella rellena */
+    }
