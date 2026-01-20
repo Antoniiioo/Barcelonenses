@@ -22,7 +22,7 @@ require_once './controlador/ControladorUsuario.php';
 
 <main class="container">
     <a href="vistaUsuario.php">Panel Usuario</a>
-    <a href="">Panel Productos</a>
+    <a href="panelProducto.php">Panel Productos</a>
     <a href="">Panel Valoraciones</a>
 </main>
 

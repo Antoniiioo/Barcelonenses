@@ -121,25 +121,33 @@
                         <h3>Imágenes</h3>
                         <ul>
                             <li>
-                                Imagen de producto — <strong>Autor:</strong> Nike —
-                                <strong>Fuente:</strong> <a href="https://shoppinginibiza.com/es/nike-pantalon-blanco-fz5996-133-mujer.html">ShoppingIbiza</a>
-                            </li>
+                                Imagen de producto(camiseta)(nike) — <strong>Autor:</strong> — Copilot
+                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
+                                <strong>Prompt:</strong> generame una imagen de una camiseta blanca deportiva manga cortacon el logo de adidas negro chico a una esquina de la camiseta parecido a adidas sin fondo
+                            </li><br>
                             <li>
-                                Imagen de moda — <strong>Autor:</strong>  — North Face
-                                <strong>Fuente:</strong> <a href="https://www.laredoute.es/ppdp/prod-350329782.aspx">Ladeoute</a>
-                            </li>
+                                Imagen de producto(pantalon)(nike) — <strong>Autor:</strong> — Copilot
+                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
+                                <strong>Prompt:</strong> generame una imagen de un pantalon blanco marca parecida a nike
+                            </li><br>
                             <li>
-                                Imagen de moda — <strong>Autor:</strong>  — Hoddie
-                                <strong>Fuente:</strong> <a href="https://scuffers.com/es/products/sign-light-pink-hoodie?variant=51096267293000">Scuffers</a>
-                            </li>
+                                Imagen de moda(chaqueton)(The North Face) — <strong>Autor:</strong>  — Copilot
+                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
+                                <strong>Prompt:</strong> generame una imagen de un chaqueton negro parecido a the north face sin fondo
+                            </li><br>
                             <li>
-                                Imagen de moda — <strong>Autor:</strong>  — Adidas
-                                <strong>Fuente:</strong> <a href="https://www.futbolemotion.com/es/comprar/camiseta/adidas/campeon-23-nino-white-black?gad_source=1&gad_campaignid=17347658387&gbraid=0AAAAADcTxRNjUecbrKaFpsfRaJh-OwSCu&gclid=Cj0KCQiAxonKBhC1ARIsAIHq_lvAe4hPATgfXsYDm-WoeF1YGLEAcCLxewnTp0E0SYULLSdZncNkxrMaAo4hEALw_wcB">
-                                    Futbol Emotion</a>
-                            </li>
+                                Imagen de moda(sudadera)(scuffers) — <strong>Autor:</strong>  — Copilot
+                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
+                                <strong>Prompt:</strong> generame una imagen de una sudadera con gorro rosa clarito con letras rosas mas oscuras parecido a scuffers sin fondo
+                            </li><br>
+                            <li>
+                                Imagen de moda(Messi,Suarez, Neymar) — <strong>Autor:</strong> — Darren Staples 
+                                <strong>Fuente:</strong> <a href="https://www.reutersconnect.com/feed">Reuters</a>
+                            </li><br>
                             <li>
                                 Imagenes de las categorias — <strong>Autor:</strong>  — Copilot
-                                <strong>Fuente:</strong> Copilot (Generador de imágenes IA)
+                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
+                                <strong>Prompt:</strong> generame 3 imagenes , una de un niño otra de un hombre y otra de una mujer
                             </li>
                         </ul>
                     </article>
@@ -149,6 +157,7 @@
                         <ul>
                             <li>
                                 Vídeo promocional — <strong>Autor:</strong> Mart Production —
+                                <strong>Licencia:</strong> uso gratuito
                                 <strong>Fuente:</strong> <a href="https://www.pexels.com/es-es/video/persona-en-pie-maqueta-blanco-8166028/">Pexels</a>
                             </li>
                         </ul>

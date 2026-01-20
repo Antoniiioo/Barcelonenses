@@ -1,6 +1,5 @@
 <?php
 
-namespace modelo;
 class Direccion
 {
     private $idDireccion;

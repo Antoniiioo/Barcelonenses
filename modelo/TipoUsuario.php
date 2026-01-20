@@ -1,6 +1,5 @@
 <?php
 
-namespace modelo;
 class tipoUsuario
 {
     private $idTipoUsuario;
