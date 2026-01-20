@@ -8,19 +8,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../listadoProductos.php">Ropa</a>
+                    <a class="nav-link" href="/listadoProductos.php">Ropa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../listadoProductos.php">Calzado</a>
+                    <a class="nav-link" href="/listadoProductos.php">Calzado</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../listadoProductos.php">Accesorios</a>
+                    <a class="nav-link" href="/listadoProductos.php">Accesorios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-primary" href="../listadoProductos.php">Novedades</a>
+                    <a class="nav-link text-primary" href="/listadoProductos.php">Novedades</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../listadoProductos.php">Marcas</a>
+                    <a class="nav-link" href="/listadoProductos.php">Marcas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link border border-1 border-info rounded-5 bg-info bg-opacity-10" href="/menuAdmin.php">Menu Admin</a>
                 </li>
             </ul>
         </div>
