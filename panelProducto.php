@@ -194,15 +194,14 @@ try {
 
 <?php if (isset($_GET['crear']) || isset($_GET['editar'])): ?>
 <!-- Formulario para Crear/Editar Producto -->
-<div class="modal fade show d-block" tabindex="-1">
-    <div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header <?= isset($_GET['editar']) ? 'bg-secondary' : 'bg-primary' ?> text-white">
-                <h5 class="modal-title font-titulos">
+                <h5 class="modal-title font-titulos" id="modalProductoLabel">
                     <?= isset($_GET['editar']) ? 'Editar Producto #' . $_GET['editar'] : 'Nuevo Producto' ?>
                 </h5>
-                <a href="panelProducto.php" class="btn-close btn-close-white"></a>
+                <a href="panelProducto.php" class="btn-close btn-close-white" aria-label="Close"></a>
             </div>
             <form action="" method="post" class="p-4">
                 <input type="hidden" name="idProducto" value="<?= isset($productoEditar) ? $productoEditar->id_producto : '' ?>">
@@ -298,6 +297,7 @@ try {
         </div>
     </div>
 </div>
+<div class="modal-backdrop fade show"></div>
 <?php endif; ?>
 
 <?php if (isset($_GET['confirmar_eliminar'])): ?>
@@ -309,20 +309,19 @@ try {
     $productoEliminar = $controlador->obtenerProductoPorId($idEliminar);
 } catch (Exception $e) {}
 ?>
-<div class="modal fade show d-block" tabindex="-1">
-    <div class="modal-backdrop fade show"></div>
+<div class="modal fade show d-block" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title">Confirmar Eliminación</h5>
-                <a href="panelProducto.php" class="btn-close btn-close-white"></a>
+                <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
+                <a href="panelProducto.php" class="btn-close btn-close-white" aria-label="Close"></a>
             </div>
             <div class="modal-body p-4">
                 <p>¿Estás seguro de que quieres eliminar el producto <strong><?= $productoEliminar ? htmlspecialchars($productoEliminar->nombre) : '#' . $idEliminar ?></strong>?</p>
                 <p class="text-muted mb-0">Esta acción no se puede deshacer.</p>
             </div>
             <div class="modal-footer p-3">
-                <form action="" method="post" class="d-flex gap-2">
+                <form action="" method="post" class="d-flex gap-2 w-100">
                     <input type="hidden" name="idProducto" value="<?= $idEliminar ?>">
                     <a href="panelProducto.php" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" name="eliminar" class="btn btn-danger">Eliminar</button>
@@ -331,9 +330,11 @@ try {
         </div>
     </div>
 </div>
+<div class="modal-backdrop fade show"></div>
 <?php endif; ?>
 
 <?php include "includes/footer.php"; ?>
+
 </body>
 </html>
 

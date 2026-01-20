@@ -29,12 +29,12 @@ require_once './controlador/ControladorUsuario.php';
             </div>
 
             <div class="d-flex flex-column gap-3">
-                <a href="vistaUsuario.php" class="btn btn-primary btn-lg rounded-3 py-3 text-start d-flex align-items-center justify-content-between">
+                <a href="panelUsuario.php" class="btn btn-primary btn-lg rounded-3 py-3 text-start d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-person-gear me-2"></i>Panel de Usuarios</span>
                     <i class="bi bi-arrow-right"></i>
                 </a>
 
-                <a href="#" class="btn btn-info btn-lg rounded-3 py-3 text-start d-flex align-items-center justify-content-between text-white">
+                <a href="panelProducto.php" class="btn btn-info btn-lg rounded-3 py-3 text-start d-flex align-items-center justify-content-between text-white">
                     <span><i class="bi bi-box-seam me-2"></i>Panel de Productos</span>
                     <i class="bi bi-arrow-right"></i>
                 </a>

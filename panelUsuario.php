@@ -9,15 +9,12 @@ require_once './controlador/ControladorUsuario.php';
 if (isset($_POST['guardar'])) {
     try {
         // 1. Crear dirección primero
-        $nuevaDireccion = new Direccion(
-                null,
-                $_POST['calle'],
+        $idDireccion = ControladorDireccion::crearDireccion($_POST['calle'],
                 $_POST['numCalle'],
                 $_POST['codPostal'],
                 $_POST['localidad'],
                 $_POST['pais']
         );
-        $idDireccion = ControladorDireccion::crearDireccion($nuevaDireccion);
 
         // 2. Crear usuario con el id_direccion
         $nuevoUsuario = new Usuario(
