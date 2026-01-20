@@ -64,7 +64,20 @@ class ControladorProducto
         ]);
     }
 
+    function obtenerTodosProductos() {
+        $pdo = new Conexion();
+        $sql = "SELECT * FROM producto ORDER BY id_producto DESC";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
+    function obtenerProductoPorId($id_producto) {
+        $pdo = new Conexion();
+        $sql = "SELECT * FROM producto WHERE id_producto = :id_producto";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([":id_producto" => $id_producto]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }
 
 

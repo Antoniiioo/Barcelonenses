@@ -1,169 +1,339 @@
+<?php
+session_start();
+
+require_once './controlador/ControladorProducto.php';
+require_once './controlador/ControladorUsuario.php';
+
+$controlador = new ControladorProducto();
+
+// Procesar guardado/edición de producto
+if (isset($_POST['guardar'])) {
+    try {
+        $idImgProducto = isset($_POST['idImgProducto']) && $_POST['idImgProducto'] !== '' ? $_POST['idImgProducto'] : null;
+
+        if (isset($_POST['idProducto']) && $_POST['idProducto'] !== '') {
+            // Editar producto existente
+            $controlador->editarProducto(
+                $_POST['idProducto'],
+                $_POST['idTipoProducto'],
+                $_POST['idUsuario'],
+                $_POST['nombre'],
+                $_POST['marca'],
+                $_POST['precio'],
+                $_POST['talla'],
+                $idImgProducto,
+                $_POST['color']
+            );
+            $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                Producto actualizado correctamente
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+            </div>";
+        } else {
+            // Crear nuevo producto
+            $controlador->crearProducto(
+                $_POST['idTipoProducto'],
+                $_POST['idUsuario'],
+                $_POST['nombre'],
+                $_POST['marca'],
+                $_POST['precio'],
+                $_POST['talla'],
+                $idImgProducto,
+                $_POST['color']
+            );
+            $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                Producto creado correctamente
+                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+            </div>";
+        }
+        // Redirigir para evitar reenvío de formulario
+        header("Location: panelProducto.php?success=1");
+        exit();
+    } catch (Exception $e) {
+        $mensaje = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            Error: " . $e->getMessage() . "
+            <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+        </div>";
+    }
+}
+
+// Procesar eliminación de producto
+if (isset($_POST['eliminar'])) {
+    try {
+        $controlador->eliminarProducto($_POST['idProducto']);
+        header("Location: panelProducto.php?deleted=1");
+        exit();
+    } catch (Exception $e) {
+        $mensaje = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            Error: " . $e->getMessage() . "
+            <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+        </div>";
+    }
+}
+
+// Mensajes de éxito desde parámetros GET
+if (isset($_GET['success'])) {
+    $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        Producto guardado correctamente
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+    </div>";
+}
+if (isset($_GET['deleted'])) {
+    $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        Producto eliminado correctamente
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+    </div>";
+}
+
+// Obtener producto para editar si se solicita
+$productoEditar = null;
+if (isset($_GET['editar'])) {
+    try {
+        $productoEditar = $controlador->obtenerProductoPorId($_GET['editar']);
+    } catch (Exception $e) {
+        $mensaje = "<div class='alert alert-danger'>Error al cargar producto</div>";
+    }
+}
+
+// Obtener todos los productos
+try {
+    $productos = $controlador->obtenerTodosProductos();
+} catch (Exception $e) {
+    $productos = [];
+    $mensaje = "<div class='alert alert-warning'>No se pudieron cargar los productos</div>";
+}
+
+?>
+
 <?php include("includes/a_config.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <?php include "includes/head-tag-contents.php"; ?>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* Ajustes visuales para la tabla */
-        .table-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .img-thumbnail-table {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .table td, .table th {
-            vertical-align: middle; /* Centra verticalmente el contenido */
-        }
-        
-        /* Opcional: Si quieres forzar el azul de tu marca en botones bootstrap */
-        .btn-primary {
-            background-color: #1e2a78; 
-            border-color: #1e2a78;
-        }
-        .btn-primary:hover {
-            background-color: #151d55;
-            border-color: #151d55;
-        }
-        
-        /* Color para el título */
-        .admin-title {
-            color: #1e2a78;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
-<body class="d-flex flex-column h-100">
-    
-    <?php include "includes/design-top.php"; ?>
-    <?php include "includes/navigation.php"; ?>
+<body class="d-flex flex-column min-vh-100">
+<?php include "includes/design-top.php"; ?>
+<?php include "includes/navigation.php"; ?>
 
-    <main class="container-fluid row justify-content-center my-5 font-medium">
-        <div class="col-md-10 col-12">
-            
+<main class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-11 col-xl-10">
+
+            <!-- Encabezado -->
             <div class="row mb-4 align-items-center">
-                <div class="col-6">
-                    <h2 class="admin-title fs-1">Panel de Administración</h2>
+                <div class="col-md-6">
+                    <h1 class="font-titulos text-primary mb-0">Panel de Productos</h1>
                 </div>
-                <div class="col-6 text-end">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productoModal">
-                        <i class="fa-solid fa-plus"></i> Nuevo Producto
-                    </button>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <a href="panelProducto.php?crear=1" class="btn btn-info btn-lg">
+                        <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Producto
+                    </a>
                 </div>
             </div>
 
-            <div class="table-container">
-                <table class="table table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Marca</th>
-                            <th>Tipo</th>
-                            <th>Precio</th>
-                            <th class="text-end">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#101</td>
-                            <td><img src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3bbecb5681e944b58496a8bf0117cf62_9366/Camiseta_Entrada_18_Blanco_CD8438_01_laydown.jpg" class="img-thumbnail-table"></td>
-                            <td class="fw-bold">Camiseta blanca Adidas</td>
-                            <td>Adidas</td>
-                            <td><span class="badge bg-secondary">Camiseta</span></td>
-                            <td>10.00€</td>
-                            <td class="text-end">
-                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fa-solid fa-pen"></i></button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="confirmarEliminar()"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#102</td>
-                            <td><img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/e6443652-3203-4c55-8d5f-42283e0c030d/pantalon-de-chandal-de-tejido-fleece-phoenix-fleece-mujer-tall-Xvr99P.png" class="img-thumbnail-table"></td>
-                            <td class="fw-bold">Pantalón Nike Beige</td>
-                            <td>Nike</td>
-                            <td><span class="badge bg-secondary">Pantalón</span></td>
-                            <td>39.00€</td>
-                            <td class="text-end">
-                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fa-solid fa-pen"></i></button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="confirmarEliminar()"><i class="fa-solid fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <?php if (isset($mensaje)) echo $mensaje; ?>
+
+            <!-- Tabla de Productos -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3 px-4">ID</th>
+                                    <th class="py-3">Nombre</th>
+                                    <th class="py-3">Marca</th>
+                                    <th class="py-3">Precio</th>
+                                    <th class="py-3">Talla</th>
+                                    <th class="py-3">Color</th>
+                                    <th class="py-3 text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (empty($productos)): ?>
+                                <tr>
+                                    <td colspan="7" class="text-center py-5 text-muted">
+                                        <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                        No hay productos registrados
+                                    </td>
+                                </tr>
+                                <?php else: ?>
+                                    <?php foreach ($productos as $producto): ?>
+                                    <tr>
+                                        <td class="px-4 align-middle">#<?= $producto->id_producto ?></td>
+                                        <td class="align-middle fw-bold"><?= htmlspecialchars($producto->nombre) ?></td>
+                                        <td class="align-middle"><?= htmlspecialchars($producto->marca) ?></td>
+                                        <td class="align-middle"><?= number_format($producto->precio, 2) ?>€</td>
+                                        <td class="align-middle">
+                                            <span class="badge bg-secondary"><?= htmlspecialchars($producto->talla) ?></span>
+                                        </td>
+                                        <td class="align-middle"><?= htmlspecialchars($producto->color) ?></td>
+                                        <td class="align-middle text-center">
+                                            <a href="panelProducto.php?editar=<?= $producto->id_producto ?>"
+                                               class="btn btn-sm btn-outline-primary me-1">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <a href="panelProducto.php?confirmar_eliminar=<?= $producto->id_producto ?>"
+                                               class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
-    </main>
+    </div>
+</main>
 
-    <?php include "includes/footer.php"; ?>
+<?php if (isset($_GET['crear']) || isset($_GET['editar'])): ?>
+<!-- Formulario para Crear/Editar Producto -->
+<div class="modal fade show d-block" tabindex="-1">
+    <div class="modal-backdrop fade show"></div>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header <?= isset($_GET['editar']) ? 'bg-secondary' : 'bg-primary' ?> text-white">
+                <h5 class="modal-title font-titulos">
+                    <?= isset($_GET['editar']) ? 'Editar Producto #' . $_GET['editar'] : 'Nuevo Producto' ?>
+                </h5>
+                <a href="panelProducto.php" class="btn-close btn-close-white"></a>
+            </div>
+            <form action="" method="post" class="p-4">
+                <input type="hidden" name="idProducto" value="<?= isset($productoEditar) ? $productoEditar->id_producto : '' ?>">
 
-    <div class="modal fade" id="productoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Gestión de Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">Nombre *</label>
+                        <input type="text" class="form-control border-secondary" id="nombre" name="nombre"
+                               value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->nombre) : '' ?>" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="marca" class="form-label">Marca *</label>
+                        <input type="text" class="form-control border-secondary" id="marca" name="marca"
+                               value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->marca) : '' ?>" required>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label class="form-label">Nombre del Producto</label>
-                            <input type="text" class="form-control" name="nombre" required>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Marca</label>
-                                <select class="form-select" name="marca">
-                                    <option selected>Elegir...</option>
-                                    <option value="Adidas">Adidas</option>
-                                    <option value="Nike">Nike</option>
-                                    <option value="North Face">The North Face</option>
-                                    <option value="Scuffers">Scuffers</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Precio (€)</label>
-                                <input type="number" step="0.01" class="form-control" name="precio" placeholder="0.00">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Imagen</label>
-                            <input type="file" class="form-control" name="imagen">
-                        </div>
-                        
-                        <div class="modal-footer px-0 pb-0">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" name="guardar_producto">Guardar Cambios</button>
-                        </div>
-                    </form>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="precio" class="form-label">Precio (€) *</label>
+                        <input type="number" step="0.01" class="form-control border-secondary" id="precio" name="precio"
+                               value="<?= isset($productoEditar) ? $productoEditar->precio : '' ?>" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="talla" class="form-label">Talla *</label>
+                        <select class="form-select border-secondary" id="talla" name="talla" required>
+                            <option value="">Selecciona</option>
+                            <?php
+                            $tallas = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+                            foreach ($tallas as $t) {
+                                $selected = (isset($productoEditar) && $productoEditar->talla === $t) ? 'selected' : '';
+                                echo "<option value='$t' $selected>$t</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="color" class="form-label">Color *</label>
+                        <input type="text" class="form-control border-secondary" id="color" name="color"
+                               value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->color) : '' ?>" required>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="idTipoProducto" class="form-label">Tipo Producto *</label>
+                        <select class="form-select border-secondary" id="idTipoProducto" name="idTipoProducto" required>
+                            <option value="">Selecciona un tipo</option>
+                            <?php
+                            $tipos = [1 => 'Ropa', 2 => 'Calzado', 3 => 'Accesorios'];
+                            foreach ($tipos as $id => $nombre) {
+                                $selected = (isset($productoEditar) && $productoEditar->id_tipo_producto == $id) ? 'selected' : '';
+                                echo "<option value='$id' $selected>$nombre</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="idUsuario" class="form-label">Usuario Vendedor *</label>
+                        <select class="form-select border-secondary" id="idUsuario" name="idUsuario" required>
+                            <option value="">Selecciona un usuario</option>
+                            <?php
+                            try {
+                                $listaUsuarios = ControladorUsuario::obtenerTodosUsuarios();
+                                foreach ($listaUsuarios as $usuario) {
+                                    $selected = (isset($productoEditar) && $productoEditar->id_usuario == $usuario->idUsuario) ? 'selected' : '';
+                                    echo "<option value='" . $usuario->idUsuario . "' $selected>" . htmlspecialchars($usuario->email) . "</option>";
+                                }
+                            } catch (Exception $e) {
+                                echo "<option value=''>Error al cargar usuarios</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="idImgProducto" class="form-label">ID Imagen (Opcional)</label>
+                    <input type="text" class="form-control border-secondary" id="idImgProducto" name="idImgProducto"
+                           value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->id_img_producto) : '' ?>"
+                           placeholder="Opcional">
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a href="panelProducto.php" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" name="guardar" class="btn btn-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php if (isset($_GET['confirmar_eliminar'])): ?>
+<!-- Modal de Confirmación para Eliminar -->
+<?php
+$idEliminar = $_GET['confirmar_eliminar'];
+$productoEliminar = null;
+try {
+    $productoEliminar = $controlador->obtenerProductoPorId($idEliminar);
+} catch (Exception $e) {}
+?>
+<div class="modal fade show d-block" tabindex="-1">
+    <div class="modal-backdrop fade show"></div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Confirmar Eliminación</h5>
+                <a href="panelProducto.php" class="btn-close btn-close-white"></a>
+            </div>
+            <div class="modal-body p-4">
+                <p>¿Estás seguro de que quieres eliminar el producto <strong><?= $productoEliminar ? htmlspecialchars($productoEliminar->nombre) : '#' . $idEliminar ?></strong>?</p>
+                <p class="text-muted mb-0">Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer p-3">
+                <form action="" method="post" class="d-flex gap-2">
+                    <input type="hidden" name="idProducto" value="<?= $idEliminar ?>">
+                    <a href="panelProducto.php" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" name="eliminar" class="btn btn-danger">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+<?php endif; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        function confirmarEliminar() {
-            if(confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-                // Aquí iría la lógica PHP o AJAX para borrar
-                alert("Acción de borrar detectada");
-            }
-        }
-    </script>
+<?php include "includes/footer.php"; ?>
 </body>
 </html>
+
