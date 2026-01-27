@@ -32,7 +32,7 @@ class ControladorUsuario
         }
     }
 
-    public static function validarDatos($nombre, $apellido1, $apellido2, $email,
+    public static function validarDatos($nombre, $apellido1, $email,
                                         $telefono, $pass, $repPass)
     {
         // Validar nombre - solo letras, espacios y guiones, max 40 caracteres
@@ -45,12 +45,6 @@ class ControladorUsuario
         $error = [];
         if (!preg_match("/^[a-z\s-]{1,40}$/i", $apellido1)) {
             $error[] = "valApellido1";
-        }
-
-        // Validar apellido 2 - solo letras, espacios y guiones, max 40 caracteres
-        $error = [];
-        if (!preg_match("/^[a-z\s-]{0,40}$/i", $apellido2)) {
-            $error[] = "valApellido2";
         }
 
         // Validar email - formato correcto y máximo 60 caracteres
@@ -99,18 +93,19 @@ class ControladorUsuario
     }
 
     public static function registrarUsuarioAdmin($nombre, $apellido1, $apellido2, $email,
-                                                 $telefono, $pass, $idTipoUsuario)
+                                                 $telefono, $fechaNac, $pass, $idTipoUsuario)
     {
         try {
             $conex = new Conexion();
             $hashedPass = password_hash($pass, PASSWORD_BCRYPT);
-            $stmt = $conex->prepare("INSERT INTO usuario (nombre, apellido1, apellido2, email, telefono, pass, id_tipo_usuario) 
-                                     VALUES (:nombre, :apellido1, :apellido2, :email, :telefono, :pass, :id_tipo_usuario)");
+            $stmt = $conex->prepare("INSERT INTO usuario (nombre, apellido1, apellido2, email, telefono, fecha_nac, pass, id_tipo_usuario) 
+                                     VALUES (:nombre, :apellido1, :apellido2, :email, :telefono, :fecha_nac, :pass, :id_tipo_usuario)");
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':apellido1', $apellido1);
             $stmt->bindParam(':apellido2', $apellido2);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':fecha_nac', $fechaNac);
             $stmt->bindParam(':pass', $hashedPass);
             $stmt->bindParam(':id_tipo_usuario', $idTipoUsuario);
             return $stmt->execute();

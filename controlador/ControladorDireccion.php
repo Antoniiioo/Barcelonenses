@@ -6,7 +6,7 @@ class ControladorDireccion
     {
         try {
             $conex = new Conexion();
-            $stmt = $conex->prepare("INSERT INTO direccion (calle, num_calle, cp, localidad, pais) 
+            $stmt = $conex->prepare("INSERT INTO direccion (calle, num_calle, cod_postal, localidad, pais) 
                                      VALUES (:calle, :num_calle, :cp, :localidad, :pais)");
             $stmt->bindParam(':calle', $calle);
             $stmt->bindParam(':num_calle', $numCalle);

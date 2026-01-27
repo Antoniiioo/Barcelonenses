@@ -38,7 +38,7 @@
                     </p>
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center gap-3">
-                    <a href="./JuegoAntonio/index.php" class="botonJuego">
+                    <a href="juegoAntonio.php" class="botonJuego">
                         <img src="../assets/img/arkanoid.png">
                         <p>Juego de Antonio</p>
                     </a>

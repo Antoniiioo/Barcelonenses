@@ -1,4 +1,4 @@
-import Konva from "./node_modules/konva/lib/index.js";
+import Konva from "../node_modules/konva/lib/index.js";
 
 const width = 600;
 const height = 400;
