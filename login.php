@@ -1,3 +1,31 @@
+<?php
+session_start();
+require_once './controlador/ControladorUsuario.php';
+
+$error = '';
+$success = '';
+
+// Procesar login
+if (isset($_POST['login'])) {
+    try {
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        if (empty($email) || empty($password)) {
+            $error = "Por favor, completa todos los campos";
+        } else {
+            if (ControladorUsuario::login($email, $password)) {
+                header("Location: index.php");
+                exit();
+            } else {
+                $error = "Email o contraseña incorrectos";
+            }
+        }
+    } catch (Exception $e) {
+        $error = "Error al iniciar sesión: " . $e->getMessage();
+    }
+}
+?>
 <?php include("includes/a_config.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +45,19 @@
                 <h1 class="text-center mt-5 mb-3 font-titulos">Inicio sesion</h1>
 
                 <div class="col-md-6 mx-auto">
-                    <form action="/login" method="post">
+                    <?php if ($error): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= htmlspecialchars($error) ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <form action="" method="post">
 
                         <div class="mb-3">
-                            <label for="username" class="form-label ">Usuario:</label>
-                            <input type="text" class="form-control border-secondary" id="username" name="username" required
-                                autocomplete="username">
+                            <label for="email" class="form-label ">Email:</label>
+                            <input type="email" class="form-control border-secondary" id="email" name="email" required
+                                autocomplete="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
                         </div>
 
                         <div class="mb-3">
@@ -30,7 +65,7 @@
                             <div class="input-group">
                                 <input type="password" class="form-control border-secondary" id="password" name="password" required
                                     autocomplete="current-password">
-                                <button class="btn btn-primary" type="submit" aria-label="Iniciar sesión"><i
+                                <button class="btn btn-primary" type="submit" name="login" aria-label="Iniciar sesión"><i
                                         class="fas fa-arrow-right"></i></button>
                             </div>
                         </div>

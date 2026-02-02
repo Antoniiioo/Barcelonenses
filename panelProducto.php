@@ -3,6 +3,7 @@ session_start();
 
 require_once './controlador/ControladorProducto.php';
 require_once './controlador/ControladorUsuario.php';
+require_once './controlador/ControladorTipoProducto.php';
 
 $controlador = new ControladorProducto();
 
@@ -254,10 +255,15 @@ try {
                         <select class="form-select border-secondary" id="idTipoProducto" name="idTipoProducto" required>
                             <option value="">Selecciona un tipo</option>
                             <?php
-                            $tipos = [1 => 'Ropa', 2 => 'Calzado', 3 => 'Accesorios'];
-                            foreach ($tipos as $id => $nombre) {
-                                $selected = (isset($productoEditar) && $productoEditar->id_tipo_producto == $id) ? 'selected' : '';
-                                echo "<option value='$id' $selected>$nombre</option>";
+                            try {
+                                $controladorTipo = new ControladorTipoProducto();
+                                $tiposProducto = $controladorTipo->obtenerTodosTiposProducto();
+                                foreach ($tiposProducto as $tipo) {
+                                    $selected = (isset($productoEditar) && $productoEditar->id_tipo_producto == $tipo->id_tipo_producto) ? 'selected' : '';
+                                    echo "<option value='" . $tipo->id_tipo_producto . "' $selected>" . htmlspecialchars($tipo->tipo) . "</option>";
+                                }
+                            } catch (Exception $e) {
+                                echo "<option value=''>Error al cargar tipos</option>";
                             }
                             ?>
                         </select>
@@ -272,7 +278,7 @@ try {
                                 $listaUsuarios = ControladorUsuario::obtenerTodosUsuarios();
                                 foreach ($listaUsuarios as $usuario) {
                                     $selected = (isset($productoEditar) && $productoEditar->id_usuario == $usuario->idUsuario) ? 'selected' : '';
-                                    echo "<option value='" . $usuario->idUsuario . "' $selected>" . htmlspecialchars($usuario->email) . "</option>";
+                                    echo "<option value='" . $usuario->idUsuario . "' $selected>" . htmlspecialchars($usuario->nombre) . "</option>";
                                 }
                             } catch (Exception $e) {
                                 echo "<option value=''>Error al cargar usuarios</option>";
@@ -283,10 +289,9 @@ try {
                 </div>
 
                 <div class="mb-3">
-                    <label for="idImgProducto" class="form-label">ID Imagen (Opcional)</label>
-                    <input type="text" class="form-control border-secondary" id="idImgProducto" name="idImgProducto"
-                           value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->id_img_producto) : '' ?>"
-                           placeholder="Opcional">
+                    <label for="idImgProducto" class="form-label">Imagen del Producto *</label>
+                    <input type="file" class="form-control border-secondary" id="idImgProducto" name="idImgProducto"
+                           accept="image/*" required>
                 </div>
 
                 <div class="d-flex justify-content-end gap-2 mt-4">

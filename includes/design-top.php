@@ -17,10 +17,10 @@
                 <span class="bi bi-person"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
-                <?php if(isset($_SESSION['tipoUsuario'])): ?>
+                <?php if(isset($_SESSION['email'])): ?>
                     <!-- Usuario logueado -->
                     <li>
-                        <a class="dropdown-item text-danger" href="../logout.php">
+                        <a class="dropdown-item text-danger" href="../salir.php">
                             <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
                         </a>
                     </li>
