@@ -1,4 +1,17 @@
-<?php include "includes/a_config.php"; ?>
+<?php
+session_start();
+
+// Procesar aceptación/rechazo de cookies
+if(isset($_POST['accion_cookies'])) {
+    $_SESSION['cookiesEsenciales'] = true; // Siempre aceptadas
+    $_SESSION['cookiesOpcionales'] = isset($_POST['cookies_opcionales']) && $_POST['cookies_opcionales'] === 'true';
+    $_SESSION['cookiesConfiguradas'] = true;
+    header("Location: index.php");
+    exit();
+}
+
+include "includes/a_config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,8 +77,6 @@
                             </div>
                         </div>
                     </a>
-
-
                 </div>
             </div>
         </section>
@@ -111,6 +122,101 @@
             </div>
         </section>
     </main>
+
+    <!-- Modal de Cookies Moderno -->
+    <?php if(!isset($_SESSION['cookiesConfiguradas'])): ?>
+    <div class="cookies-modal-overlay" id="cookiesModalOverlay">
+        <div class="cookies-modal">
+            <div class="cookies-modal-header">
+                <div class="cookies-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4.5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-.5 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        <path d="M8 0a7.963 7.963 0 0 0-4.075 1.114q-.245.14-.445.294C1.304 3.14 0 5.398 0 8c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8zm3.5 14.5A6.5 6.5 0 1 1 14.5 8a6.5 6.5 0 0 1-3 5.5z"/>
+                    </svg>
+                </div>
+                <h2 class="cookies-title">Configuración de Cookies</h2>
+                <p class="cookies-description">
+                    Utilizamos cookies para mejorar tu experiencia de navegación. Puedes configurar qué tipos de cookies deseas aceptar.
+                </p>
+            </div>
+
+            <div class="cookies-modal-body">
+                <form method="post" id="cookiesForm">
+                    <!-- Cookies Esenciales -->
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div class="cookie-category-info">
+                                <h3 class="cookie-category-title">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                    </svg>
+                                    Cookies Esenciales
+                                </h3>
+                                <p class="cookie-category-description">
+                                    Estas cookies son necesarias para el funcionamiento básico del sitio web y no se pueden desactivar.
+                                </p>
+                            </div>
+                            <div class="cookie-toggle">
+                                <input type="checkbox" id="cookiesEsenciales" checked disabled>
+                                <label for="cookiesEsenciales" class="toggle-label disabled">
+                                    <span class="toggle-switch"></span>
+                                </label>
+                                <span class="toggle-status">Siempre activas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cookies Opcionales -->
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div class="cookie-category-info">
+                                <h3 class="cookie-category-title">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319z"/>
+                                    </svg>
+                                    Cookies de Análisis y Personalización
+                                </h3>
+                                <p class="cookie-category-description">
+                                    Estas cookies nos ayudan a entender cómo interactúas con el sitio y mejorar tu experiencia mediante contenido personalizado.
+                                </p>
+                            </div>
+                            <div class="cookie-toggle">
+                                <input type="checkbox" id="cookiesOpcionales" name="cookies_opcionales_check" checked>
+                                <label for="cookiesOpcionales" class="toggle-label">
+                                    <span class="toggle-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="accion_cookies" value="true">
+                    <input type="hidden" name="cookies_opcionales" id="cookiesOpcionalesValue" value="true">
+
+                    <div class="cookies-modal-footer">
+                        <button type="button" class="btn-cookies btn-cookies-rechazar" id="btnRechazarOpcionales">
+                            Rechazar opcionales
+                        </button>
+                        <button type="button" class="btn-cookies btn-cookies-todas" id="btnAceptarTodas">
+                            Aceptar todas
+                        </button>
+                    </div>
+                </form>
+
+                <div class="cookies-privacy-link">
+                    <a href="privacidad.php" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                        </svg>
+                        Política de Privacidad y Cookies
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <!--Footer-->
     <?php include "includes/footer.php"; ?>
 </body>

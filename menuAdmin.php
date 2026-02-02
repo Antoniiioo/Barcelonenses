@@ -39,7 +39,7 @@ require_once './controlador/ControladorUsuario.php';
                     <i class="bi bi-arrow-right"></i>
                 </a>
 
-                <a href="#" class="btn btn-secondary btn-lg rounded-3 py-3 text-start d-flex align-items-center justify-content-between text-white">
+                <a href="panelValoraciones.php" class="btn btn-secondary btn-lg rounded-3 py-3 text-start d-flex align-items-center justify-content-between text-white">
                     <span><i class="bi bi-star me-2"></i>Panel de Valoraciones</span>
                     <i class="bi bi-arrow-right"></i>
                 </a>

@@ -1,4 +1,29 @@
-<?php include("includes/a_config.php"); ?>
+<?php
+session_start();
+include("includes/a_config.php");
+
+// Obtener valoraciones del producto (simuladas por ahora)
+$valoraciones = [
+    [
+        'nombre' => 'Juan García',
+        'fecha' => '15/01/2024',
+        'puntuacion' => 5,
+        'comentario' => 'Excelente producto, muy buena calidad y el envío fue rápido.'
+    ],
+    [
+        'nombre' => 'María López',
+        'fecha' => '10/01/2024',
+        'puntuacion' => 4,
+        'comentario' => 'Buena camiseta, aunque esperaba que fuera un poco más grande.'
+    ],
+    [
+        'nombre' => 'Pedro Sánchez',
+        'fecha' => '05/01/2024',
+        'puntuacion' => 5,
+        'comentario' => 'Perfecta, tal como se describe. Muy recomendable.'
+    ]
+];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -110,6 +135,104 @@
 
                 </div>
             </div>
+
+            <!-- Sección de Valoraciones -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="font-titulos mb-4">Valoraciones de clientes</h3>
+
+                    <?php if(isset($mensaje)) echo $mensaje; ?>
+
+                    <!-- Formulario para nueva valoración -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="mb-3">Escribe tu valoración</h5>
+                            <form method="post" action="">
+                                <input type="hidden" name="idProducto" value="1">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Puntuación *</label>
+                                    <div class="d-flex gap-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="puntuacion" id="star1" value="1" required>
+                                            <label class="form-check-label" for="star1">
+                                                1 <i class="fas fa-star text-warning"></i>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="puntuacion" id="star2" value="2">
+                                            <label class="form-check-label" for="star2">
+                                                2 <i class="fas fa-star text-warning"></i>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="puntuacion" id="star3" value="3">
+                                            <label class="form-check-label" for="star3">
+                                                3 <i class="fas fa-star text-warning"></i>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="puntuacion" id="star4" value="4">
+                                            <label class="form-check-label" for="star4">
+                                                4 <i class="fas fa-star text-warning"></i>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="puntuacion" id="star5" value="5">
+                                            <label class="form-check-label" for="star5">
+                                                5 <i class="fas fa-star text-warning"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="comentario" class="form-label">Comentario</label>
+                                    <textarea class="form-control" id="comentario" name="comentario" rows="4"
+                                              placeholder="Cuéntanos tu experiencia con este producto..."></textarea>
+                                </div>
+
+                                <button type="submit" name="enviar_valoracion" class="btn btn-primary">
+                                    Enviar Valoración
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Lista de valoraciones existentes -->
+                    <div class="row g-3">
+                        <?php foreach($valoraciones as $valoracion): ?>
+                        <div class="col-12">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold"><?= htmlspecialchars($valoracion['nombre']) ?></h6>
+                                            <small class="text-muted"><?= $valoracion['fecha'] ?></small>
+                                        </div>
+                                        <div class="text-warning">
+                                            <?php for($i = 1; $i <= 5; $i++): ?>
+                                                <i class="<?= $i <= $valoracion['puntuacion'] ? 'fas' : 'far' ?> fa-star"></i>
+                                            <?php endfor; ?>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0 text-muted"><?= htmlspecialchars($valoracion['comentario']) ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <?php if(empty($valoraciones)): ?>
+                    <div class="text-center py-5 text-muted">
+                        <i class="bi bi-chat-left-text fs-1 d-block mb-2"></i>
+                        <p>Todavía no hay valoraciones. ¡Sé el primero en valorar este producto!</p>
+                    </div>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+
         </div>
     </main>
 

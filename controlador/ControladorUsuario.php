@@ -57,8 +57,8 @@ class ControladorUsuario
             $error[] = "valTelefono";
         }
 
-        // Validar contraseña - mínimo 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial
-        if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/", $pass)) {
+        // Validar contraseña - mínimo 8 caracteres
+        if (!preg_match("/^.{8}$/", $pass)) {
             $error[] = "valPass";
         }
 
@@ -142,4 +142,59 @@ class ControladorUsuario
         }
     }
 
+    public static function actualizarUsuario($idUsuario, $nombre, $apellido1, $apellido2,
+                                            $email, $telefono, $fechaNac, $idTipoUsuario)
+    {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("UPDATE usuario 
+                                     SET nombre = :nombre, 
+                                         apellido1 = :apellido1, 
+                                         apellido2 = :apellido2, 
+                                         email = :email, 
+                                         telefono = :telefono, 
+                                         fecha_nac = :fecha_nac, 
+                                         id_tipo_usuario = :id_tipo_usuario 
+                                     WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(':id_usuario', $idUsuario);
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':apellido1', $apellido1);
+            $stmt->bindParam(':apellido2', $apellido2);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':fecha_nac', $fechaNac);
+            $stmt->bindParam(':id_tipo_usuario', $idTipoUsuario);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al actualizar usuario: " . $e->getMessage());
+        }
+    }
+
+    public static function eliminarUsuario($idUsuario)
+    {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("DELETE FROM usuario WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(':id_usuario', $idUsuario);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al eliminar usuario: " . $e->getMessage());
+        }
+    }
+
+    public static function cambiarContrasena($idUsuario, $nuevaContrasena)
+    {
+        try {
+            $conex = new Conexion();
+            $hashedPass = password_hash($nuevaContrasena, PASSWORD_BCRYPT);
+            $stmt = $conex->prepare("UPDATE usuario SET pass = :pass WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(':pass', $hashedPass);
+            $stmt->bindParam(':id_usuario', $idUsuario);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al cambiar contraseña: " . $e->getMessage());
+        }
+    }
+
 }
+

@@ -7,8 +7,38 @@
     </a>
 
     <div class="d-flex align-items-center gap-4 fs-5">
-        <a href="../registro.php"><span class="bi bi-person"></span></a>
-        <a href="../cesta.php"><span class="bi bi-cart"></span></a>
+        <!-- Dropdown de Usuario -->
+        <div class="dropdown">
+            <a href="#"
+               class="text-dark text-decoration-none"
+               id="dropdownUsuario"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">
+                <span class="bi bi-person"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
+                <?php if(isset($_SESSION['tipoUsuario'])): ?>
+                    <!-- Usuario logueado -->
+                    <li>
+                        <a class="dropdown-item text-danger" href="../logout.php">
+                            <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <!-- Usuario no logueado -->
+                    <li>
+                        <a class="dropdown-item" href="../login.php">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="../registro.php">
+                            <i class="bi bi-person-plus me-2"></i>Registrarse
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div><a href="../cesta.php"><span class="bi bi-cart"></span></a>
         <a href="../favoritos.php"><span class="bi bi-heart"></span></a>
     </div>
 </header>
