@@ -11,6 +11,7 @@ if(isset($_POST['accion_cookies'])) {
 }
 
 include "includes/a_config.php";
+include "includes/google_connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
