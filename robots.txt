@@ -1,0 +1,39 @@
+# robots.txt para Barcelonenses
+
+User-agent: *
+Allow: /
+
+# Páginas a excluir del rastreo
+Disallow: /menuAdmin.php
+Disallow: /panelProducto.php
+Disallow: /panelUsuario.php
+Disallow: /panelValoraciones.php
+Disallow: /salir.php
+Disallow: /test.html
+Disallow: /test-captcha.php
+Disallow: /vistaprevia.php
+
+# Directorios privados
+Disallow: /controlador/
+Disallow: /modelo/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /database/
+Disallow: /scss/
+Disallow: /Plantilla-Layout-Principal/
+
+# Archivos de configuración
+Disallow: /composer.json
+Disallow: /package.json
+Disallow: /*.txt$
+
+# Permitir acceso a assets
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+# Sitemap
+Sitemap: http://localhost:8080/sitemap.xml
+
+# Tiempo de espera entre peticiones (en segundos)
+Crawl-delay: 1

@@ -10,48 +10,57 @@ $controlador = new ControladorProducto();
 // Procesar guardado/edición de producto
 if (isset($_POST['guardar'])) {
     try {
-        $idImgProducto = isset($_POST['idImgProducto']) && $_POST['idImgProducto'] !== '' ? $_POST['idImgProducto'] : null;
-
-        if (isset($_POST['idProducto']) && $_POST['idProducto'] !== '') {
-            // Editar producto existente
-            $controlador->editarProducto(
-                $_POST['idProducto'],
-                $_POST['idTipoProducto'],
-                $_POST['idUsuario'],
-                $_POST['nombre'],
-                $_POST['marca'],
-                $_POST['precio'],
-                $_POST['talla'],
-                $idImgProducto,
-                $_POST['color']
-            );
-            $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                Producto actualizado correctamente
+        // Validar campos requeridos
+        if (empty($_POST['nombre']) || empty($_POST['marca']) || empty($_POST['precio']) || 
+            empty($_POST['talla']) || empty($_POST['color']) || 
+            empty($_POST['idTipoProducto']) || empty($_POST['idUsuario'])) {
+            $mensaje = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                Por favor, completa todos los campos obligatorios
                 <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
             </div>";
         } else {
-            // Crear nuevo producto
-            $controlador->crearProducto(
-                $_POST['idTipoProducto'],
-                $_POST['idUsuario'],
-                $_POST['nombre'],
-                $_POST['marca'],
-                $_POST['precio'],
-                $_POST['talla'],
-                $idImgProducto,
-                $_POST['color']
-            );
-            $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                Producto creado correctamente
-                <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
-            </div>";
+            // idImgProducto se gestionará en el módulo de imágenes
+            $idImgProducto = null;
+
+            if (isset($_POST['idProducto']) && $_POST['idProducto'] !== '') {
+                // Editar producto existente
+                $controlador->editarProducto(
+                    $_POST['idProducto'],
+                    $_POST['idTipoProducto'],
+                    $_POST['idUsuario'],
+                    $_POST['nombre'],
+                    $_POST['marca'],
+                    $_POST['precio'],
+                    $_POST['talla'],
+                    $_POST['color']
+                );
+                $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                    Producto actualizado correctamente
+                    <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+                </div>";
+            } else {
+                // Crear nuevo producto
+                $controlador->crearProducto(
+                    $_POST['idTipoProducto'],
+                    $_POST['idUsuario'],
+                    $_POST['nombre'],
+                    $_POST['marca'],
+                    $_POST['precio'],
+                    $_POST['talla'],
+                    $_POST['color']
+                );
+                $mensaje = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                    Producto creado correctamente
+                    <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+                </div>";
+            }
+            // Redirigir para evitar reenvío de formulario
+            header("Location: panelProducto.php?success=1");
+            exit();
         }
-        // Redirigir para evitar reenvío de formulario
-        header("Location: panelProducto.php?success=1");
-        exit();
     } catch (Exception $e) {
         $mensaje = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            Error: " . $e->getMessage() . "
+            Error: " . htmlspecialchars($e->getMessage()) . "
             <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
         </div>";
     }
@@ -65,9 +74,76 @@ if (isset($_POST['eliminar'])) {
         exit();
     } catch (Exception $e) {
         $mensaje = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            Error: " . $e->getMessage() . "
+            Error: " . htmlspecialchars($e->getMessage()) . "
             <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
         </div>";
+    }
+}
+
+// Procesar subida de imagen
+if (isset($_POST['subir_imagen'])) {
+    try {
+        $idProducto = $_POST['idProducto'];
+        
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $archivo = $_FILES['imagen'];
+            
+            // Validar tipo de archivo
+            $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            if (!in_array($archivo['type'], $tiposPermitidos)) {
+                throw new Exception('Formato de imagen no permitido. Usa JPG, PNG, GIF o WEBP');
+            }
+            
+            // Validar tamaño (máximo 5MB)
+            if ($archivo['size'] > 5 * 1024 * 1024) {
+                throw new Exception('La imagen no debe superar los 5MB');
+            }
+            
+            // Crear directorio si no existe
+            $directorioDestino = 'assets/img/productos/';
+            if (!is_dir($directorioDestino)) {
+                mkdir($directorioDestino, 0755, true);
+            }
+            
+            // Generar nombre único
+            $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+            $nombreArchivo = 'producto_' . $idProducto . '_' . time() . '.' . $extension;
+            $rutaDestino = $directorioDestino . $nombreArchivo;
+            
+            // Mover archivo
+            if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
+                // Guardar en base de datos
+                if ($controlador->agregarImagenProducto($idProducto, $rutaDestino)) {
+                    header("Location: panelProducto.php?imagenes=$idProducto&img_success=1");
+                    exit();
+                } else {
+                    throw new Exception('Error al guardar la imagen en la base de datos');
+                }
+            } else {
+                throw new Exception('Error al subir el archivo');
+            }
+        } else {
+            throw new Exception('No se recibió ninguna imagen o hubo un error en la subida');
+        }
+    } catch (Exception $e) {
+        $errorImagen = $e->getMessage();
+    }
+}
+
+// Procesar eliminación de imagen
+if (isset($_POST['eliminar_imagen'])) {
+    try {
+        $idImagenProducto = $_POST['idImagenProducto'];
+        $idProducto = $_POST['idProducto'];
+        
+        if ($controlador->eliminarImagenProducto($idImagenProducto)) {
+            header("Location: panelProducto.php?imagenes=$idProducto&img_deleted=1");
+            exit();
+        } else {
+            throw new Exception('Error al eliminar la imagen');
+        }
+    } catch (Exception $e) {
+        $errorImagen = $e->getMessage();
     }
 }
 
@@ -172,11 +248,18 @@ try {
                                         <td class="align-middle"><?= $producto->color ?></td>
                                         <td class="align-middle text-center">
                                             <a href="panelProducto.php?editar=<?= $producto->id_producto ?>"
-                                               class="btn btn-sm btn-outline-primary me-1">
+                                               class="btn btn-sm btn-outline-primary me-1"
+                                               title="Editar producto">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
+                                            <a href="panelProducto.php?imagenes=<?= $producto->id_producto ?>"
+                                               class="btn btn-sm btn-outline-info me-1"
+                                               title="Gestionar imágenes">
+                                                <i class="bi bi-image"></i>
+                                            </a>
                                             <a href="panelProducto.php?confirmar_eliminar=<?= $producto->id_producto ?>"
-                                               class="btn btn-sm btn-outline-danger">
+                                               class="btn btn-sm btn-outline-danger"
+                                               title="Eliminar producto">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
@@ -288,12 +371,6 @@ try {
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="idImgProducto" class="form-label">Imagen del Producto *</label>
-                    <input type="file" class="form-control border-secondary" id="idImgProducto" name="idImgProducto"
-                           accept="image/*" required>
-                </div>
-
                 <div class="d-flex justify-content-end gap-2 mt-4">
                     <a href="panelProducto.php" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" name="guardar" class="btn btn-primary">Guardar Producto</button>
@@ -331,6 +408,130 @@ try {
                     <a href="panelProducto.php" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" name="eliminar" class="btn btn-danger">Eliminar</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show"></div>
+<?php endif; ?>
+
+<?php if (isset($_GET['imagenes'])): ?>
+<!-- Modal de Gestión de Imágenes -->
+<?php
+$idProducto = (int)$_GET['imagenes'];
+$productoImg = $controlador->obtenerProductoPorId($idProducto);
+$imagenesProducto = $controlador->obtenerImagenesProducto($idProducto);
+?>
+<div class="modal fade show d-block" id="modalImagenes" tabindex="-1" aria-labelledby="modalImagenesLabel" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title font-titulos" id="modalImagenesLabel">
+                    <i class="bi bi-images"></i> Gestionar Imágenes - <?= $productoImg ? htmlspecialchars($productoImg->nombre) : 'Producto' ?>
+                </h5>
+                <a href="panelProducto.php" class="btn-close btn-close-white" aria-label="Close"></a>
+            </div>
+            <div class="modal-body p-4">
+                <?php if (isset($_GET['img_success'])): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle"></i> Imagen subida correctamente
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (isset($_GET['img_deleted'])): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle"></i> Imagen eliminada correctamente
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (isset($errorImagen)): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-triangle"></i> <?= htmlspecialchars($errorImagen) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                <?php endif; ?>
+                
+                <!-- Formulario para subir imagen -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0"><i class="bi bi-cloud-upload"></i> Subir Nueva Imagen</h6>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="idProducto" value="<?= $idProducto ?>">
+                            
+                            <div class="row align-items-end">
+                                <div class="col-md-9 mb-3 mb-md-0">
+                                    <label for="imagen" class="form-label">Seleccionar Imagen</label>
+                                    <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+                                    <small class="text-muted">Formatos: JPG, PNG, GIF, WEBP | Tamaño máximo: 5MB</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" name="subir_imagen" class="btn btn-primary w-100">
+                                        <i class="bi bi-upload"></i> Subir
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Lista de imágenes actuales -->
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">
+                            <i class="bi bi-collection"></i> Imágenes del Producto 
+                            <span class="badge bg-primary"><?= count($imagenesProducto) ?></span>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <?php if (empty($imagenesProducto)): ?>
+                            <div class="text-center text-muted py-5">
+                                <i class="bi bi-images fs-1 d-block mb-2"></i>
+                                <p class="mb-0">No hay imágenes subidas para este producto</p>
+                            </div>
+                        <?php else: ?>
+                            <div class="row g-3">
+                                <?php foreach ($imagenesProducto as $imagen): ?>
+                                    <div class="col-md-4 col-lg-3">
+                                        <div class="card h-100">
+                                            <div class="position-relative">
+                                                <img src="<?= htmlspecialchars($imagen->url_image) ?>" 
+                                                     class="card-img-top" 
+                                                     alt="Imagen producto"
+                                                     style="height: 200px; object-fit: cover;">
+                                                <div class="position-absolute top-0 end-0 p-2">
+                                                    <span class="badge bg-dark">ID: <?= $imagen->id_image_producto ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body p-2">
+                                                <small class="text-muted d-block text-truncate" title="<?= htmlspecialchars($imagen->url_image) ?>">
+                                                    <i class="bi bi-file-image"></i> <?= basename($imagen->url_image) ?>
+                                                </small>
+                                            </div>
+                                            <div class="card-footer p-2 bg-transparent">
+                                                <form action="" method="post" onsubmit="return confirm('¿Eliminar esta imagen?')">
+                                                    <input type="hidden" name="idImagenProducto" value="<?= $imagen->id_image_producto ?>">
+                                                    <input type="hidden" name="idProducto" value="<?= $idProducto ?>">
+                                                    <button type="submit" name="eliminar_imagen" class="btn btn-sm btn-danger w-100">
+                                                        <i class="bi bi-trash"></i> Eliminar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="panelProducto.php" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Volver al Panel
+                </a>
             </div>
         </div>
     </div>

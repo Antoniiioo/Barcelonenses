@@ -4,13 +4,13 @@ require_once 'Conexion.php';
 
 class ControladorProducto
 {
-    function crearProducto($id_tipo_producto, $id_usuario, $nombre, $marca, $precio, $talla, $id_img_producto, $color) {
+    function crearProducto($id_tipo_producto, $id_usuario, $nombre, $marca, $precio, $talla, $color) {
         $pdo = new Conexion();
 
         $sql = "INSERT INTO producto 
-            (id_tipo_producto, id_usuario, nombre, marca, precio, talla, id_img_producto, color)
+            (id_tipo_producto, id_usuario, nombre, marca, precio, talla, color)
             VALUES 
-            (:id_tipo_producto, :id_usuario, :nombre, :marca, :precio, :talla, :id_img_producto, :color)";
+            (:id_tipo_producto, :id_usuario, :nombre, :marca, :precio, :talla, :color)";
 
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([
@@ -20,12 +20,11 @@ class ControladorProducto
             ":marca"            => $marca,
             ":precio"           => $precio,
             ":talla"            => $talla,
-            ":id_img_producto"  => $id_img_producto,
             ":color"            => $color
         ]);
     }
 
-    function editarProducto($id_producto, $id_tipo_producto, $id_usuario, $nombre, $marca, $precio, $talla, $id_img_producto, $color) {
+    function editarProducto($id_producto, $id_tipo_producto, $id_usuario, $nombre, $marca, $precio, $talla, $color) {
         $pdo = new Conexion();
 
         $sql = "UPDATE producto SET
@@ -35,7 +34,6 @@ class ControladorProducto
                 marca = :marca,
                 precio = :precio,
                 talla = :talla,
-                id_img_producto = :id_img_producto,
                 color = :color
             WHERE id_producto = :id_producto";
 
@@ -48,7 +46,6 @@ class ControladorProducto
             ":marca"            => $marca,
             ":precio"           => $precio,
             ":talla"            => $talla,
-            ":id_img_producto"  => $id_img_producto,
             ":color"            => $color
         ]);
     }
@@ -146,6 +143,52 @@ class ControladorProducto
         } catch (PDOException $e) {
             return [];
         }
+    }
+
+    // ============ GESTIÓN DE IMÁGENES ============
+
+    function obtenerImagenesProducto($id_producto) {
+        $pdo = new Conexion();
+        $sql = "SELECT * FROM image_producto WHERE id_producto = :id_producto ORDER BY id_image_producto ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([":id_producto" => $id_producto]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function agregarImagenProducto($id_producto, $url_image) {
+        $pdo = new Conexion();
+        $sql = "INSERT INTO image_producto (id_producto, url_image) VALUES (:id_producto, :url_image)";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([
+            ":id_producto" => $id_producto,
+            ":url_image" => $url_image
+        ]);
+    }
+
+    function eliminarImagenProducto($id_image_producto) {
+        $pdo = new Conexion();
+        
+        // Obtener la URL de la imagen antes de eliminarla
+        $sql = "SELECT url_image FROM image_producto WHERE id_image_producto = :id_image_producto";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([":id_image_producto" => $id_image_producto]);
+        $imagen = $stmt->fetch(PDO::FETCH_OBJ);
+        
+        if ($imagen) {
+            // Eliminar registro de la base de datos
+            $sql = "DELETE FROM image_producto WHERE id_image_producto = :id_image_producto";
+            $stmt = $pdo->prepare($sql);
+            $resultado = $stmt->execute([":id_image_producto" => $id_image_producto]);
+            
+            // Eliminar archivo físico si existe
+            if ($resultado && file_exists($imagen->url_image)) {
+                unlink($imagen->url_image);
+            }
+            
+            return $resultado;
+        }
+        
+        return false;
     }
 }
 
