@@ -1,6 +1,18 @@
 <?php
 session_start();
 
+// Si hay sesión de Google, revocar el token
+if (isset($_SESSION['access_token'])) {
+    require_once 'includes/a_config.php';
+    
+    try {
+        // Revocar el token de acceso de Google
+        $google_client->revokeToken($_SESSION['access_token']);
+    } catch (Exception $e) {
+        // Si falla la revocación, continuar con el logout local
+    }
+}
+
 // Eliminar todas las variables de sesión
 session_unset();
 

@@ -14,11 +14,39 @@
                id="dropdownUsuario"
                data-bs-toggle="dropdown"
                aria-expanded="false">
-                <span class="bi bi-person"></span>
+                <?php if(isset($_SESSION['email']) && isset($_SESSION['user_image'])): ?>
+                    <!-- Foto de perfil de Google -->
+                    <img src="<?= htmlspecialchars($_SESSION['user_image']) ?>" 
+                         alt="Perfil" 
+                         class="rounded-circle" 
+                         style="width: 32px; height: 32px; object-fit: cover;">
+                <?php elseif(isset($_SESSION['email'])): ?>
+                    <!-- Avatar por defecto para usuarios normales -->
+                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center text-white" 
+                         style="width: 32px; height: 32px; font-size: 14px; font-weight: bold;">
+                        <?php
+                        // Generar iniciales del usuario
+                        $iniciales = '';
+                        if(isset($_SESSION['nombre'])) {
+                            $iniciales = strtoupper(substr($_SESSION['nombre'], 0, 1));
+                        } else {
+                            $iniciales = strtoupper(substr($_SESSION['email'], 0, 1));
+                        }
+                        echo htmlspecialchars($iniciales);
+                        ?>
+                    </div>
+                <?php else: ?>
+                    <!-- Icono por defecto -->
+                    <span class="bi bi-person"></span>
+                <?php endif; ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
                 <?php if(isset($_SESSION['email'])): ?>
                     <!-- Usuario logueado -->
+                    <li class="dropdown-header">
+                        <?= isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : htmlspecialchars($_SESSION['email']) ?>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
                     <li>
                         <a class="dropdown-item text-danger" href="../salir.php">
                             <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión

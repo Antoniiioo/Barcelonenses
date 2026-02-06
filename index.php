@@ -10,8 +10,8 @@ if(isset($_POST['accion_cookies'])) {
     exit();
 }
 
-include "includes/a_config.php";
-include "includes/google_connect.php";
+require_once 'includes/a_config.php'; // PRIMERO
+require_once 'includes/google_connect.php'; // DESPUÉS
 ?>
 <!DOCTYPE html>
 <html lang="en">

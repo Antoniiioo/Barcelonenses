@@ -1,50 +1,75 @@
 <?php
 session_start();
 require_once './controlador/ControladorUsuario.php';
+require_once './includes/captcha.php';
+
+// Pre-rellenar datos de Google si vienen del login
+$nombrePrefill = $_SESSION['google_nombre'] ?? '';
+$apellidoPrefill = $_SESSION['google_apellido'] ?? '';
+$emailPrefill = $_SESSION['google_email'] ?? '';
+
+// Limpiar variables de sesión de Google después de usarlas
+unset($_SESSION['google_email'], $_SESSION['google_nombre'], $_SESSION['google_apellido']);
 
 $error = '';
 $success = '';
 $erroresValidacion = [];
 
+// Verificar si hay errores de Google
+if (isset($_SESSION['error_google'])) {
+    $error = $_SESSION['error_google'];
+    unset($_SESSION['error_google']);
+}
+
 // Procesar registro
 if (isset($_POST['registrar'])) {
     try {
-        $nombre = trim($_POST['nombre'] ?? '');
-        $apellido1 = trim($_POST['apellido1'] ?? '');
-        $apellido2 = trim($_POST['apellido2'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-        $telefono = trim($_POST['telefono'] ?? '');
-        $password = $_POST['contrasena'] ?? '';
-        $confirmarPassword = $_POST['confirmar_contrasena'] ?? '';
+        // Validar captcha primero
+        $captchaUsuario = $_POST['captcha'] ?? '';
+        $resultadoCaptcha = validarCaptcha($captchaUsuario);
+        
+        if (!$resultadoCaptcha['valido']) {
+            $error = $resultadoCaptcha['mensaje'];
+            $erroresValidacion[] = 'valCaptcha';
+        } else {
+            $nombre = trim($_POST['nombre'] ?? '');
+            $apellido1 = trim($_POST['apellido1'] ?? '');
+            $apellido2 = trim($_POST['apellido2'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $telefono = trim($_POST['telefono'] ?? '');
+            $password = $_POST['contrasena'] ?? '';
+            $confirmarPassword = $_POST['confirmar_contrasena'] ?? '';
 
-        // Validar datos
-        $erroresValidacion = ControladorUsuario::validarDatos(
-            $nombre, 
-            $apellido1, 
-            $email, 
-            $telefono, 
-            $password, 
-            $confirmarPassword
-        );
-
-        if (empty($erroresValidacion)) {
-            // Registrar usuario
-            if (ControladorUsuario::registrarUsuarioCliente(
+            // Validar datos
+            $erroresValidacion = ControladorUsuario::validarDatos(
                 $nombre, 
                 $apellido1, 
-                $apellido2, 
                 $email, 
                 $telefono, 
-                $password
-            )) {
-                $success = "Usuario registrado correctamente. Ahora puedes iniciar sesión.";
-                // Limpiar campos
-                $_POST = [];
+                $password, 
+                $confirmarPassword
+            );
+
+            if (empty($erroresValidacion)) {
+                // Registrar usuario
+                if (ControladorUsuario::registrarUsuarioCliente(
+                    $nombre, 
+                    $apellido1, 
+                    $apellido2, 
+                    $email, 
+                    $telefono, 
+                    $password
+                )) {
+                    $success = "Usuario registrado correctamente. Ahora puedes iniciar sesión.";
+                    // Limpiar campos y captcha
+                    $_POST = [];
+                    limpiarCaptcha();
+                } else {
+                    $error = "Error al registrar usuario. Inténtalo de nuevo.";
+                }
             } else {
-                $error = "Error al registrar usuario. Inténtalo de nuevo.";
+                $error = "Por favor, corrige los errores en el formulario";
             }
-        } else {
-            $error = "Por favor, corrige los errores en el formulario";
         }
     } catch (Exception $e) {
         $error = "Error: " . $e->getMessage();
@@ -89,7 +114,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary <?= in_array('valNombre', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="nombre" name="nombre" required autocomplete="given-name" 
-                                value="<?= isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : '' ?>">
+                                value="<?= isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : htmlspecialchars($nombrePrefill) ?>">
                             <?php if (in_array('valNombre', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Nombre inválido (máx. 40 caracteres, solo letras)</div>
                             <?php endif; ?>
@@ -101,7 +126,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary <?= in_array('valApellido1', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="apellido1" name="apellido1" required autocomplete="family-name"
-                                value="<?= isset($_POST['apellido1']) ? htmlspecialchars($_POST['apellido1']) : '' ?>">
+                                value="<?= isset($_POST['apellido1']) ? htmlspecialchars($_POST['apellido1']) : htmlspecialchars($apellidoPrefill) ?>">
                             <?php if (in_array('valApellido1', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Apellido inválido (máx. 40 caracteres, solo letras)</div>
                             <?php endif; ?>
@@ -122,7 +147,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="email" class="form-control border-secondary <?= in_array('valEmail', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="email" name="email" required autocomplete="email"
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : htmlspecialchars($emailPrefill) ?>">
                             <?php if (in_array('valEmail', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Email inválido (máx. 60 caracteres)</div>
                             <?php endif; ?>
@@ -163,6 +188,14 @@ if (isset($_POST['registrar'])) {
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <!-- Captcha matemático -->
+                    <?php 
+                    renderCaptcha(
+                        $erroresValidacion, 
+                        isset($_POST['captcha']) && !$success ? $_POST['captcha'] : ''
+                    ); 
+                    ?>
 
                     <div class="row mb-3 mt-4">
                         <div class="col-12 d-flex justify-content-center flex-wrap gap-2">

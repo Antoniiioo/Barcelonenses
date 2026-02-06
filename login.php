@@ -1,15 +1,23 @@
 <?php
 session_start();
+require_once 'includes/a_config.php'; // PRIMERO: inicializa $google_client
+require_once 'includes/google_connect.php'; // DESPUÉS: usa $google_client
 require_once './controlador/ControladorUsuario.php';
 
 $error = '';
 $success = '';
 
+// Verificar si hay errores de Google
+if (isset($_SESSION['error_google'])) {
+    $error = $_SESSION['error_google'];
+    unset($_SESSION['error_google']);
+}
+
 // Procesar login
 if (isset($_POST['login'])) {
     try {
         $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+        $password = $_POST['contrasena'] ?? '';
 
         if (empty($email) || empty($password)) {
             $error = "Por favor, completa todos los campos";
@@ -26,10 +34,6 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-<?php include("includes/a_config.php"); ?>
-<?php include("includes/google_connect.php"); ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,9 +68,9 @@ if (isset($_POST['login'])) {
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña:</label>
+                            <label for="contrasena" class="form-label">Contraseña:</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-secondary" id="password" name="password" required
+                                <input type="password" class="form-control border-secondary" id="contrasena" name="contrasena" required
                                     autocomplete="current-password">
                                 <button class="btn btn-primary" type="submit" name="login" aria-label="Iniciar sesión"><i
                                         class="fas fa-arrow-right"></i></button>
