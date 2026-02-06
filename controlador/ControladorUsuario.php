@@ -141,6 +141,22 @@ class ControladorUsuario
         }
     }
 
+    public static function obtenerUsuarioPorId($idUsuario)
+    {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("SELECT u.*, tu.tipo as tipo_usuario 
+                                     FROM usuario u 
+                                     LEFT JOIN tipo_usuario tu ON u.id_tipo_usuario = tu.id_tipo_usuario 
+                                     WHERE u.id_usuario = :id_usuario");
+            $stmt->bindParam(':id_usuario', $idUsuario);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener el usuario: " . $e->getMessage());
+        }
+    }
+
     public static function actualizarUsuario($idUsuario, $nombre, $apellido1, $apellido2,
                                             $email, $telefono, $fechaNac, $idTipoUsuario)
     {
@@ -209,6 +225,49 @@ class ControladorUsuario
             return $stmt->execute();
         } catch (PDOException $e) {
             throw new Exception("Error al cambiar contraseña: " . $e->getMessage());
+        }
+    }
+
+    public static function actualizarPerfilUsuario($idUsuario, $nombre, $apellido1, $apellido2, $email, $telefono, $fechaNac)
+    {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("UPDATE usuario SET
+                                     nombre = :nombre,
+                                     apellido1 = :apellido1,
+                                     apellido2 = :apellido2,
+                                     email = :email,
+                                     telefono = :telefono,
+                                     fecha_nac = :fecha_nac
+                                     WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':apellido1', $apellido1);
+            $stmt->bindParam(':apellido2', $apellido2);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':fecha_nac', $fechaNac);
+            $stmt->bindParam(':id_usuario', $idUsuario);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al actualizar perfil: " . $e->getMessage());
+        }
+    }
+
+    public static function verificarContrasena($idUsuario, $contrasena)
+    {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("SELECT pass FROM usuario WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(':id_usuario', $idUsuario);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+            if ($usuario) {
+                return password_verify($contrasena, $usuario->pass);
+            }
+            return false;
+        } catch (PDOException $e) {
+            throw new Exception("Error al verificar contraseña: " . $e->getMessage());
         }
     }
 

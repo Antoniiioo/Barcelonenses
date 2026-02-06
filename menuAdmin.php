@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+// Verificar que el usuario esté logueado
+if (!isset($_SESSION['id_usuario']) || $_SESSION['id_tipo_usuario'] != 1) {
+    header("Location: login.php");
+    exit;
+}
 
 require_once './controlador/ControladorTipoUsuario.php';
 require_once './controlador/ControladorDireccion.php';

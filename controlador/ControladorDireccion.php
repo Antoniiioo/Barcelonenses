@@ -43,4 +43,69 @@ class ControladorDireccion
         return $stmt->fetchObject();
     }
 
+    public static function obtenerDireccionPorId($idDireccion) {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("SELECT * FROM direccion WHERE id_direccion = :id_direccion");
+            $stmt->bindParam(':id_direccion', $idDireccion);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener dirección: " . $e->getMessage());
+        }
+    }
+
+    public static function crearDireccionYAsociarUsuario($idUsuario, $calle, $numCalle, $codPostal, $localidad, $pais)
+    {
+        try {
+            $conex = new Conexion();
+
+            // Insertar dirección
+            $stmt = $conex->prepare("INSERT INTO direccion (calle, num_calle, cod_postal, localidad, pais)
+                                     VALUES (:calle, :num_calle, :cod_postal, :localidad, :pais)");
+            $stmt->bindParam(':calle', $calle);
+            $stmt->bindParam(':num_calle', $numCalle);
+            $stmt->bindParam(':cod_postal', $codPostal);
+            $stmt->bindParam(':localidad', $localidad);
+            $stmt->bindParam(':pais', $pais);
+
+            if ($stmt->execute()) {
+                $idDireccion = $conex->lastInsertId();
+
+                // Asociar al usuario
+                $stmtUser = $conex->prepare("UPDATE usuario SET id_direccion = :id_direccion WHERE id_usuario = :id_usuario");
+                $stmtUser->bindParam(':id_direccion', $idDireccion);
+                $stmtUser->bindParam(':id_usuario', $idUsuario);
+                return $stmtUser->execute();
+            }
+            return false;
+        } catch (PDOException $e) {
+            throw new Exception("Error al crear dirección: " . $e->getMessage());
+        }
+    }
+
+    public static function actualizarDireccionPorId($idDireccion, $calle, $numCalle, $codPostal, $localidad, $pais)
+    {
+        try {
+            $conex = new Conexion();
+            $stmt = $conex->prepare("UPDATE direccion SET
+                                     calle = :calle,
+                                     num_calle = :num_calle,
+                                     cod_postal = :cod_postal,
+                                     localidad = :localidad,
+                                     pais = :pais
+                                     WHERE id_direccion = :id_direccion");
+            $stmt->bindParam(':calle', $calle);
+            $stmt->bindParam(':num_calle', $numCalle);
+            $stmt->bindParam(':cod_postal', $codPostal);
+            $stmt->bindParam(':localidad', $localidad);
+            $stmt->bindParam(':pais', $pais);
+            $stmt->bindParam(':id_direccion', $idDireccion);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al actualizar dirección: " . $e->getMessage());
+        }
+    }
+
 }
+

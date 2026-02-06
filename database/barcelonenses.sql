@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-02-2026 a las 12:05:01
+-- Tiempo de generación: 06-02-2026 a las 15:03:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -67,18 +67,18 @@ CREATE TABLE `image_producto` (
 --
 
 INSERT INTO `image_producto` (`id_image_producto`, `id_producto`, `url_image`) VALUES
-(1, 1, 'assets/img/camisetaAdidas.webp'),
-(2, 2, 'assets/img/camiseta-nike-deportiva.jpg'),
-(3, 3, 'assets/img/pantalonNike.jpg'),
-(4, 4, 'assets/img/pantalon-chino-zara.jpg'),
-(5, 5, 'assets/img/chaquetonNorth.jpg'),
-(6, 6, 'assets/img/zapatillas-running.jpg'),
-(7, 7, 'assets/img/zapatillas-casual-nike.jpg'),
-(8, 8, 'assets/img/gorra-puma.jpg'),
-(9, 9, 'assets/img/sudadera-adidas.jpg'),
-(10, 10, 'assets/img/camiseta-vintage.jpg'),
-(11, 11, 'assets/img/short-nike.jpg'),
-(12, 12, 'assets/img/chaqueta-vaquera.jpg');
+(1, 1, 'assets/img/camisetaAdidas.png'),
+(2, 2, 'assets/img/camiseta-nike-deportiva.png'),
+(3, 3, 'assets/img/pantalonNike.png'),
+(4, 4, 'assets/img/pantalon-chino-zara.png'),
+(5, 5, 'assets/img/chaquetonNorth.png'),
+(6, 6, 'assets/img/zapatillas-running.png'),
+(7, 7, 'assets/img/zapatillas-casual-nike.png'),
+(8, 8, 'assets/img/gorra-puma.png'),
+(9, 9, 'assets/img/sudadera-adidas.png'),
+(10, 10, 'assets/img/camiseta-vintage.png'),
+(11, 11, 'assets/img/short-nike.png'),
+(12, 12, 'assets/img/chaqueta-vaquera.png');
 
 -- --------------------------------------------------------
 
@@ -231,7 +231,8 @@ INSERT INTO `valoracion` (`id_valoracion`, `id_producto`, `puntuacion`, `comenta
 (17, 1, 3, 'Esperaba mejor calidad por ser Adidas.', 10),
 (18, 2, 5, 'Nike nunca decepciona, producto de 10.', 5),
 (19, 6, 3, 'Se desgastan rápido para el precio que tienen.', 6),
-(20, 7, 4, 'Buenas zapatillas, cómodas desde el primer día.', 7);
+(20, 7, 4, 'Buenas zapatillas, cómodas desde el primer día.', 7),
+(23, 12, 5, '<p><strong>Hola, <em>Esto es una</em></strong><u> prueba</u></p>', 2);
 
 --
 -- Índices para tablas volcadas
@@ -330,7 +331,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restricciones para tablas volcadas

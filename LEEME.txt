@@ -18,3 +18,19 @@ Una vez hecho esto, ya podemos compilar los ficheros scss con el comando:
 
 sass -w scss:css
 
+--------------------------------------------
+
+La base de datos del proyecto esta en la carpeta "database", es un sql el cual deberas importar en una base de datos llamada "barcelonenses".
+
+Para hacer login, el usuario es el email.
+Las contraseñas de los usuarios son:
+- La del administrador es "admin123"
+- La de los demas usuarios es "password123"
+
+El puerto donde corre el proyecto es el 8080 y el de la base de datos es el 3306.
+Antes de iniciar el proyecto haz un npm install y un composer update google/apiclient.
+Para inicar el proyecto, ejecuta el comando "npm run dev:win" si es windows el dispositivo o "npm run dev:mac" si es Mac.
+
+Si inicias sesion con el usuario admin, podrás acceder a la sección de administración,
+donde podrás acceder a los paneles de Usuarios, productos y valoraciones. Si inicias sesión con un usuario valorador,
+podrás acceder al panel de productos. Estas opciones sale en el menu de navegacion.

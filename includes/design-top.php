@@ -46,6 +46,11 @@
                     <li class="dropdown-header">
                         <?= isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : htmlspecialchars($_SESSION['email']) ?>
                     </li>
+                    <li>
+                        <a class="dropdown-item" href="../perfil.php">
+                            <i class="bi bi-person me-2"></i>Perfil
+                        </a>
+                    </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <a class="dropdown-item text-danger" href="../salir.php">

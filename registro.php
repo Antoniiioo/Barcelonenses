@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Verificar que el usuario esté logueado
+if (isset($_SESSION['id_usuario'])) {
+    header("Location: index.php");
+    exit;
+}
+
 require_once './controlador/ControladorUsuario.php';
 require_once './includes/captcha.php';
 

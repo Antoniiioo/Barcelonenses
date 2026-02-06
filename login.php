@@ -1,5 +1,11 @@
 <?php
 session_start();
+// Verificar que el usuario esté logueado
+if (isset($_SESSION['id_usuario'])) {
+    header("Location: index.php");
+    exit;
+}
+
 require_once 'includes/a_config.php'; // PRIMERO: inicializa $google_client
 require_once 'includes/google_connect.php'; // DESPUÉS: usa $google_client
 require_once './controlador/ControladorUsuario.php';

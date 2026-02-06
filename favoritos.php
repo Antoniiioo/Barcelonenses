@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Verificar que el usuario esté logueado
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: login.php");
+    exit;
+}
+
 include("includes/a_config.php");
 require_once './controlador/ControladorProducto.php';
 
