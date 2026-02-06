@@ -22,9 +22,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/listadoProductos.php">Marcas</a>
                 </li>
+                <?php if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == 1): ?>
                 <li class="nav-item">
                     <a class="nav-link border border-1 border-info rounded-5 bg-info bg-opacity-10" href="/menuAdmin.php">Menu Admin</a>
                 </li>
+                <?php elseif (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == 2): ?>
+                <li class="nav-item">
+                    <a class="nav-link border border-1 border-info rounded-5 bg-secondary bg-opacity-10" href="/panelProducto.php">Panel Productos</a>
+                </li>
+                <?php endif; ?>
             </ul>
         </div>
 

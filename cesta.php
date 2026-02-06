@@ -1,4 +1,21 @@
-<?php include("includes/a_config.php"); ?>
+<?php
+session_start();
+include("includes/a_config.php");
+require_once './controlador/ControladorProducto.php';
+
+// Obtener productos de la cesta (con límite de 2 para ejemplo)
+$controladorProducto = new ControladorProducto();
+$productosCesta = $controladorProducto->obtenerProductosConImagenes(2);
+
+// Calcular totales
+$subtotal = 0;
+foreach($productosCesta as $producto) {
+    $subtotal += $producto->precio;
+}
+$descuento = 0; // Sin descuento por ahora
+$envio = 0; // Envío gratis
+$total = $subtotal - $descuento + $envio;
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,42 +31,57 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 mb-5 mb-md-0">
-                    <!--Fase 2:¿H4 sin h2 ni h3?--><h4 class="fw-bold mb-4 fs-5">Tu cesta (1 artículo)</h4>
-                    <div class="mb-3">
-                        <div class="text-center mb-3">
-                            <img src="/assets/img/camisetaAdidas.webp" alt="camiseta adidas" class="img-fluid">
-                        </div>
-                        <h5 class="fw-bold mb-1">Adidas</h5>
-                        <p class="mb-1 text-muted">Camiseta adidas blanca - camisetas</p>
+                    <h4 class="fw-bold mb-4 fs-5">Tu cesta (<?= count($productosCesta) ?> <?= count($productosCesta) == 1 ? 'artículo' : 'artículos' ?>)</h4>
 
-                        <div class="mb-2">
-                            <span class="text-danger fw-bold fs-5">10,00 €</span>
-                        </div>
+                    <?php if(!empty($productosCesta)): ?>
+                        <?php foreach($productosCesta as $producto): ?>
+                            <div class="mb-4 pb-4 border-bottom">
+                                <div class="text-center mb-3">
+                                    <?php if(!empty($producto->url_image)): ?>
+                                        <img src="<?= $producto->url_image ?>"
+                                             alt="<?= $producto->nombre ?>"
+                                             class="img-fluid">
+                                    <?php else: ?>
+                                        <img src="assets/img/placeholder.jpg" alt="Sin imagen" class="img-fluid">
+                                    <?php endif; ?>
+                                </div>
+                                <h5 class="fw-bold mb-1"><?= $producto->marca ?></h5>
+                                <p class="mb-1 text-muted"><?= $producto->nombre ?></p>
 
-                        <div class="small text-muted mb-3">
-                            Precio original: <span class="text-decoration-line-through">20,00 €</span> <span
-                                class="text-danger">-50%</span><br><!--Fase 2:¿<br>?-->
-                            Color: blanco<br>
-                            Talla: m
-                        </div>
+                                <div class="mb-2">
+                                    <span class="text-danger fw-bold fs-5"><?= number_format($producto->precio, 2) ?> €</span>
+                                </div>
 
-                        <div class="mb-3">
-                            <select class="form-select form-select-sm border-secondary">
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
+                                <div class="small text-muted mb-3">
+                                    Color: <?= $producto->color ?><br>
+                                    Talla: <?= $producto->talla ?>
+                                </div>
 
-                        <div class="d-flex gap-2 align-items-center">
-                            <button class="btn btn-danger text-white btn-sm rounded-0 px-3" type="button">
-                                -
-                            </button>
-                            <button class="btn border-0" type="button">
-                                <i class="far fa-heart fa-lg"></i>
-                            </button>
+                                <div class="mb-3">
+                                    <select class="form-select form-select-sm border-secondary">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex gap-2 align-items-center">
+                                    <button class="btn btn-danger text-white btn-sm rounded-0 px-3" type="button">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                    <button class="btn border-0" type="button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="alert alert-info text-center">
+                            <i class="bi bi-cart fs-1 d-block mb-3"></i>
+                            <p>Tu cesta está vacía</p>
+                            <a href="listadoProductos.php" class="btn btn-primary mt-2">Ver productos</a>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="col-md-5 mb-5 mb-md-0 px-md-4">
@@ -110,19 +142,19 @@
                     <div class="mb-2">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal:</span>
-                            <span>20,00 €</span>
+                            <span><?= number_format($subtotal, 2) ?> €</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Descuento:</span>
-                            <span>10,00 €</span>
+                            <span><?= number_format($descuento, 2) ?> €</span>
                         </div>
                         <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
                             <span>Envío:</span>
-                            <span>0,00 €</span>
+                            <span><?= number_format($envio, 2) ?> €</span>
                         </div>
                         <div class="d-flex justify-content-between fw-bold fs-5 mb-5">
                             <span>Total con IVA:</span>
-                            <span>10,00 €</span>
+                            <span><?= number_format($total, 2) ?> €</span>
                         </div>
                     </div>
 

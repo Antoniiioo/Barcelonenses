@@ -72,6 +72,32 @@ if(isset($_POST['guardar'])) {
             $msg = implode(", ", $error);
      }
 }
+
+if(isset($_POST['guardarPass'])) {
+    $error = ControladorUsuario::validarCambioContrasena(
+        $_POST['nueva_contrasena'],
+        $_POST['confirmar_contrasena']
+    );
+
+    if(empty($error)) {
+        if(ControladorUsuario::cambiarContrasena(
+            $_POST['id_usuario_pass'],
+            $_POST['nueva_contrasena']
+        )) {
+            $msg = "Contraseña actualizada con éxito.";
+        } else {
+            $msg = "Error al actualizar la contraseña.";
+        }
+    } else {
+        $msg = "Error de validación: ";
+        if(in_array("valNuevaPass", $error)) {
+            $msg .= "La contraseña debe tener mínimo 8 caracteres. ";
+        }
+        if(in_array("valConfirmarPass", $error)) {
+            $msg .= "Las contraseñas no coinciden.";
+        }
+    }
+}
 ?>
 
 <?php include("includes/a_config.php"); ?>
@@ -135,22 +161,22 @@ if(isset($_POST['guardar'])) {
                                         <form method="post" action="" id="form_<?= $usuario->idUsuario ?>">
                                             <input type="hidden" name="id_usuario" value="<?= $usuario->idUsuario ?>">
                                         </form>
-                                        <input type="text" class="form-control form-control-sm" name="nombre" value="<?= htmlspecialchars($usuario->nombre) ?>" form="form_<?= $usuario->idUsuario ?>">
+                                        <input type="text" class="form-control form-control-sm" name="nombre" value="<?= $usuario->nombre ?>" form="form_<?= $usuario->idUsuario ?>">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" name="apellido1" value="<?= htmlspecialchars($usuario->apellido1) ?>" form="form_<?= $usuario->idUsuario ?>">
+                                        <input type="text" class="form-control form-control-sm" name="apellido1" value="<?= $usuario->apellido1 ?>" form="form_<?= $usuario->idUsuario ?>">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" name="apellido2" value="<?= htmlspecialchars($usuario->apellido2) ?>" form="form_<?= $usuario->idUsuario ?>">
+                                        <input type="text" class="form-control form-control-sm" name="apellido2" value="<?= $usuario->apellido2 ?>" form="form_<?= $usuario->idUsuario ?>">
                                     </td>
                                     <td>
-                                        <input type="email" class="form-control form-control-sm" name="email" value="<?= htmlspecialchars($usuario->email) ?>" form="form_<?= $usuario->idUsuario ?>">
+                                        <input type="email" class="form-control form-control-sm" name="email" value="<?= $usuario->email ?>" form="form_<?= $usuario->idUsuario ?>">
                                     </td>
                                     <td>
-                                        <input type="tel" class="form-control form-control-sm" name="telefono" value="<?= htmlspecialchars($usuario->telefono) ?>" form="form_<?= $usuario->idUsuario ?>">
+                                        <input type="tel" class="form-control form-control-sm" name="telefono" value="<?= $usuario->telefono ?>" form="form_<?= $usuario->idUsuario ?>">
                                     </td>
                                     <td>
-                                        <input type="date" class="form-control form-control-sm" name="fechaNac" value="<?= htmlspecialchars($usuario->fechaNac) ?>" form="form_<?= $usuario->idUsuario ?>">
+                                        <input type="date" class="form-control form-control-sm" name="fechaNac" value="<?= $usuario->fechaNac ?>" form="form_<?= $usuario->idUsuario ?>">
                                     </td>
                                     <td>
                                         <select class="form-select form-select-sm" name="idTipoUsuario" form="form_<?= $usuario->idUsuario ?>">
@@ -171,7 +197,7 @@ if(isset($_POST['guardar'])) {
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                             <button type="button" class="btn btn-warning"
-                                                    onclick="abrirModalContrasena(<?= $usuario->idUsuario ?>, '<?= htmlspecialchars($usuario->nombre . ' ' . $usuario->apellido1) ?>')"
+                                                    onclick="abrirModalContrasena(<?= $usuario->idUsuario ?>, '<?= $usuario->nombre . ' ' . $usuario->apellido1 ?>')"
                                                     title="Cambiar Contraseña">
                                                 <i class="bi bi-key"></i>
                                             </button>
@@ -275,22 +301,26 @@ if(isset($_POST['guardar'])) {
                 <h5 class="modal-title" id="modalContrasenaLabel">Cambiar Contraseña</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-4">
-                <div class="mb-3">
-                    <label for="nueva_contrasena" class="form-label">Nueva Contraseña *</label>
-                    <input type="password" class="form-control" id="nueva_contrasena" minlength="8" required>
-                    <div class="form-text">Mínimo 8 caracteres</div>
-                </div>
+            <form method="post" action="" id="formCambiarContrasena">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label for="nueva_contrasena" class="form-label">Nueva Contraseña *</label>
+                        <input type="password" class="form-control" id="nueva_contrasena" name="nueva_contrasena" minlength="8" required>
+                        <div class="form-text">Mínimo 8 caracteres</div>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña *</label>
-                    <input type="password" class="form-control" id="confirmar_contrasena" minlength="8" required>
+                    <div class="mb-3">
+                        <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña *</label>
+                        <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" minlength="8" required>
+                    </div>
+
+                    <input type="hidden" id="id_usuario_pass" name="id_usuario_pass">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-warning">Guardar Contraseña</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning" name="guardarPass">Guardar Contraseña</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -309,6 +339,9 @@ function abrirModalContrasena(idUsuario, nombreUsuario) {
     // Actualizar el título del modal con el nombre del usuario
     document.getElementById('modalContrasenaLabel').textContent = 'Cambiar Contraseña - ' + nombreUsuario;
 
+    // Establecer el ID del usuario
+    document.getElementById('id_usuario_pass').value = idUsuario;
+
     // Limpiar los campos
     document.getElementById('nueva_contrasena').value = '';
     document.getElementById('confirmar_contrasena').value = '';
@@ -317,6 +350,26 @@ function abrirModalContrasena(idUsuario, nombreUsuario) {
     const modal = new bootstrap.Modal(document.getElementById('modalContrasena'));
     modal.show();
 }
+
+// Validación de contraseñas en el modal
+document.getElementById('formCambiarContrasena').addEventListener('submit', function(e) {
+    const nuevaPass = document.getElementById('nueva_contrasena').value;
+    const confirmarPass = document.getElementById('confirmar_contrasena').value;
+
+    // Validar mínimo 8 caracteres
+    if (nuevaPass.length < 8) {
+        e.preventDefault();
+        alert('La contraseña debe tener mínimo 8 caracteres.');
+        return false;
+    }
+
+    // Validar que coincidan
+    if (nuevaPass !== confirmarPass) {
+        e.preventDefault();
+        alert('Las contraseñas no coinciden.');
+        return false;
+    }
+});
 </script>
 
 <?php include "includes/footer.php"; ?>

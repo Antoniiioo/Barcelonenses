@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
                 <div class="col-md-6 mx-auto">
                     <?php if ($error): ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= htmlspecialchars($error) ?>
+                            <?= $error ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                     <?php endif; ?>
@@ -64,7 +64,7 @@ if (isset($_POST['login'])) {
                         <div class="mb-3">
                             <label for="email" class="form-label ">Email:</label>
                             <input type="email" class="form-control border-secondary" id="email" name="email" required
-                                autocomplete="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                                autocomplete="email" value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>">
                         </div>
 
                         <div class="mb-3">

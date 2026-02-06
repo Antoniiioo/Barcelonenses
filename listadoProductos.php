@@ -1,4 +1,19 @@
-<?php include("includes/a_config.php"); ?>
+<?php
+session_start();
+include("includes/a_config.php");
+require_once './controlador/ControladorProducto.php';
+
+// Manejar clic en producto para guardar ID en sesión
+if(isset($_GET['producto_id'])) {
+    $_SESSION['producto_seleccionado'] = intval($_GET['producto_id']);
+    header("Location: vistaprevia.php");
+    exit;
+}
+
+// Obtener todos los productos con imágenes
+$controladorProducto = new ControladorProducto();
+$todosProductos = $controladorProducto->obtenerProductosConImagenes();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,106 +68,48 @@
             </div>
         </form>
         <section class="row mx-5 my-4">
-
-                <div class="col-6 col-md-3">
-                    <div class="card tarjetasProductos font-small">
-                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
-                            <img src="assets/img/camisetaAdidas.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p class="font-medium">10€</p>
+            <?php if(!empty($todosProductos)): ?>
+                <?php foreach($todosProductos as $producto): ?>
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card tarjetasProductos font-small h-100">
+                            <a href="listadoProductos.php?producto_id=<?= $producto->id_producto ?>" class="text-decoration-none text-dark">
+                                <?php if(!empty($producto->url_image)): ?>
+                                    <img src="<?= $producto->url_image ?>"
+                                         class="card-img-top"
+                                         alt="<?= $producto->nombre ?>">
+                                <?php else: ?>
+                                    <img src="assets/img/placeholder.jpg" class="card-img-top" alt="Sin imagen">
+                                <?php endif; ?>
+                                <div class="card-body border-top">
+                                    <p class="font-marcas"><?= $producto->marca ?></p>
+                                    <p><?= $producto->nombre ?></p>
+                                    <p class="font-medium"><?= number_format($producto->precio, 2) ?>€</p>
+                                </div>
+                            </a>
+                            <div class="card-footer bg-white p-0 overflow-hidden">
+                                <form action="" method="post" class="row g-0">
+                                    <button type="submit"
+                                        class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
+                                        <span class="bi bi-heart"></span>
+                                    </button>
+                                    <button type="submit"
+                                        class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
+                                        <span class="bi bi-cart"></span>
+                                    </button>
+                                </form>
                             </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <form action="" method="post" class="row g-0">
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                    <span class="bi bi-heart"></span> 
-                                </button>
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </button>
-                            </form>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card tarjetasProductos font-small">
-                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
-                            <img src="assets/img/pantalonNike.jpg" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Nike</p>
-                                <p>Pantalon Nike beige</p>
-                                <p class="font-medium">39€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <form action="" method="post" class="row g-0">
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                    <span class="bi bi-heart"></span> 
-                                </button>
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </button>
-                            </form>
-                        </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="alert alert-info text-center py-5">
+                        <i class="bi bi-info-circle-fill fs-1 d-block mb-3"></i>
+                        <h4>No hay productos disponibles</h4>
+                        <p>Actualmente no hay productos en el catálogo.</p>
                     </div>
                 </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card tarjetasProductos font-small">
-                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
-                            <img src="assets/img/chaquetonNorth.jpg" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">The North Face</p>
-                                <p>Chaquetón North Face</p>
-                                <p class="font-medium">219€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <form action="" method="post" class="row g-0">
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                    <span class="bi bi-heart"></span> 
-                                </button>
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card tarjetasProductos font-small">
-                        <a href="vistaprevia.php" class="text-decoration-none text-dark">
-                            <img src="assets/img/scuffer.webp" class="card-img-top">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Scuffer</p>
-                                <p>Sudadera Scuffer rosa</p>
-                                <p class="font-medium">79€</p>
-                            </div>
-                        </a>
-                        <div class="card-footer bg-white p-0 overflow-hidden">
-                            <form action="" method="post" class="row g-0">
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 border-end py-3 d-flex align-items-center justify-content-center hover-gray">
-                                    <span class="bi bi-heart"></span> 
-                                </button>
-                                <button type="submit"
-                                    class="btn col-6 rounded-0 bg-info text-white py-3 d-flex align-items-center justify-content-center">
-                                    <span class="bi bi-cart"></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <?php endif; ?>
 
         </section>
     </main>

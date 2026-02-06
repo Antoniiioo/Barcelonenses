@@ -1,4 +1,13 @@
-    <?php include("includes/a_config.php"); ?>
+    <?php
+    session_start();
+    include("includes/a_config.php");
+    require_once './controlador/ControladorProducto.php';
+    require_once './controlador/ControladorImageProducto.php';
+
+    // Obtener todos los productos con sus imágenes
+    $controladorProducto = new ControladorProducto();
+    $todosProductos = $controladorProducto->obtenerProductosConImagenes();
+    ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -119,35 +128,39 @@
 
                     <article>
                         <h3>Imágenes</h3>
+                        <p>
+                            <strong>Todas las imágenes de productos han sido generadas automáticamente mediante inteligencia artificial.</strong><br>
+                            <strong>Autor:</strong> Copilot (Microsoft)<br>
+                            <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/" target="_blank">Copilot - Generador de imágenes IA</a><br>
+                            <strong>Licencia:</strong> Uso educativo sin fines comerciales
+                        </p>
+                        <br>
+                        <h4>Productos con imágenes generadas por IA:</h4>
+                        <ul>
+                            <?php if(!empty($todosProductos)): ?>
+                                <?php foreach($todosProductos as $producto): ?>
+                                    <li class="d-flex flex-column my-3">
+                                        <div><strong><?= $producto->nombre ?></strong> (<?= $producto->marca ?>) —</div>
+                                        <div><strong>Autor:</strong> Copilot</div>
+                                        <div><strong>Fuente:</strong> <a href="https://copilot.microsoft.com/" target="_blank">Copilot (Generador de imágenes IA)</a></div>
+                                        <div><strong>Prompt:</strong> Hazme una imagen de un producto <?=$producto->nombre?></div>
+                                    </li>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <li>No hay productos disponibles</li>
+                            <?php endif; ?>
+                        </ul>
+                        <br>
+                        <h4>Otras imágenes:</h4>
                         <ul>
                             <li>
-                                Imagen de producto(camiseta)(nike) — <strong>Autor:</strong> — Copilot
-                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
-                                <strong>Prompt:</strong> generame una imagen de una camiseta blanca deportiva manga cortacon el logo de adidas negro chico a una esquina de la camiseta parecido a adidas sin fondo
-                            </li><br>
+                                <strong>Imagen de moda (Messi, Suarez, Neymar)</strong> — <strong>Autor:</strong> Darren Staples<br>
+                                <strong>Fuente:</strong> <a href="https://www.reutersconnect.com/feed" target="_blank">Reuters</a>
+                            </li>
                             <li>
-                                Imagen de producto(pantalon)(nike) — <strong>Autor:</strong> — Copilot
-                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
-                                <strong>Prompt:</strong> generame una imagen de un pantalon blanco marca parecida a nike
-                            </li><br>
-                            <li>
-                                Imagen de moda(chaqueton)(The North Face) — <strong>Autor:</strong>  — Copilot
-                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
-                                <strong>Prompt:</strong> generame una imagen de un chaqueton negro parecido a the north face sin fondo
-                            </li><br>
-                            <li>
-                                Imagen de moda(sudadera)(scuffers) — <strong>Autor:</strong>  — Copilot
-                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
-                                <strong>Prompt:</strong> generame una imagen de una sudadera con gorro rosa clarito con letras rosas mas oscuras parecido a scuffers sin fondo
-                            </li><br>
-                            <li>
-                                Imagen de moda(Messi,Suarez, Neymar) — <strong>Autor:</strong> — Darren Staples 
-                                <strong>Fuente:</strong> <a href="https://www.reutersconnect.com/feed">Reuters</a>
-                            </li><br>
-                            <li>
-                                Imagenes de las categorias — <strong>Autor:</strong>  — Copilot
-                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/">Copilot (Generador de imágenes IA)</a><br>
-                                <strong>Prompt:</strong> generame 3 imagenes , una de un niño otra de un hombre y otra de una mujer
+                                <strong>Imágenes de las categorías</strong> — <strong>Autor:</strong> Copilot<br>
+                                <strong>Fuente:</strong> <a href="https://copilot.microsoft.com/" target="_blank">Copilot (Generador de imágenes IA)</a><br>
+                                <strong>Descripción:</strong> Imágenes representativas de las categorías (niño, hombre, mujer)
                             </li>
                         </ul>
                     </article>

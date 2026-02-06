@@ -18,7 +18,6 @@ class ControladorUsuario
                     session_start();
                     $_SESSION['id_usuario'] = $row['id_usuario'];
                     $_SESSION['email'] = $row['email'];
-                    $_SESSION['id_direccion'] = $row['id_direccion'];
                     $_SESSION['id_tipo_usuario'] = $row['id_tipo_usuario'];
                     return true;
                 } else {
@@ -58,7 +57,7 @@ class ControladorUsuario
         }
 
         // Validar contraseña - mínimo 8 caracteres
-        if (!preg_match("/^.{8}$/", $pass)) {
+        if (!preg_match("/^.{8,}$/", $pass)) {
             $error[] = "valPass";
         }
 
@@ -180,6 +179,23 @@ class ControladorUsuario
         } catch (PDOException $e) {
             throw new Exception("Error al eliminar usuario: " . $e->getMessage());
         }
+    }
+
+    public static function validarCambioContrasena($nuevaContrasena, $confirmarContrasena)
+    {
+        $error = [];
+
+        // Validar contraseña - mínimo 8 caracteres
+        if (!preg_match("/^.{8,}$/", $nuevaContrasena)) {
+            $error[] = "valNuevaPass";
+        }
+
+        // Validar que las contraseñas coincidan
+        if ($nuevaContrasena !== $confirmarContrasena) {
+            $error[] = "valConfirmarPass";
+        }
+
+        return $error;
     }
 
     public static function cambiarContrasena($idUsuario, $nuevaContrasena)

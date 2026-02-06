@@ -163,13 +163,13 @@ try {
                                     <?php foreach ($productos as $producto): ?>
                                     <tr>
                                         <td class="px-4 align-middle">#<?= $producto->id_producto ?></td>
-                                        <td class="align-middle fw-bold"><?= htmlspecialchars($producto->nombre) ?></td>
-                                        <td class="align-middle"><?= htmlspecialchars($producto->marca) ?></td>
+                                        <td class="align-middle fw-bold"><?= $producto->nombre ?></td>
+                                        <td class="align-middle"><?= $producto->marca ?></td>
                                         <td class="align-middle"><?= number_format($producto->precio, 2) ?>€</td>
                                         <td class="align-middle">
-                                            <span class="badge bg-secondary"><?= htmlspecialchars($producto->talla) ?></span>
+                                            <span class="badge bg-secondary"><?= $producto->talla ?></span>
                                         </td>
-                                        <td class="align-middle"><?= htmlspecialchars($producto->color) ?></td>
+                                        <td class="align-middle"><?= $producto->color ?></td>
                                         <td class="align-middle text-center">
                                             <a href="panelProducto.php?editar=<?= $producto->id_producto ?>"
                                                class="btn btn-sm btn-outline-primary me-1">
@@ -211,13 +211,13 @@ try {
                     <div class="col-md-6 mb-3">
                         <label for="nombre" class="form-label">Nombre *</label>
                         <input type="text" class="form-control border-secondary" id="nombre" name="nombre"
-                               value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->nombre) : '' ?>" required>
+                               value="<?= isset($productoEditar) ? $productoEditar->nombre : '' ?>" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label for="marca" class="form-label">Marca *</label>
                         <input type="text" class="form-control border-secondary" id="marca" name="marca"
-                               value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->marca) : '' ?>" required>
+                               value="<?= isset($productoEditar) ? $productoEditar->marca : '' ?>" required>
                     </div>
                 </div>
 
@@ -245,7 +245,7 @@ try {
                     <div class="col-md-4 mb-3">
                         <label for="color" class="form-label">Color *</label>
                         <input type="text" class="form-control border-secondary" id="color" name="color"
-                               value="<?= isset($productoEditar) ? htmlspecialchars($productoEditar->color) : '' ?>" required>
+                               value="<?= isset($productoEditar) ? $productoEditar->color : '' ?>" required>
                     </div>
                 </div>
 
@@ -260,7 +260,7 @@ try {
                                 $tiposProducto = $controladorTipo->obtenerTodosTiposProducto();
                                 foreach ($tiposProducto as $tipo) {
                                     $selected = (isset($productoEditar) && $productoEditar->id_tipo_producto == $tipo->id_tipo_producto) ? 'selected' : '';
-                                    echo "<option value='" . $tipo->id_tipo_producto . "' $selected>" . htmlspecialchars($tipo->tipo) . "</option>";
+                                    echo "<option value='" . $tipo->id_tipo_producto . "' $selected>" . $tipo->tipo . "</option>";
                                 }
                             } catch (Exception $e) {
                                 echo "<option value=''>Error al cargar tipos</option>";
@@ -278,7 +278,7 @@ try {
                                 $listaUsuarios = ControladorUsuario::obtenerTodosUsuarios();
                                 foreach ($listaUsuarios as $usuario) {
                                     $selected = (isset($productoEditar) && $productoEditar->id_usuario == $usuario->idUsuario) ? 'selected' : '';
-                                    echo "<option value='" . $usuario->idUsuario . "' $selected>" . htmlspecialchars($usuario->nombre) . "</option>";
+                                    echo "<option value='" . $usuario->idUsuario . "' $selected>" . $usuario->nombre . "</option>";
                                 }
                             } catch (Exception $e) {
                                 echo "<option value=''>Error al cargar usuarios</option>";
@@ -322,7 +322,7 @@ try {
                 <a href="panelProducto.php" class="btn-close btn-close-white" aria-label="Close"></a>
             </div>
             <div class="modal-body p-4">
-                <p>¿Estás seguro de que quieres eliminar el producto <strong><?= $productoEliminar ? htmlspecialchars($productoEliminar->nombre) : '#' . $idEliminar ?></strong>?</p>
+                <p>¿Estás seguro de que quieres eliminar el producto <strong><?= $productoEliminar ? $productoEliminar->nombre : '#' . $idEliminar ?></strong>?</p>
                 <p class="text-muted mb-0">Esta acción no se puede deshacer.</p>
             </div>
             <div class="modal-footer p-3">

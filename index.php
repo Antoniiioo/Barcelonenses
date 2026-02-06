@@ -1,17 +1,20 @@
 <?php
 session_start();
 
-// Procesar aceptación/rechazo de cookies
-if(isset($_POST['accion_cookies'])) {
-    $_SESSION['cookiesEsenciales'] = true; // Siempre aceptadas
-    $_SESSION['cookiesOpcionales'] = isset($_POST['cookies_opcionales']) && $_POST['cookies_opcionales'] === 'true';
-    $_SESSION['cookiesConfiguradas'] = true;
-    header("Location: index.php");
-    exit();
+include "includes/a_config.php";
+include "includes/google_connect.php";
+require_once './controlador/ControladorProducto.php';
+
+// Manejar clic en producto para guardar ID en sesión
+if(isset($_GET['producto_id'])) {
+    $_SESSION['producto_seleccionado'] = intval($_GET['producto_id']);
+    header("Location: vistaprevia.php");
+    exit;
 }
 
-require_once 'includes/a_config.php'; // PRIMERO
-require_once 'includes/google_connect.php'; // DESPUÉS
+// Obtener productos con imágenes (límite 4 para "Puede que te interese")
+$controladorProducto = new ControladorProducto();
+$productosDestacados = $controladorProducto->obtenerProductosConImagenes(7);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,50 +37,33 @@ require_once 'includes/google_connect.php'; // DESPUÉS
                 </div>
 
                 <div class="bg-secondary col-12 col-md-9 d-flex flex-nowrap overflow-auto p-2 p-md-4 gap-2 gap-md-4 align-items-start">
-
-                    <a href="../vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
-                        <div class="card h-100">
-                            <img src="../assets/img/camisetaAdidas.webp" class="card-img-top img-fluid">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Adidas</p>
-                                <p>Camiseta blanca Adidas</p>
-                                <p class="font-medium">10€</p>
-                            </div>
+                    <?php if(!empty($productosDestacados)): ?>
+                        <?php foreach($productosDestacados as $producto): ?>
+                            <a href="index.php?producto_id=<?= $producto->id_producto ?>" class="text-decoration-none tarjetasProductos font-small">
+                                <div class="card h-100">
+                                    <?php if(!empty($producto->url_image)): ?>
+                                        <img src="<?= $producto->url_image ?>"
+                                             class="card-img-top img-fluid"
+                                             alt="<?= $producto->nombre ?>">
+                                    <?php else: ?>
+                                        <img src="assets/img/placeholder.jpg"
+                                             class="card-img-top img-fluid"
+                                             alt="Sin imagen">
+                                    <?php endif; ?>
+                                    <div class="card-body border-top">
+                                        <p class="font-marcas"><?= $producto->marca ?></p>
+                                        <p><?= $producto->nombre ?></p>
+                                        <p class="font-medium"><?= number_format($producto->precio, 2) ?>€</p>
+                                    </div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="alert alert-info w-100 m-3">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            No hay productos disponibles en este momento.
                         </div>
-                    </a>
-
-                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
-                        <div class="card h-100">
-                            <img src="assets/img/pantalonNike.jpg" class="card-img-top img-fluid">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Nike</p>
-                                <p>Pantalon blanca Nike</p>
-                                <p class="font-medium">39€</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
-                        <div class="card h-100">
-                            <img src="assets/img/chaquetonNorth.jpg" class="card-img-top img-fluid">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">The North Face</p>
-                                <p>Chaquetón North Face</p>
-                                <p class="font-medium">219€</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="vistaprevia.php" class="text-decoration-none tarjetasProductos font-small">
-                        <div class="card h-100">
-                            <img src="assets/img/unnamed.jpg" class="card-img-top img-fluid">
-                            <div class="card-body border-top">
-                                <p class="font-marcas">Scuffer</p>
-                                <p>Sudadera Scuffer rosa</p>
-                                <p class="font-medium">79€</p>
-                            </div>
-                        </div>
-                    </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -125,8 +111,7 @@ require_once 'includes/google_connect.php'; // DESPUÉS
     </main>
 
     <!-- Modal de Cookies Moderno -->
-    <?php if(!isset($_SESSION['cookiesConfiguradas'])): ?>
-    <div class="cookies-modal-overlay" id="cookiesModalOverlay">
+    <div class="cookies-modal-overlay" id="cookiesModalOverlay" style="display: none;">
         <div class="cookies-modal">
             <div class="cookies-modal-header">
                 <div class="cookies-icon">
@@ -142,68 +127,63 @@ require_once 'includes/google_connect.php'; // DESPUÉS
             </div>
 
             <div class="cookies-modal-body">
-                <form method="post" id="cookiesForm">
-                    <!-- Cookies Esenciales -->
-                    <div class="cookie-category">
-                        <div class="cookie-category-header">
-                            <div class="cookie-category-info">
-                                <h3 class="cookie-category-title">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                    </svg>
-                                    Cookies Esenciales
-                                </h3>
-                                <p class="cookie-category-description">
-                                    Estas cookies son necesarias para el funcionamiento básico del sitio web y no se pueden desactivar.
-                                </p>
-                            </div>
-                            <div class="cookie-toggle">
-                                <input type="checkbox" id="cookiesEsenciales" checked disabled>
-                                <label for="cookiesEsenciales" class="toggle-label disabled">
-                                    <span class="toggle-switch"></span>
-                                </label>
-                                <span class="toggle-status">Siempre activas</span>
-                            </div>
+                <!-- Cookies Esenciales -->
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div class="cookie-category-info">
+                            <h3 class="cookie-category-title">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                                Cookies Esenciales
+                            </h3>
+                            <p class="cookie-category-description">
+                                Estas cookies son necesarias para el funcionamiento básico del sitio web y no se pueden desactivar.
+                            </p>
+                        </div>
+                        <div class="cookie-toggle">
+                            <input type="checkbox" id="cookiesEsenciales" checked disabled>
+                            <label for="cookiesEsenciales" class="toggle-label disabled">
+                                <span class="toggle-switch"></span>
+                            </label>
+                            <span class="toggle-status">Siempre activas</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Cookies Opcionales -->
-                    <div class="cookie-category">
-                        <div class="cookie-category-header">
-                            <div class="cookie-category-info">
-                                <h3 class="cookie-category-title">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319z"/>
-                                    </svg>
-                                    Cookies de Análisis y Personalización
-                                </h3>
-                                <p class="cookie-category-description">
-                                    Estas cookies nos ayudan a entender cómo interactúas con el sitio y mejorar tu experiencia mediante contenido personalizado.
-                                </p>
-                            </div>
-                            <div class="cookie-toggle">
-                                <input type="checkbox" id="cookiesOpcionales" name="cookies_opcionales_check" checked>
-                                <label for="cookiesOpcionales" class="toggle-label">
-                                    <span class="toggle-switch"></span>
-                                </label>
-                            </div>
+                <!-- Cookies Opcionales -->
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div class="cookie-category-info">
+                            <h3 class="cookie-category-title">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319z"/>
+                                </svg>
+                                Cookies de Análisis y Personalización
+                            </h3>
+                            <p class="cookie-category-description">
+                                Estas cookies nos ayudan a entender cómo interactúas con el sitio y mejorar tu experiencia mediante contenido personalizado.
+                            </p>
+                        </div>
+                        <div class="cookie-toggle">
+                            <input type="checkbox" id="cookiesOpcionales" checked>
+                            <label for="cookiesOpcionales" class="toggle-label">
+                                <span class="toggle-switch"></span>
+                            </label>
                         </div>
                     </div>
+                </div>
 
-                    <input type="hidden" name="accion_cookies" value="true">
-                    <input type="hidden" name="cookies_opcionales" id="cookiesOpcionalesValue" value="true">
-
-                    <div class="cookies-modal-footer">
-                        <button type="button" class="btn-cookies btn-cookies-rechazar" id="btnRechazarOpcionales">
-                            Rechazar opcionales
-                        </button>
-                        <button type="button" class="btn-cookies btn-cookies-todas" id="btnAceptarTodas">
-                            Aceptar todas
-                        </button>
-                    </div>
-                </form>
+                <div class="cookies-modal-footer">
+                    <button type="button" class="btn-cookies btn-cookies-rechazar" id="btnRechazarOpcionales">
+                        Rechazar todas
+                    </button>
+                    <button type="button" class="btn-cookies btn-cookies-todas" id="btnAceptarTodas">
+                        Aceptar todas
+                    </button>
+                </div>
 
                 <div class="cookies-privacy-link">
                     <a href="privacidad.php" target="_blank">
@@ -216,7 +196,8 @@ require_once 'includes/google_connect.php'; // DESPUÉS
             </div>
         </div>
     </div>
-    <?php endif; ?>
+
+    <script src="js/modal-cookies.js"></script>
 
     <!--Footer-->
     <?php include "includes/footer.php"; ?>

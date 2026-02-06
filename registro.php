@@ -27,7 +27,7 @@ if (isset($_POST['registrar'])) {
         // Validar captcha primero
         $captchaUsuario = $_POST['captcha'] ?? '';
         $resultadoCaptcha = validarCaptcha($captchaUsuario);
-        
+
         if (!$resultadoCaptcha['valido']) {
             $error = $resultadoCaptcha['mensaje'];
             $erroresValidacion[] = 'valCaptcha';
@@ -42,22 +42,22 @@ if (isset($_POST['registrar'])) {
 
             // Validar datos
             $erroresValidacion = ControladorUsuario::validarDatos(
-                $nombre, 
-                $apellido1, 
-                $email, 
-                $telefono, 
-                $password, 
+                $nombre,
+                $apellido1,
+                $email,
+                $telefono,
+                $password,
                 $confirmarPassword
             );
 
             if (empty($erroresValidacion)) {
                 // Registrar usuario
                 if (ControladorUsuario::registrarUsuarioCliente(
-                    $nombre, 
-                    $apellido1, 
-                    $apellido2, 
-                    $email, 
-                    $telefono, 
+                    $nombre,
+                    $apellido1,
+                    $apellido2,
+                    $email,
+                    $telefono,
                     $password
                 )) {
                     $success = "Usuario registrado correctamente. Ahora puedes iniciar sesión.";
@@ -95,14 +95,14 @@ if (isset($_POST['registrar'])) {
             <div class="col-md-10 col-lg-8 mx-auto">
                 <?php if ($error): ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <?= htmlspecialchars($error) ?>
+                        <?= $error ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 <?php endif; ?>
                 
                 <?php if ($success): ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <?= htmlspecialchars($success) ?>
+                        <?= $success ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 <?php endif; ?>
@@ -114,7 +114,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary <?= in_array('valNombre', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="nombre" name="nombre" required autocomplete="given-name" 
-                                value="<?= isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : htmlspecialchars($nombrePrefill) ?>">
+                                value="<?= isset($_POST['nombre']) ? $_POST['nombre'] : '' ?>">
                             <?php if (in_array('valNombre', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Nombre inválido (máx. 40 caracteres, solo letras)</div>
                             <?php endif; ?>
@@ -126,7 +126,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary <?= in_array('valApellido1', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="apellido1" name="apellido1" required autocomplete="family-name"
-                                value="<?= isset($_POST['apellido1']) ? htmlspecialchars($_POST['apellido1']) : htmlspecialchars($apellidoPrefill) ?>">
+                                value="<?= isset($_POST['apellido1']) ? $_POST['apellido1'] : '' ?>">
                             <?php if (in_array('valApellido1', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Apellido inválido (máx. 40 caracteres, solo letras)</div>
                             <?php endif; ?>
@@ -138,7 +138,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary" 
                                 id="apellido2" name="apellido2" autocomplete="family-name"
-                                value="<?= isset($_POST['apellido2']) ? htmlspecialchars($_POST['apellido2']) : '' ?>">
+                                value="<?= isset($_POST['apellido2']) ? $_POST['apellido2'] : '' ?>">
                         </div>
                     </div>
 
@@ -147,7 +147,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="email" class="form-control border-secondary <?= in_array('valEmail', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="email" name="email" required autocomplete="email"
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : htmlspecialchars($emailPrefill) ?>">
+                                value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>">
                             <?php if (in_array('valEmail', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Email inválido (máx. 60 caracteres)</div>
                             <?php endif; ?>
@@ -159,7 +159,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="tel" class="form-control border-secondary <?= in_array('valTelefono', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="telefono" name="telefono" required autocomplete="tel" pattern="[0-9]{9}"
-                                value="<?= isset($_POST['telefono']) ? htmlspecialchars($_POST['telefono']) : '' ?>">
+                                value="<?= isset($_POST['telefono']) ? $_POST['telefono'] : '' ?>">
                             <?php if (in_array('valTelefono', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Teléfono inválido (debe tener 9 dígitos)</div>
                             <?php endif; ?>
@@ -190,11 +190,11 @@ if (isset($_POST['registrar'])) {
                     </div>
 
                     <!-- Captcha matemático -->
-                    <?php 
+                    <?php
                     renderCaptcha(
-                        $erroresValidacion, 
+                        $erroresValidacion,
                         isset($_POST['captcha']) && !$success ? $_POST['captcha'] : ''
-                    ); 
+                    );
                     ?>
 
                     <div class="row mb-3 mt-4">

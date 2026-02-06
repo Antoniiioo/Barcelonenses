@@ -10,17 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     btnPlay.addEventListener('click', () => {
         if (video.paused) {
             video.play();
-            btnPlay.textContent = '⏸';
+            btnPlay.innerHTML = '<i class="bi bi-pause-fill"></i>';
         } else {
             video.pause();
-            btnPlay.textContent = '▶︎';
+            btnPlay.innerHTML = '<i class="bi bi-play-fill"></i>';
         }
     });
 
     // Mutear/desmutear
     btnMute.addEventListener('click', () => {
         video.muted = !video.muted;
-        btnMute.textContent = video.muted ? '🔈' : '🔊';
+        btnMute.innerHTML = video.muted ? '<i class="bi bi-volume-mute-fill"></i>' : '<i class="bi bi-volume-up-fill"></i>';
     });
 
     // Pantalla completa
@@ -28,8 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             if (!document.fullscreenElement) {
                 await video.requestFullscreen();
+                btnFullscreen.innerHTML = '<i class="bi bi-fullscreen-exit"></i>';
             } else {
                 await document.exitFullscreen();
+                btnFullscreen.innerHTML = '<i class="bi bi-fullscreen"></i>';
             }
         } catch (e) {
             console.warn('Fullscreen no disponible', e);
@@ -54,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    video.addEventListener('play', () => btnPlay.textContent = '⏸');
-    video.addEventListener('pause', () => btnPlay.textContent = '▶︎');
-    btnMute.textContent = video.muted ? '🔈' : '🔊';
+    video.addEventListener('play', () => btnPlay.innerHTML = '<i class="bi bi-pause-fill"></i>');
+    video.addEventListener('pause', () => btnPlay.innerHTML = '<i class="bi bi-play-fill"></i>');
+    btnMute.innerHTML = video.muted ? '<i class="bi bi-volume-mute-fill"></i>' : '<i class="bi bi-volume-up-fill"></i>';
+    btnFullscreen.innerHTML = '<i class="bi bi-fullscreen"></i>';
 });
