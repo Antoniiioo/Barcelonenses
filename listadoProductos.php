@@ -24,7 +24,7 @@ $todosProductos = $controladorProducto->obtenerProductosConImagenes();
 <body class="d-flex flex-column min-vh-100">
     <?php include "includes/design-top.php"; ?>
     <?php include "includes/navigation.php"; ?>
-    <main class="flex-grow-1 container-fuid">
+    <main class="flex-grow-1 container-fuid m-auto">
         <form action="" class="row mx-md-5 mx-2 my-4">
             <div class="col-6 my-2 my-md-0 col-md-3">
                 <div class="custom-select-wrapper">

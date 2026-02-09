@@ -269,7 +269,7 @@ if ($usuario && isset($usuario->id_direccion)) {
                                         <i class="bi bi-telephone me-2 text-primary"></i>Teléfono:
                                     </div>
                                     <div class="col-sm-8">
-                                        <?= $usuario->telefono ?>
+                                        <?= ($usuario->telefono && $usuario->telefono != '0') ? $usuario->telefono : 'No especificado' ?>
                                     </div>
                                 </div>
                                 <hr>
@@ -278,7 +278,7 @@ if ($usuario && isset($usuario->id_direccion)) {
                                         <i class="bi bi-calendar me-2 text-primary"></i>Fecha de Nacimiento:
                                     </div>
                                     <div class="col-sm-8">
-                                        <?= date('d/m/Y', strtotime($usuario->fecha_nac)) ?>
+                                        <?= $usuario->fecha_nac ? date('d/m/Y', strtotime($usuario->fecha_nac)) : 'No especificada' ?>
                                     </div>
                                 </div>
                             </div>
