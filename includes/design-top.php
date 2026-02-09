@@ -14,29 +14,17 @@
                id="dropdownUsuario"
                data-bs-toggle="dropdown"
                aria-expanded="false">
-                <?php if(isset($_SESSION['email']) && isset($_SESSION['user_image'])): ?>
+                <?php if(isset($_SESSION['user_image'])): ?>
                     <!-- Foto de perfil de Google -->
                     <img src="<?= htmlspecialchars($_SESSION['user_image']) ?>" 
-                         alt="Perfil" 
+                         alt="" 
                          class="rounded-circle" 
-                         style="width: 32px; height: 32px; object-fit: cover;">
-                <?php elseif(isset($_SESSION['email'])): ?>
-                    <!-- Avatar por defecto para usuarios normales -->
-                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center text-white" 
-                         style="width: 32px; height: 32px; font-size: 14px; font-weight: bold;">
-                        <?php
-                        // Generar iniciales del usuario
-                        $iniciales = '';
-                        if(isset($_SESSION['nombre'])) {
-                            $iniciales = strtoupper(substr($_SESSION['nombre'], 0, 1));
-                        } else {
-                            $iniciales = strtoupper(substr($_SESSION['email'], 0, 1));
-                        }
-                        echo htmlspecialchars($iniciales);
-                        ?>
-                    </div>
+                         referrerpolicy="no-referrer"
+                         crossorigin="anonymous"
+                         style="width: 32px; height: 32px; object-fit: cover;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="bi bi-person" style="display: none;"></span>
                 <?php else: ?>
-                    <!-- Icono por defecto -->
                     <span class="bi bi-person"></span>
                 <?php endif; ?>
             </a>
@@ -44,7 +32,7 @@
                 <?php if(isset($_SESSION['email'])): ?>
                     <!-- Usuario logueado -->
                     <li class="dropdown-header">
-                        <?= isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : htmlspecialchars($_SESSION['email']) ?>
+                        <?= htmlspecialchars($_SESSION['email']) ?>
                     </li>
                     <li>
                         <a class="dropdown-item" href="../perfil.php">

@@ -175,10 +175,26 @@ if ($usuario && isset($usuario->id_direccion)) {
                         <div class="card shadow-sm h-100">
                             <div class="card-body text-center">
                                 <div class="mb-4">
-                                    <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center"
-                                         style="width: 120px; height: 120px; font-size: 3rem;">
-                                        <i class="bi bi-person-fill"></i>
-                                    </div>
+                                    <?php if(isset($_SESSION['user_image'])): ?>
+                                        <!-- Foto de perfil de Google -->
+                                        <img src="<?= htmlspecialchars($_SESSION['user_image']) ?>" 
+                                             alt="" 
+                                             class="rounded-circle" 
+                                             id="profileImage"
+                                             referrerpolicy="no-referrer"
+                                             crossorigin="anonymous"
+                                             style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #0d6efd;"
+                                             onerror="this.style.display='none'; document.getElementById('profileIconFallback').style.display='inline-flex';">
+                                        <div id="profileIconFallback" class="rounded-circle bg-primary text-white align-items-center justify-content-center"
+                                             style="width: 120px; height: 120px; font-size: 3rem; display: none !important;">
+                                            <i class="bi bi-person-fill"></i>
+                                        </div>
+                                    <?php else: ?>
+                                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center"
+                                             style="width: 120px; height: 120px; font-size: 3rem;">
+                                            <i class="bi bi-person-fill"></i>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                                 <h4 class="card-title mb-1">
                                     <?= $usuario->nombre ?> <?= $usuario->apellido1 ?> <?= $usuario->apellido2 ?? '' ?>
