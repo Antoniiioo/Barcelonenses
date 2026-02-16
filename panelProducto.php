@@ -2,7 +2,7 @@
 session_start();
 
 // Verificar que el usuario esté logueado
-if (!isset($_SESSION['id_usuario']) || $_SESSION['id_tipo_usuario'] != 1 || $_SESSION['id_tipo_usuario'] != 2) {
+if (!isset($_SESSION['id_usuario']) || $_SESSION['id_tipo_usuario'] != 1 && $_SESSION['id_tipo_usuario'] != 2) {
     header("Location: login.php");
     exit;
 }
