@@ -15,8 +15,9 @@ $nombrePrefill = $_SESSION['google_nombre'] ?? '';
 $apellidoPrefill = $_SESSION['google_apellido'] ?? '';
 $emailPrefill = $_SESSION['google_email'] ?? '';
 
-// Limpiar variables de sesión de Google después de usarlas
-unset($_SESSION['google_email'], $_SESSION['google_nombre'], $_SESSION['google_apellido']);
+// NOTA: No eliminamos aún la marca de "google_autoregistered" aquí porque
+// necesitamos conservarla si el usuario vuelve a iniciar el flujo de Google
+// (evita el auto-login). Se limpiará tras registro exitoso.
 
 $error = '';
 $success = '';
@@ -71,6 +72,8 @@ if (isset($_POST['registrar'])) {
                     // Limpiar campos y captcha
                     $_POST = [];
                     limpiarCaptcha();
+                    // Limpiar marcas/variables relacionadas con Google
+                    unset($_SESSION['google_autoregistered'], $_SESSION['google_email'], $_SESSION['google_nombre'], $_SESSION['google_apellido']);
                 } else {
                     $error = "Error al registrar usuario. Inténtalo de nuevo.";
                 }
@@ -121,7 +124,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary <?= in_array('valNombre', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="nombre" name="nombre" required autocomplete="given-name" 
-                                value="<?= isset($_POST['nombre']) ? $_POST['nombre'] : '' ?>">
+                                value="<?= isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : htmlspecialchars($nombrePrefill) ?>">
                             <?php if (in_array('valNombre', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Nombre inválido (máx. 40 caracteres, solo letras)</div>
                             <?php endif; ?>
@@ -133,7 +136,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary <?= in_array('valApellido1', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="apellido1" name="apellido1" required autocomplete="family-name"
-                                value="<?= isset($_POST['apellido1']) ? $_POST['apellido1'] : '' ?>">
+                                value="<?= isset($_POST['apellido1']) ? htmlspecialchars($_POST['apellido1']) : htmlspecialchars($apellidoPrefill) ?>">
                             <?php if (in_array('valApellido1', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Apellido inválido (máx. 40 caracteres, solo letras)</div>
                             <?php endif; ?>
@@ -145,7 +148,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="text" class="form-control border-secondary" 
                                 id="apellido2" name="apellido2" autocomplete="family-name"
-                                value="<?= isset($_POST['apellido2']) ? $_POST['apellido2'] : '' ?>">
+                                value="<?= isset($_POST['apellido2']) ? htmlspecialchars($_POST['apellido2']) : '' ?>">
                         </div>
                     </div>
 
@@ -154,7 +157,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="email" class="form-control border-secondary <?= in_array('valEmail', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="email" name="email" required autocomplete="email"
-                                value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>">
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : htmlspecialchars($emailPrefill) ?>">
                             <?php if (in_array('valEmail', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Email inválido (máx. 60 caracteres)</div>
                             <?php endif; ?>
@@ -166,7 +169,7 @@ if (isset($_POST['registrar'])) {
                         <div class="col-sm-7">
                             <input type="tel" class="form-control border-secondary <?= in_array('valTelefono', $erroresValidacion) ? 'is-invalid' : '' ?>" 
                                 id="telefono" name="telefono" required autocomplete="tel" pattern="[0-9]{9}"
-                                value="<?= isset($_POST['telefono']) ? $_POST['telefono'] : '' ?>">
+                                value="<?= isset($_POST['telefono']) ? htmlspecialchars($_POST['telefono']) : '' ?>">
                             <?php if (in_array('valTelefono', $erroresValidacion)): ?>
                                 <div class="invalid-feedback">Teléfono inválido (debe tener 9 dígitos)</div>
                             <?php endif; ?>

@@ -19,6 +19,12 @@ class ControladorUsuario
                     $_SESSION['id_usuario'] = $row['id_usuario'];
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['id_tipo_usuario'] = $row['id_tipo_usuario'];
+                    // Añadir nombre e id_direccion a la sesión para que la UI pueda mostrar
+                    // la inicial del avatar cuando no exista imagen de perfil.
+                    $_SESSION['nombre'] = $row['nombre'] ?? '';
+                    if (isset($row['id_direccion'])) {
+                        $_SESSION['id_direccion'] = $row['id_direccion'];
+                    }
                     return true;
                 } else {
                     return false;

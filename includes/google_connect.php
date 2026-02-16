@@ -57,14 +57,25 @@ if(isset($_GET["code"]))
       $stmt->execute();
       
       if ($stmt->rowCount() > 0) {
-        // Usuario existe, iniciamos sesión
+        // Usuario existe. Si venimos del flujo de registro iniciado por Google,
+        // evitamos hacer auto-login y devolvemos al usuario a la página de registro
+        // para que confirme/complemente sus datos.
+        if (!empty($_SESSION['google_autoregistered'])) {
+          $_SESSION['google_email'] = $email;
+          $_SESSION['google_nombre'] = $data['given_name'] ?? '';
+          $_SESSION['google_apellido'] = $data['family_name'] ?? '';
+          header("Location: registro.php");
+          exit();
+        }
+
+        // Usuario existe y no es un registro reciente por Google: iniciar sesión
         $usuario = $stmt->fetch(PDO::FETCH_OBJ);
         $_SESSION['id_usuario'] = $usuario->id_usuario;
         $_SESSION['email'] = $email;
         $_SESSION['id_direccion'] = $usuario->id_direccion;
         $_SESSION['id_tipo_usuario'] = $usuario->id_tipo_usuario;
         $_SESSION['nombre'] = $usuario->nombre;
-        
+
         // Redirigir al index
         header("Location: index.php");
         exit();
@@ -87,23 +98,14 @@ if(isset($_GET["code"]))
           $telefono,
           $passwordAleatorio
         )) {
-          // Obtener el usuario recién creado
-          $stmt = $conex->prepare("SELECT id_usuario, id_direccion, id_tipo_usuario FROM usuario WHERE email = :email");
-          $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-          $stmt->execute();
-          
-          if ($stmt->rowCount() > 0) {
-            $usuario = $stmt->fetch(PDO::FETCH_OBJ);
-            $_SESSION['id_usuario'] = $usuario->id_usuario;
-            $_SESSION['email'] = $email;
-            $_SESSION['id_direccion'] = $usuario->id_direccion;
-            $_SESSION['id_tipo_usuario'] = $usuario->id_tipo_usuario;
-            $_SESSION['nombre'] = $nombre;
-            $_SESSION['google_user'] = true; // Marcar como usuario de Google
-            
-            header("Location: index.php");
-            exit();
-          }
+          // Registro automático completado: llevar al usuario a la página de registro
+          // para que confirme/complemente sus datos (correo/nombre ya están en sesión).
+          $_SESSION['google_email'] = $email;
+          $_SESSION['google_nombre'] = $nombre;
+          $_SESSION['google_apellido'] = $apellido1;
+          $_SESSION['google_autoregistered'] = true;
+          header("Location: registro.php");
+          exit();
         } else {
           // Si falla el registro automático, redirigir a registro manual
           $_SESSION['google_email'] = $email;

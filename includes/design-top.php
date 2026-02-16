@@ -25,7 +25,20 @@
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                     <span class="bi bi-person" style="display: none;"></span>
                 <?php else: ?>
-                    <span class="bi bi-person"></span>
+                    <?php if (isset($_SESSION['email']) && !empty($_SESSION['nombre'])): ?>
+                        <?php
+                            $name = trim($_SESSION['nombre']);
+                            $initial = mb_strtoupper(mb_substr($name, 0, 1, 'UTF-8'), 'UTF-8');
+                            $palette = ['#6c5ce7','#00b894','#0984e3','#fd79a8','#e17055','#00cec9','#fdcb6e','#d63031'];
+                            $color = $palette[abs((int)crc32($_SESSION['email'])) % count($palette)];
+                        ?>
+                        <span class="avatar-initial rounded-circle d-inline-flex align-items-center justify-content-center" 
+                              style="width:32px;height:32px;background:<?= $color ?>;color:#fff;font-weight:600;font-size:14px;">
+                            <?= htmlspecialchars($initial) ?>
+                        </span>
+                    <?php else: ?>
+                        <span class="bi bi-person"></span>
+                    <?php endif; ?>
                 <?php endif; ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUsuario">
